@@ -9,20 +9,37 @@
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
-	<!-- Enables the Spring MVC @Controller programming model -->
-	<annotation-driven />
+  <!-- Enables the Spring MVC @Controller programming model -->
+  <annotation-driven />
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
-	<resources mapping="/resources/**" location="/resources/" />
-
+	<!-- <resources mapping="/resources/**" location="/resources/" /> -->
+  <default-servlet-handler/>
+  
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="prefix" value="/" /> <!-- /webapp -->
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
 	<context:component-scan base-package="dev.mvc.mealkit" />
-	
-	
-	
+	<context:component-scan base-package="dev.mvc.productcate" /> <!-- 아로미 -->
+  <context:component-scan base-package="dev.mvc.pdcontents" /> <!-- 아로미 -->
+  <context:component-scan base-package="dev.mvc.pdatfile" /> <!-- 아로미 -->
+  <context:component-scan base-package="dev.mvc.pdreply" /> <!-- 아로미 -->
+  <context:component-scan base-package="dev.mvc.admin" /><!-- 아로미 -->
+  <context:component-scan base-package="dev.mvc.mkmember" /> <!--  아로미 -->
+  <context:component-scan base-package="dev.mvc.memcate" />  <!-- 아로미 -->
+
+<!-- FORM의 FILE 태그를 읽어 MultipartFile 객체로 변환 -->
+  <beans:bean id="multipartResolver"
+    class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+  </beans:bean>
+  
+    <!-- admin 관련 설정 부분  -->
+<!--   <beans:bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"> 
+    <beans:property name="location" value="/WEB-INF/config/admin.properties"/> 
+    <beans:property name="fileEncoding" value="UTF-8" /> 
+  </beans:bean> -->
+  
 </beans:beans>
