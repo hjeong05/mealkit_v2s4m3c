@@ -39,7 +39,7 @@
     </NAV>
   </DIV>
   
-  <!-- 화면을 2개로 분할하여 좌측은 메뉴, 우측은 내용으로 구성 -->  
+  <!--  화면을 2개로 분할하여 좌측은 메뉴, 우측은 내용으로 구성 -->  
   <DIV class="row" style='margin-top: 2px;'>
     <DIV class="col-md-2"> <!-- 메뉴 출력 컬럼 -->
       <img src='${root}/menu/images/mealkit01.jpg' style='width: 100%;'>

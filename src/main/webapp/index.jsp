@@ -8,7 +8,7 @@
 <title>Resort world</title>
 <link href="./css/style.css" rel='Stylesheet' type='text/css'>
  
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<!--  jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
  
 <!-- Bootstrap -->
