@@ -42,6 +42,7 @@
         </c:when>
       </c:choose>          
         <li><a href="#" >장바구니</a></li>
+        <li><a href="#" >Q&A</a></li>
       </ul>
       
       <!-- 관리자용 메뉴 -->
