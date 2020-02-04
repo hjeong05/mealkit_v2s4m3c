@@ -36,7 +36,9 @@
                             dev.mvc.cartgrp,
                             dev.mvc.cart,
                             dev.mvc.order,
-                            dev.mvc.ordergrp" />
+                            dev.mvc.ordergrp,
+                            dev.mvc.notice_cate,
+                            dev.mvc.notice_contents" />
                             
     <property name="mapperLocations" value="classpath:mybatis/*.xml" />
   </bean>
