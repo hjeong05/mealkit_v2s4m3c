@@ -351,7 +351,7 @@ DecimalFormat df = new DecimalFormat("￦ ###,###,### 원");
                       <button type='button' id="btn_order">확인</button>
                     </dt>
                     <DIV style= ' font-size: 32px; color: #EE0700; line-height: 48px; font-weight: 700; text-align: right;' id='panel1'>
-                     
+                    
                     </DIV>
                     <DIV id ="ordering">
                       <button type='button' id="order">주문하기</button>

@@ -331,7 +331,7 @@ public class PdcontentsCont {
    */
   @RequestMapping(value = "/pdcontents/update.do", 
                              method = RequestMethod.POST)
-  public ModelAndView update(RedirectAttributes ra,
+  public ModelAndView update(RedirectAttributes ra,HttpServletRequest request,
                                         PdcontentsVO pdcontentsVO,
                                         int nowPage) {
     ModelAndView mav = new ModelAndView();
@@ -379,7 +379,7 @@ public class PdcontentsCont {
    */
   @RequestMapping(value = "/pdcontents/update_thumb.do", 
                              method = RequestMethod.POST)
-  public ModelAndView update_thumb(RedirectAttributes redirectAttributes, HttpServletRequest request,
+  public ModelAndView update_thumb(RedirectAttributes ra, HttpServletRequest request,
                                         PdcontentsVO pdcontentsVO) {
     ModelAndView mav = new ModelAndView();
     
@@ -392,6 +392,13 @@ public class PdcontentsCont {
     String thumb = ""; // Preview 이미지
     
     String upDir = Tool.getRealPath(request, "/pdcontents/storage");
+    
+    PdcontentsVO pdVO = pdcontentsProc.read(pdcontentsVO.getPdcontentsno());  // 삭제할 파일명을 조회 
+    
+    Tool.deleteFile(upDir, pdVO.getFupname());       // 파일 삭제
+    Tool.deleteFile(upDir, pdVO.getThumb());   // 파일 삭제
+    
+    
     // 전송 파일이 없어서도 fnameMF 객체가 생성됨, 하나의 파일 업로드.
     MultipartFile fnameMF = pdcontentsVO.getFnameMF();
     fsize = fnameMF.getSize();  // 파일 크기
@@ -414,10 +421,9 @@ public class PdcontentsCont {
 
     // mav.setViewName("/contents/create"); // /webapp/contents/create.jsp
     // redirect: form에서 보낸 데이터 모두 삭제됨, 새로고침 중복 등록 방지용.
-    redirectAttributes.addAttribute("count", count);
-    redirectAttributes.addAttribute("productcateno", pdcontentsVO.getProductcateno());
-    redirectAttributes.addAttribute("pdcontentsno", pdcontentsVO.getPdcontentsno());
-    
+    ra.addAttribute("count", count);
+    ra.addAttribute("productcateno", pdcontentsVO.getProductcateno());
+    ra.addAttribute("pdcontentsno", pdcontentsVO.getPdcontentsno());
     mav.setViewName("redirect:/pdcontents/update_thumb_msg.jsp");
 
     return mav;
