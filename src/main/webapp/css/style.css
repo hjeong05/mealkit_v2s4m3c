@@ -487,3 +487,22 @@
     margin: 10px auto;  /* 가운데 정렬 */
     text-align: center;
   }
+  
+  .float-frame {
+  background: #eee;
+  border: 1px solid #ddd;
+  padding: 10px;
+  overflow: hidden;
+  text-align: center;
+  }
+
+  .float-unit {
+    width: 47.2%;
+    height: 300px;
+    border: 1px solid #ddd;
+    background: #FFFFFF;
+    color: #333333;
+    padding: 15px 0;
+    margin: 15px;
+    float: left;
+  }
