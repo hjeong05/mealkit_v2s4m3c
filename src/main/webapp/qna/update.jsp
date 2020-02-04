@@ -41,7 +41,7 @@
   <FORM name='frm' method='POST' action='./update.do' class="form-horizontal">
       <input type='hidden' name='qnano' value='${qnaVO.qnano }'>
       
-      <!-- <div class="form-group">   
+      <div class="form-group">   
         <div class="col-md-12">
         질문 유형
           <select name="choice" id="choice">
@@ -53,7 +53,7 @@
             <option>기타 문의</option>
           </select>
          </div>
-      </div>   -->
+      </div>   
       
       <div class="form-group">   
         <label class="col-md-1 control-label">제목</label>
