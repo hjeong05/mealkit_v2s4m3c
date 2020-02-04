@@ -1,0 +1,5 @@
+eclipse.preferences.version=1
+encoding//src/main/webapp/WEB-INF/doc/dbms=UTF-8
+encoding//src/main/webapp/WEB-INF/doc/dbms/cart.sql=UTF-8
+encoding//src/main/webapp/WEB-INF/doc/dbms/cartgrp.sql=UTF-8
+encoding//src/main/webapp/WEB-INF/doc/dbms/order_pay_grp.sql=UTF-8

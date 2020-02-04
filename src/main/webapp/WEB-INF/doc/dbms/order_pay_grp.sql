@@ -1,7 +1,7 @@
 DROP TABLE order_pay_grp;
 
 /**********************************/
-/* Table Name: 주문 및 결제 */
+/* Table Name: 주문 및 결제 */ 
 /**********************************/
 CREATE TABLE order_pay_grp(
     order_pay_grpNO NUMBER(10) NOT NULL PRIMARY KEY,

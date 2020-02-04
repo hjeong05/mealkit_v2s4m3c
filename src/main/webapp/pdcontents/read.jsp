@@ -57,16 +57,6 @@ DecimalFormat df = new DecimalFormat("￦ ###,###,### 원");
     str += f.cnt.value*${pdcontentsVO.price} + ' 원 ';
     document.getElementById('panel1').innerHTML = str;
   }
-
-    function panel_img(file) {
-    var tag = "";
-    tag   = "<A href=\"javascript: $('#pdatfile_panel').hide();\">";
-    tag += "  <IMG src='../pdatfile/storage/" + file + "' style='width: 80%;'>"; 
-    tag += "</A>";
-    
-    $('#pdatfile_panel').html(tag);
-    $('#pdatfile_panel').show();
-  } 
     
     $(function() { // 자동 실행
       list_by_pdcontentsno(${pdcontentsVO.pdcontentsno });  // JS의 EL 접근
@@ -78,18 +68,7 @@ DecimalFormat df = new DecimalFormat("￦ ###,###,### 원");
         $('#content', frm_reply).attr('placeholder', '댓글 작성');
       }
     });
-    
-    function panel_img(file) {
-      var tag = "";
-      tag = "<A href=\"javascript: $('#attachfile_panel').hide();\">";
-      tag += "  <IMG src='../pdatfile/storage/" + file
-          + "' style='width: 100%;'>";
-      tag += "</A>";
 
-      $('#attachfile_panel').html(tag);
-      $('#attachfile_panel').show();
-    }
-    
     function create_pdreply() {
       var frm_reply = $('#frm_reply');
       var params = frm_reply.serialize();
@@ -192,21 +171,21 @@ DecimalFormat df = new DecimalFormat("￦ ###,###,### 원");
       });
       
     }
- /*    
+   
     // 삭제 레이어 출력
-    function reply_delete(replyno) {
+    function pdreply_delete(pdreplyno) {
       // alert('replyno: ' + replyno);
-      var frm_reply_delete = $('#frm_reply_delete');
-      $('#replyno', frm_reply_delete).val(replyno);  // 삭제할 댓글 번호 저장 
+      var frm_reply_delete = $('#frm_pdreply_delete');
+      $('#pdreplyno', frm_reply_delete).val(pdreplyno);  // 삭제할 댓글 번호 저장 
       $('#modal_panel_delete').modal();              // 삭제 폼 다이얼로그 출력
     }
     
     // 삭제 처리
-    function reply_delete_proc(replyno) {
+    function pdreply_delete_proc(replyno) {
       // alert('replyno: ' + replyno);
-      var params = $('#frm_reply_delete').serialize();
+      var params = $('#frm_pdreply_delete').serialize();
       $.ajax({
-        url: "./reply_delete.do", // action 대상 주소
+        url: "./pdreply_delete.do", // action 대상 주소
         type: "post",           // get, post
         cache: false,          // 브러우저의 캐시영역 사용안함.
         async: true,           // true: 비동기
@@ -221,7 +200,7 @@ DecimalFormat df = new DecimalFormat("￦ ###,###,### 원");
 
               $('#btn_frm_reply_delete_close').trigger("click"); // 삭제폼 닫기 
               
-              list_by_contentsno(${contentsVO.contentsno }); // 목록을 다시 읽어옴
+              list_by_pdcontentsno(${pdcontentsVO.pdcontentsno }); // 목록을 다시 읽어옴
               
               return; // 함수 실행 종료
             } else {  // 삭제 실패
@@ -248,7 +227,7 @@ DecimalFormat df = new DecimalFormat("￦ ###,###,### 원");
       });
 
        
-    }*/
+    }
     
 </script>
 </head>
@@ -278,7 +257,58 @@ DecimalFormat df = new DecimalFormat("￦ ###,###,### 원");
     </div>
   </div> <!-- Modal 알림창 종료 -->
 
-
+  <!-- 삭제폼 -->
+  <div class="modal fade" id="modal_panel_delete" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">×</button>
+          <h4 class="modal-title">댓글 삭제</h4><!-- 제목 -->
+        </div>
+        <div class="modal-body">
+          <form name='frm_reply_delete' id='frm_reply_delete' method='POST' 
+                    action='./pdreply_delete.do'>
+            <input type='hidden' name='pdreplyno' id='pdreplyno' value=''>
+            
+            <label>패스워드</label>
+            <input type='password' name='passwd' id='passwd' class='form-control'>
+            <div style='text-align: right; margin: 5px;'>
+              <button type='button' class='btn btn-success' 
+                           onclick="pdreply_delete_proc(this.form.pdreplyno.value);this.form.passwd.value='';">삭제</button>
+            </div> 
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal" 
+                       id='btn_frm_reply_delete_close'>Close</button>
+        </div>
+      </div>
+    </div>
+  </div> <!-- 삭제폼 종료 -->
+  
+  <!-- 삭제폼 알림창 시작 -->
+  <div class="modal fade" id="modal_panel_delete_msg" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"
+                       onclick="$('#modal_panel_delete').show();">×</button>
+          <h4 class="modal-title">비밀번호 에러</h4><!-- 제목 -->
+        </div>
+        <div class="modal-body">
+          <p id='modal_panel_delete_msg_content'></p>  <!-- 내용 -->
+        </div>
+        <div class="modal-footer">
+        <!-- 현재 창은 삭제되면서 삭제 폼이 다시 출력됨. -->
+          <button type="button" class="btn btn-default" data-dismiss="modal"
+                      onclick="$('#modal_panel_delete').show();">Close</button>
+        </div>
+      </div>
+    </div>
+  </div> <!-- 삭제 알림창 종료 -->
+  
   <ASIDE style='float: left;'>
     <A href='../productcate/list.do'>카테고리 그룹</A> > 
     <A href='./list.do?productcateno=${productcateno }'>${productcateVO.name }</A>

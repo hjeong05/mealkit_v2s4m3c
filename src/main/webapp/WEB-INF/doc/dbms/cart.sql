@@ -1,27 +1,27 @@
 /**********************************/
-/* Table Name: ¿ÂπŸ±∏¥œ */
+/* Table Name: Ïû•Î∞îÍµ¨Îãà */
 /**********************************/
 DROP TABLE cart;
 
 CREATE TABLE cart(
     cartno NUMBER(10) NOT NULL  PRIMARY KEY,
-		cartgrpno NUMBER(10) NOT NULL,
-		productno NUMBER(10) NOT NULL,
-		orderID VARCHAR(100) NOT NULL,
-		productCount NUMBER(10) DEFAULT 0 NOT NULL,
-		rdate DATE NOT NULL,
-		FOREIGN KEY (cartgrpno) REFERENCES cartgrp (cartgrpno),
-		FOREIGN KEY (productno) REFERENCES pdcontents (pdcontentsno),
-		FOREIGN KEY (orderID) REFERENCES mkmember (id)
+      cartgrpno NUMBER(10) NOT NULL,
+      productno NUMBER(10) NOT NULL,
+      orderID VARCHAR(100) NOT NULL,
+      productCount NUMBER(10) DEFAULT 0 NOT NULL,
+      rdate DATE NOT NULL,
+      FOREIGN KEY (cartgrpno) REFERENCES cartgrp (cartgrpno),
+      FOREIGN KEY (productno) REFERENCES pdcontents (pdcontentsno),
+      FOREIGN KEY (orderID) REFERENCES mkmember (id)
 );
 
-COMMENT ON TABLE cart is '¿ÂπŸ±∏¥œ';
-COMMENT ON COLUMN cart.cartno is '¿ÂπŸ±∏¥œ π¯»£';
-COMMENT ON COLUMN cart.cartgrpno is '¿ÂπŸ±∏¥œ ±◊∑Ï π¯»£';
-COMMENT ON COLUMN cart.productno is 'ªÛ«∞ π¯»£';
-COMMENT ON COLUMN cart.orderID is '¡÷πÆ¿⁄ id';
-COMMENT ON COLUMN cart.productCount is 'ªÛ«∞ ∞πºˆ';
-COMMENT ON COLUMN cart.rdate is '¿ÂπŸ±∏¥œ √ﬂ∞°¿œ';
+COMMENT ON TABLE cart is 'Ïû•Î∞îÍµ¨Îãà';
+COMMENT ON COLUMN cart.cartno is 'Ïû•Î∞îÍµ¨Îãà Î≤àÌò∏';
+COMMENT ON COLUMN cart.cartgrpno is 'Ïû•Î∞îÍµ¨Îãà Í∑∏Î£π Î≤àÌò∏';
+COMMENT ON COLUMN cart.productno is 'ÏÉÅÌíà Î≤àÌò∏';
+COMMENT ON COLUMN cart.orderID is 'Ï£ºÎ¨∏Ïûê id';
+COMMENT ON COLUMN cart.productCount is 'ÏÉÅÌíà Í∞ØÏàò';
+COMMENT ON COLUMN cart.rdate is 'Ïû•Î∞îÍµ¨Îãà Ï∂îÍ∞ÄÏùº';
 
 SELECT * FROM cart
 ORDER BY cartno ASC;
@@ -29,7 +29,7 @@ SELECT * FROM cartgrp;
 
  SELECT NVL(MAX(cartno),0) + 1 as cartno FROM cart;
 
- -- µÓ∑œ
+ -- Îì±Î°ù
  INSERT INTO cart(cartno, cartgrpno, productno, orderID,
                               productCount, rdate)
  VALUES((SELECT NVL(MAX(cartno),0) + 1 as cartno FROM cart),
@@ -49,7 +49,7 @@ SELECT * FROM cartgrp;
       2         1         2 user1              1 2019-12-13 18:13:41.0
       3         1         3 user1              1 2019-12-13 18:13:42.0
 
- -- ¡∂»∏
+ -- Ï°∞Ìöå
  SELECT cartno, cartgrpno, productno, orderID, productCount, rdate
  FROM cart
  WHERE cartno=1;
@@ -63,21 +63,21 @@ SELECT * FROM cartgrp;
       1         1         1 user1              1 2019-12-13 18:13:40.0
 
       
- -- ªÛ«∞ ºˆ¡§
+ -- ÏÉÅÌíà ÏàòÏ†ï
 UPDATE cart
 SET productno=1, productCount=10
 WHERE cartno=1;
 
- -- ±◊∑Ï ºˆ¡§
+ -- Í∑∏Î£π ÏàòÏ†ï
 UPDATE cart
 SET cartgrpno=3, rdate = sysdate
 WHERE cartno=1;
 
- -- ªË¡¶
+ -- ÏÇ≠Ï†ú
  DELETE FROM cart 
  WHERE cartgrpno=1 and cartno=2;
 
- -- ¿¸√º ∑πƒ⁄µÂ ºˆ
+ -- Ï†ÑÏ≤¥ Î†àÏΩîÎìú Ïàò
  SELECT COUNT(*) as cnt
  FROM cart;
  
@@ -85,7 +85,7 @@ WHERE cartno=1;
  ---
    5
  
- -- cartgrpno∫∞ ∑πƒ⁄µÂ ºˆ
+ -- cartgrpnoÎ≥Ñ Î†àÏΩîÎìú Ïàò
  SELECT COUNT(*) as cnt
  FROM cart
  WHERE cartgrpno=2;
@@ -95,7 +95,7 @@ WHERE cartno=1;
    2
 
    
- -- ªÛ«∞ + ƒ´∆Æ ∏Ò∑œ
+ -- ÏÉÅÌíà + Ïπ¥Ìä∏ Î™©Î°ù
  SELECT c.cartno, c.cartgrpno, c.productno, c.orderID, c.productCount, c.rdate, p.pdcontentsno, p.title, p.thumb, p.price
  FROM cart c INNER JOIN pdcontents p
  ON c.productno = p.pdcontentsno 
@@ -104,7 +104,7 @@ WHERE cartno=1;
  
  CARTNO CARTGRPNO PRODUCTNO ORDERID PRODUCTCOUNT PDCONTENTSNO TITLE THUMB         RDATE                 PRICE
  ------ --------- --------- ------- ------------ ------------ ----- ------------- --------------------- -----
-      1         1         1 user1              1            1 ∫Ò∫ˆπ‰   bibmbap_t.jpg 2019-12-20 17:06:04.0  6500
+      1         1         1 user1              1            1 ÎπÑÎπîÎ∞•   bibmbap_t.jpg 2019-12-20 17:06:04.0  6500
       
  SELECT c.cartno, c.cartgrpno, c.productno, c.orderID, c.productCount, c.rdate, p.pdcontentsno, p.title, p.thumb, p.price
  FROM cart c INNER JOIN pdcontents p
