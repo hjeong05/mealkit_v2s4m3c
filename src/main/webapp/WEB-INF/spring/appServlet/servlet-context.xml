@@ -36,7 +36,8 @@
   <context:component-scan base-package="dev.mvc.ordergrp" /> <!-- 박예림 -->
   <context:component-scan base-package="dev.mvc.notice_cate"/> <!-- 홍기빈 -->
   <context:component-scan base-package="dev.mvc.notiec_contents"/> <!-- 홍기빈 -->
-
+  <context:component-scan base-package="dev.mvc.faq_cate"/> <!-- 홍기빈 -->
+  <context:component-scan base-package="dev.mvc.faq"/><!-- ghdrlqls -->
 <!-- FORM의 FILE 태그를 읽어 MultipartFile 객체로 변환 -->
   <beans:bean id="multipartResolver"
     class="org.springframework.web.multipart.commons.CommonsMultipartResolver">

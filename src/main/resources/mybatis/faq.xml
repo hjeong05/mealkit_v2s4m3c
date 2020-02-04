@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="dev.mvc.faq.FaqDAOInter"> 
+
+  <insert id ="create" parameterType="FaqVO"> 
+    INSERT INTO faq(faqno, memberno, faq_cateno, seqno, title, content, word, rdate)
+    VALUES((SELECT NVL(MAX(faqno), 0) + 1 as faqno FROM faq),
+               #{memberno}, #{faq_cateno}, #{seqno}, #{title}, #{content}, #{word}, sysdate)
+  </insert>
+  
+  <select id="list_by_cateno" resultType="FaqVO">
+     SELECT faqno, memberno, faq_cateno, seqno, title, content, word, rdate
+     FROM faq
+     WHERE  faq_cateno=#{faq_cateno}
+     ORDER BY faqno desc
+   </select> 
+   
+   <select id="list_all" resultType="FaqVO">
+     SELECT faqno, memberno, faq_cateno, seqno, title, content, word, rdate
+     FROM faq
+     ORDER BY rdate desc
+   </select> 
+   
+   <select id="total_count" resultType="int">
+     SELECT COUNT(*) as count
+     FROM faq
+   </select> 
+   
+   <select id="read" resultType="FaqVO" parameterType="int">
+     SELECT faqno, memberno, faq_cateno, seqno, title, content, word, rdate
+     FROM faq
+     WHERE faqno=#{faqno}
+   </select>
+   
+   <update id='update' parameterType="FaqVO">
+   UPDATE faq
+   SET title=#{title}, content=#{content}, word=#{word}
+   WHERE faqno = #{faqno}
+   </update> 
+   
+   <delete id="delete" parameterType="int">
+     DELETE FROM faq
+     WHERE faqno = #{faqno}
+   </delete> 
+   
+    <!-- FK 컬럼 값이 사용된 레코드 갯수 산출: id="count_by_cateno" -->  
+   <select id="count_by_cateno" resultType="int">
+    SELECT COUNT(*) as cnt
+    FROM faq
+    WHERE faq_cateno=#{faq_cateno}
+   </select>
+    
+     <!-- FK 컬럼 값이 사용된 레코드 삭제: id="delete_by_categrpno" -->  
+   <delete id="delete_by_cateno" parameterType="int">
+     DELETE FROM faq
+     WHERE faq_cateno=#{faq_cateno}
+   </delete> 
+   
+   <select id="list_by_cateno_search" resultType="FaqVO" parameterType="Hashmap">
+    SELECT faqno, memberno, faq_cateno, seqno, title, content, word, rdate
+    FROM faq
+    <choose>
+      <when test="word==null or word == ''"><!-- 검색하지 않는 경우 -->
+      </when>
+      <otherwise>
+      WHERE word LIKE '%' || #{word} || '%'
+      </otherwise>
+    </choose>
+    ORDER BY rdate DESC
+   </select>
+
+  <!-- 카테고리별 검색 레코드 갯수 -->
+  <select id="search_count" resultType="int"
+    parameterType="Hashmap">
+    SELECT COUNT(*) as cnt
+    FROM faq
+    <choose>
+      <when test="word==null or word == ''">
+
+      </when>
+      <otherwise>
+        WHERE word LIKE '%' || #{word} || '%'
+      </otherwise>
+    </choose>
+  </select>
+   
+   <!-- 카테고리별 검색 목록 | 페이징 -->
+  <select id="list_by_search_paging" 
+            resultType="FaqVO" parameterType="HashMap">
+    SELECT faqno, memberno, faq_cateno, seqno, title, content, word, rdate, r
+    FROM (        
+              SELECT faqno, memberno, faq_cateno, seqno, title, content, 
+                        word, rdate, rownum as r
+              FROM (
+                        SELECT faqno, memberno, faq_cateno, seqno, title, 
+                                  content, word, rdate
+                     FROM faq
+                        <choose>
+                        <when test="word == null or word == ''"> <!-- 검색하지 않는 경우 -->
+                           WHERE faq_cateno=#{faq_cateno}
+                        </when>
+                        <otherwise>
+                        WHERE faq_cateno=#{faq_cateno} AND word LIKE '%' || #{word} || '%'  
+                        </otherwise>
+                        </choose>
+                        ORDER BY faqno DESC
+                  )
+      )
+     WHERE r &gt;= #{startNum} AND r &lt;= #{endNum}
+     <!--
+     1 page : WHERE r >= 1 AND r <= 10
+     2 page : WHERE r >= 1 AND r <= 10
+     3 page : WHERE r >= 1 AND r <= 10
+     -->             
+  </select>
+  
+   </mapper>

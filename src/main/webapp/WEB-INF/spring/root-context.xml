@@ -38,7 +38,9 @@
                             dev.mvc.order,
                             dev.mvc.ordergrp,
                             dev.mvc.notice_cate,
-                            dev.mvc.notice_contents" />
+                            dev.mvc.notice_contents,
+                            dev.mvc.faq,
+                            dev.mvc.faq_cate" />
                             
     <property name="mapperLocations" value="classpath:mybatis/*.xml" />
   </bean>
