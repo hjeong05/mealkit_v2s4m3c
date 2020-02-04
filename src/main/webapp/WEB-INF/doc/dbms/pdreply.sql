@@ -117,7 +117,7 @@ WHERE pdreplyno=1 AND passwd='1234';
  ---
    0
    
-## 조인 부분
+##  조인 부분
 
    SELECT m.id, 
           r.pdreplyno, r.pdcontentsno, r.starcnt, r.memberno, r.content, r.passwd, r.rdate
