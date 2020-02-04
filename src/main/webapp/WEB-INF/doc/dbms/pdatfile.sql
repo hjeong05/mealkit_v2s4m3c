@@ -42,7 +42,23 @@ ORDER BY pdcontentsno ASC;
 1) 등록
 INSERT INTO pdatfile(pdatfileno, pdcontentsno, fname, fupname, thumb, fsize, rdate)
 VALUES((SELECT NVL(MAX(pdatfileno), 0) + 1 as pdatfileno FROM pdatfile),
-             3, 'samyang.jpg', 'samyang_1.jpg', 'samyang_t.jpg', 1000, sysdate);
+             1, 'japchae1.jpg', 'japchae1_0.jpg', 'japchae1_0_t.jpg', 92275, sysdate);
+             
+INSERT INTO pdatfile(pdatfileno, pdcontentsno, fname, fupname, thumb, fsize, rdate)
+VALUES((SELECT NVL(MAX(pdatfileno), 0) + 1 as pdatfileno FROM pdatfile),
+             1, 'japchae2.jpg', 'japchae2_0.jpg', 'japchae2_0_t.jpg', 78724, sysdate);
+
+INSERT INTO pdatfile(pdatfileno, pdcontentsno, fname, fupname, thumb, fsize, rdate)
+VALUES((SELECT NVL(MAX(pdatfileno), 0) + 1 as pdatfileno FROM pdatfile),
+             1, 'japchae3.jpg', 'japchae3_0.jpg', 'japchae3_0_t.jpg', 84244, sysdate);
+
+INSERT INTO pdatfile(pdatfileno, pdcontentsno, fname, fupname, thumb, fsize, rdate)
+VALUES((SELECT NVL(MAX(pdatfileno), 0) + 1 as pdatfileno FROM pdatfile),
+             1, 'japchae4.jpg', 'japchae4_0.jpg', 'japchae4_0_t.jpg', 74194, sysdate);
+             
+INSERT INTO pdatfile(pdatfileno, pdcontentsno, fname, fupname, thumb, fsize, rdate)
+VALUES((SELECT NVL(MAX(pdatfileno), 0) + 1 as pdatfileno FROM pdatfile),
+             1, 'japchae5.jpg', 'japchae5_0.jpg', 'japchae5_0_t.jpg', 82618, sysdate);
         
 -- 2) 목록( pdcontentsno 기준 내림 차순, pdattachfileno 기준 오르차순)
 SELECT pdatfileno, pdcontentsno, fname, fupname, thumb, fsize, rdate

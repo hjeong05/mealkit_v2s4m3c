@@ -117,6 +117,16 @@ WHERE pdreplyno=1 AND passwd='1234';
  ---
    0
    
+## 조인 부분
+
+   SELECT m.id, 
+          r.pdreplyno, r.pdcontentsno, r.starcnt, r.memberno, r.content, r.passwd, r.rdate
+    FROM pdreply r
+    INNER JOIN mkmember m
+    ON m.memberno = r.memberno
+    WHERE r.pdcontentsno=1
+    ORDER BY pdreplyno DESC;
+    
 9) 삭제
 DELETE FROM pdreply
 WHERE pdreplyno=1;

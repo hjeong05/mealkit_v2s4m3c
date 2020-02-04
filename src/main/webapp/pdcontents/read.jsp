@@ -334,6 +334,7 @@ DecimalFormat df = new DecimalFormat("￦ ###,###,### 원");
 
   <FORM name='frm' method="get" action='./update.do'>
       <input type="hidden" name="pdcontentsno" value="${pdcontentsno}">
+      <input type="hidden" name='id' value='${sessionScope.id }'>
       <fieldset class="fieldset">
         <ul>
           <li class="li_none" style='border-bottom: solid 1px #AAAAAA;'>
@@ -384,8 +385,8 @@ DecimalFormat df = new DecimalFormat("￦ ###,###,### 원");
                     
                     </DIV>
                     <DIV id ="ordering">
-                      <button type='button' id="order">주문하기</button>
-                      <button type='button' id="cart">장바구니에 담기</button>
+                      <button type='button' id="order" onclick='order_direct(document.frm);'>주문하기</button>
+                      <button type='button' id="cart" >장바구니에 담기</button>
                     </DIV>
                     
 <!--                     <dd style='float:right; color: #EE0700; font-size: 32px; line-height: 48px; font-weight: 700; text-align: right; '>
