@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<!-- dev.mvc.categrp.CategrpDAOInter 패키지에 등록된 interface 명시,
+      패키지명과 인터페이스명은 실제로 존재해야함,
+      Spring이 내부적으로 자동으로 interface를 구현해줌. -->
+<mapper namespace="dev.mvc.faq_cate.Faq_cateDAOInter"> 
+  
+   <insert id="create" parameterType="Faq_cateVO">
+     INSERT INTO faq_cate(faq_cateno, title, seqno, rdate, cnt)
+     VALUES((SELECT NVL(MAX(faq_cateno), 0) + 1 as faq_cateno FROM faq_cate),
+                #{title}, #{seqno}, sysdate, 0)
+   </insert>
+
+   <select id="list_seqno_asc" resultType="Faq_cateVO">
+     SELECT faq_cateno, title, seqno, TO_CHAR(rdate, 'YYYY-MM-DD hh:mi:ss') as rdate, cnt
+     FROM faq_cate
+     ORDER BY seqno ASC
+   </select>
+   
+    <!-- 조회, id: read, 입력: cateno, 리턴: Notice_cateVO -->
+   <select id="read" resultType="Faq_cateVO" parameterType="int">
+     SELECT faq_cateno, title, seqno, rdate, cnt 
+     FROM faq_cate
+     WHERE faq_cateno = #{faq_cateno}
+   </select> 
+   
+   <!-- 수정, id: update, 입력: Notice_cateVO, 리턴: 수정된 갯수 int -->
+   <update id="update" parameterType="Faq_cateVO">
+     UPDATE faq_cate
+     SET title=#{title}, seqno=#{seqno}
+     WHERE faq_cateno = #{faq_cateno}
+   </update>
+   
+   <!-- 삭제, id=delete, 입력: PK, 리턴: 삭제된 갯수 int -->
+   <delete id="delete" parameterType="int">
+     DELETE FROM faq_cate
+     WHERE faq_cateno = #{faq_cateno}
+   </delete>
+   
+   <update id="increaseCnt" parameterType="int">
+     UPDATE faq_cate 
+     SET cnt = cnt + 1 
+     WHERE faq_cateno=#{faq_cateno}
+   </update>
+   
+   <update id="decreaseCnt" parameterType="int">
+     UPDATE faq_cate 
+     SET cnt = cnt - 1 
+     WHERE faq_cateno=#{faq_cateno}
+   </update>
+  
+   <!-- FK 컬럼 값이 사용된 레코드 갯수 산출: id="cnt_zero" -->
+   <update id="cnt_zero" parameterType="int">
+     UPDATE notice_cate 
+     SET cnt = 0 
+     WHERE faq_cateno=#{faq_cateno}
+   </update>
+   
+</mapper>

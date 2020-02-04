@@ -28,7 +28,7 @@ INSERT INTO cartgrp(cartgrpno, name, seqno, visible, rdate, cnt)
 VALUES(2, '정기 배송', 2, 'Y', sysdate, 0);
 
 INSERT INTO cartgrp(cartgrpno, name, seqno, visible, rdate, cnt)
-VALUES(3, '수정/삭제 예시용', 3, 'Y', sysdate, 0);
+VALUES(3, '결제된 상품', 3, 'Y', sysdate, 0);
 
  CARTGRPNO NAME      SEQNO VISIBLE RDATE                 CNT
  --------- --------- ----- ------- --------------------- ---

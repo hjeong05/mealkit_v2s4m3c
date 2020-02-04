@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="dev.mvc.qna.QnaDAOInter"> 
+
+  <insert id ="create" parameterType="QnaVO"> 
+    INSERT INTO qna(qnano, memberno, seqno, title, content, choice,
+                                 grpno, indent, ansnum, rdate)
+    VALUES((SELECT NVL(MAX(qnano), 0) + 1 as qnano FROM qna),
+               #{memberno}, #{seqno}, #{title}, #{content}, #{choice},
+  (SELECT NVL(MAX(grpno), 0) + 1 as grpno FROM qna),
+    #{ansnum}, #{indent}, sysdate)
+  </insert>
+  
+  <select id="list" resultType="QnaVO">
+     SELECT qnano, memberno,seqno, title, content, choice, grpno, indent, ansnum, rdate
+     FROM qna
+     ORDER BY qnano desc
+   </select> 
+   
+   <select id="total_count" resultType="int">
+     SELECT COUNT(*) as count
+     FROM qna
+   </select> 
+   
+   <select id="read" resultType="QnaVO" parameterType="int">
+     SELECT qnano, memberno, seqno, title, content, choice, grpno, indent, ansnum, rdate
+     FROM qna
+     WHERE qnano=#{qnano}
+   </select>
+   
+   <update id='update' parameterType="QnaVO">
+   UPDATE qna
+   SET title=#{title}, content=#{content}
+   WHERE qnano = #{qnano}
+   </update> 
+   
+   <delete id="delete" parameterType="int">
+     DELETE FROM qna
+     WHERE qnano = #{qnano}
+   </delete> 
+   
+    <!-- ******************** 답변 관련 시작 ******************** -->
+  <!-- 신규 답변을 최우선으로 출력하기위한 답변 순서 조절 -->
+  <update id='update_Ansnum' parameterType="QnaVO">
+    UPDATE qna
+    SET ansnum = ansnum + 1
+    WHERE grpno = #{grpno} AND ansnum > #{ansnum}
+  </update>  
+   
+  <!-- 답변 --> 
+  <insert id="reply" parameterType="QnAVO">
+    INSERT INTO qna(qnano, memberno, seqno, title, content, choice, grpno, indent, ansum, rdate)  
+    VALUES((SELECT NVL(MAX(qnano), 0) + 1 as qnano FROM qna),
+               #{memberno}, #{seqno}, #{title}, #{content}, #{choice},
+                #{grpno}, #{indent}, #{ansnum}, sysdate)
+  </insert>
+  
+  <!-- ******************** 답변 관련 종료 ******************** -->
+  
+  <!-- 초이스 별 목록 추출 -->
+<!--    <select id="choice_list" resultType="QnaVO" parameterType="string">
+     SELECT qnano, memberno, seqno, title, content, choice, grpno, indent, ansnum, rdate
+     FROM qna
+     WHERE choice=#{choice}
+     ORDER BY qnano desc
+   </select> -->
+   </mapper>
