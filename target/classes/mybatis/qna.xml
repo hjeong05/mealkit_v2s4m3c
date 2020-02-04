@@ -34,7 +34,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    
    <update id='update' parameterType="QnaVO">
    UPDATE qna
-   SET title=#{title}, content=#{content}
+   SET title=#{title}, content=#{content}, choice=#{choice}
    WHERE qnano = #{qnano}
    </update> 
    

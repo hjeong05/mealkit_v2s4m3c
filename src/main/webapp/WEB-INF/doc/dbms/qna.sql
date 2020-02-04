@@ -77,10 +77,6 @@ UPDATE qna
 SET ansnum = ansnum + 1
 WHERE grpno = 1 AND ansnum > 1;
  
-
-
-
-
 ② 답변 등록
 INSERT INTO qna(qnano, memberno, seqno, title, content, grpno, indent, ansnum, rdate)  
 VALUES((SELECT NVL(MAX(qnano), 0) + 1 as qnano FROM qna),
