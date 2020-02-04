@@ -40,7 +40,8 @@
                             dev.mvc.notice_cate,
                             dev.mvc.notice_contents,
                             dev.mvc.faq,
-                            dev.mvc.faq_cate" />
+                            dev.mvc.faq_cate,
+                            dev.mvc.qna" />
                             
     <property name="mapperLocations" value="classpath:mybatis/*.xml" />
   </bean>
