@@ -487,3 +487,50 @@
     margin: 10px auto;  /* 가운데 정렬 */
     text-align: center;
   }
+
+  /* pdcontents read.jsp에 이용되는 css*/
+  .tab_wrap {
+    position: relative;
+    margin-top: -64px;
+}
+
+.tab_list {
+    position: relative;
+    width: 1180px;
+    marin: 0 auto;
+}
+
+.tabs_li {
+    display: inline-block;
+    width: initial;
+    text-align: center;
+    vertical-align: top;
+}
+
+ul.tabs{
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+}
+ul.tabs li{
+  background: none;
+  color: #222;
+  display: inline-block;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+ 
+ul.tabs li.current{
+  background: #ededed;
+  color: #222;
+}
+ 
+.tab-content{
+  display: none;
+  background: #ededed;
+  padding: 15px;
+}
+ 
+.tab-content.current{
+  display: inherit;
+}
