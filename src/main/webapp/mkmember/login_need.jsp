@@ -33,7 +33,7 @@
     <H3>로그인이 필요한 페이지입니다.</H3>
     <BR><BR>
     <button type="button" 
-                      onclick="location.href='${pageContext.request.contextPath}/member/login.do'" 
+                      onclick="location.href='${pageContext.request.contextPath}/mkmember/login.do'" 
                       class="btn btn-primary btn-md">로그인</button>
     <button type="button" 
                       onclick="location.href='${pageContext.request.contextPath}/member/create.do'" 

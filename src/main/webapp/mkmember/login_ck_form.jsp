@@ -44,7 +44,6 @@
                     ${ck_id_save == 'Y' ? "checked='checked'" : "" }> 저장
         </Label>
       </div>
- 
     </div>   
  
     <div class="form-group" >
@@ -59,10 +58,14 @@
     </div>   
  
     <div class="form-group" > 
-      <div class="col-md-offset-4 col-md-10">
+      <div class="col-md-offset-4 col-md-10" style="margin-bottom: 20px;">
         <button type="submit" class="btn btn-primary btn-md">로그인</button>
         <button type='button' onclick="location.href='./create.do'" class="btn btn-primary btn-md">회원가입</button>
         <button type='button' onclick="loadDefault();" class="btn btn-primary btn-md">테스트 계정</button>
+      </div>
+      <div class="col-md-offset-4 col-md-10">
+        <button type="button" onclick="location.href='./id_find.do'" class="btn btn-primary btn-md">아이디 찾기</button>
+        <button type="button" onclick="location.href='./passwd_find.do'" class="btn btn-primary btn-md">비밀번호 찾기</button>
       </div>
     </div>   
     

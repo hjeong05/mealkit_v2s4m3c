@@ -1,9 +1,18 @@
 package dev.mvc.mkmember;
 
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 
+import javax.mail.Address;
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,6 +31,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import dev.mvc.memcate.MemcateProcInter;
 import dev.mvc.memcate.MemcateVO;
+import nation.web.tool.Gmail;
 
 @Controller
 public class MkmemberCont {
@@ -82,21 +92,56 @@ public class MkmemberCont {
     return obj.toString();
   }
   
-  // 등급별 회원 목록
+  /*
+   * // 등급별 회원 목록
+   * 
+   * @RequestMapping(value = "/mkmember/list.do", method = RequestMethod.GET)
+   * public ModelAndView list_by_memcateno(int memcateno) { ModelAndView mav = new
+   * ModelAndView();
+   * 
+   * List<MkmemberVO> list = mkmemberProc.list_by_memcateno(memcateno);
+   * mav.addObject("list", list);
+   * 
+   * MemcateVO memcateVO = memcateProc.read(memcateno); 
+   * mav.addObject("memcateVO", memcateVO);
+   * 
+   * mav.setViewName("/mkmember/list"); // 카테고리 그룹별 목록
+   * 
+   * return mav; }
+   */
+  
+  // 등급별 회원 목록 + 페이징
   @RequestMapping(value = "/mkmember/list.do", method = RequestMethod.GET)
-  public ModelAndView list_by_memcateno(int memcateno) {
+  public ModelAndView list_by_memcateno_paging(
+      @RequestParam(value="memcateno", defaultValue="1") int memcateno,
+      @RequestParam(value="nowPage", defaultValue="1") int nowPage,
+      String name
+      ) {
     ModelAndView mav = new ModelAndView();
-
-    List<MkmemberVO> list = mkmemberProc.list_by_memcateno(memcateno);
+    mav.setViewName("/mkmember/list_by_memcateno_paging");      
+    
+    // 숫자와 문자열 타입을 저장해야함으로 Obejct 사용
+    HashMap<String, Object> map = new HashMap<String, Object>();
+    map.put("memcateno", memcateno); // #{memcateno}
+    map.put("nowPage", nowPage);  
+    map.put("name", name); 
+    
+    List<MkmemberVO> list = mkmemberProc.list_by_memcateno_paging(map);
     mav.addObject("list", list);
-
+    
+    int count_by_memcateno = mkmemberProc.count_by_memcateno(memcateno);
+    mav.addObject("count_by_memcateno", count_by_memcateno);
+    
     MemcateVO memcateVO = memcateProc.read(memcateno);
     mav.addObject("memcateVO", memcateVO);
 
-    mav.setViewName("/mkmember/list"); // 카테고리 그룹별 목록
-
+    String paging = mkmemberProc.pagingBox("list.do", memcateno, nowPage, count_by_memcateno, name);
+    mav.addObject("paging", paging);
+  
+    mav.addObject("nowPage", nowPage);
+    
     return mav;
-  }
+  }  
   
   // 전체 회원 목록
   @RequestMapping(value = "/mkmember/list_all.do", method = RequestMethod.GET)
@@ -459,6 +504,130 @@ public class MkmemberCont {
     mav.setViewName("redirect:/mkmember/withdraw_msg.jsp");
 
     return mav;
+  }
+  
+  //http://localhost:9090/team3/mkmember/id_find.do 
+  // 아이디 찾기 폼
+  @RequestMapping(value="/mkmember/id_find.do",
+        method=RequestMethod.GET)
+  public ModelAndView id_find(){
+  ModelAndView mav = new ModelAndView();
+  
+  mav.setViewName("/mkmember/id_find");
+  
+  return mav;
+  }
+  
+  // 아이디 찾기 처리
+  @RequestMapping(value="/mkmember/id_find.do",
+        method=RequestMethod.POST)
+  public ModelAndView id_find(RedirectAttributes ra,
+                                            String mname, String tel){
+    ModelAndView mav = new ModelAndView(); 
+
+    // 전화번호 검사
+    HashMap<Object, Object> map = new HashMap<Object, Object>();
+    map.put("mname", mname);
+    map.put("tel", tel);
+    
+    int count = mkmemberProc.tel_check_id(map);
+    ra.addAttribute("count", count);
+
+    if(count > 0) {
+       List<String> list = mkmemberProc.id_find(map);
+       ra.addAttribute("list", list);
+    }
+
+    mav.setViewName("redirect:/mkmember/id_find_msg.jsp");
+
+    return mav;
+  }
+  
+  //http://localhost:9090/team3/mkmember/passwd_find.do 
+  // 비밀번호 찾기 폼
+  @RequestMapping(value="/mkmember/passwd_find.do",
+        method=RequestMethod.GET)
+  public ModelAndView passwd_find(){
+  ModelAndView mav = new ModelAndView();
+  
+  mav.setViewName("/mkmember/passwd_find");
+  
+  return mav;
+  }
+  
+  // 비밀번호 찾기 처리
+  @RequestMapping(value="/mkmember/passwd_find.do",
+        method=RequestMethod.POST)
+  public ModelAndView passwd_find(RedirectAttributes ra,
+                                                   String id, String tel, String email){
+    ModelAndView mav = new ModelAndView(); 
+
+    // 전화번호 검사
+    HashMap<Object, Object> map = new HashMap<Object, Object>();
+    map.put("id", id);
+    map.put("tel", tel);
+    
+    int count_email = 1;
+    int count = mkmemberProc.tel_check_passwd(map);
+    ra.addAttribute("count", count);
+    
+    // 이메일 전송 시작
+    // 사용자에게 보낼 메시지를 기입
+    String host = "http://localhost:9090/team3/";
+    String from = "a01092038223@gmail.com";
+    String to = email;
+    String subject = "Mealkit 비밀번호 찾기 메일입니다.";
+    String content = "회원님의 비밀번호는 " + mkmemberProc.passwd_find(map) + " 입니다.";
+    // SMTP에 접속하기 위한 정보를 기입
+    Properties p = new Properties();
+    p.put("mail.smtp.user", from);
+    p.put("mail.smtp.host", "smtp.googlemail.com");
+    p.put("mail.smtp.port", "465");
+    p.put("mail.smtp.starttls.enable", "true");
+    p.put("mail.smtp.auth", "true");
+    p.put("mail.smtp.debug", "true");
+    p.put("mail.smtp.socketFactory.port", "465");
+    p.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+    p.put("mail.smtp.socketFactory.fallback", "false");
+    try{
+        Authenticator auth = new Gmail();
+        Session ses = Session.getInstance(p, auth);
+        ses.setDebug(true);
+        MimeMessage msg = new MimeMessage(ses); 
+        msg.setSubject(subject);
+        Address fromAddr = new InternetAddress(from);
+        msg.setFrom(fromAddr);
+        Address toAddr = new InternetAddress(to);
+        msg.addRecipient(Message.RecipientType.TO, toAddr);
+        msg.setContent(content, "text/html;charset=UTF-8");
+        Transport.send(msg);
+    } catch(Exception e){
+        e.printStackTrace();
+        count_email = 0;
+    }
+    ra.addAttribute("count_email", count_email);
+    // 이메일 전송 끝
+
+    if(count == 1 && count_email == 1) {      
+      String passwd = mkmemberProc.passwd_find(map);
+      ra.addAttribute("passwd", passwd);
+    }
+
+    mav.setViewName("redirect:/mkmember/passwd_find_msg.jsp");
+
+    return mav;
+  }
+  
+  //http://localhost:9090/team3/mkmember/mypage.do 
+  // 마이페이지
+  @RequestMapping(value="/mkmember/mypage.do",
+        method=RequestMethod.GET)
+  public ModelAndView mypage(int memberno){
+  ModelAndView mav = new ModelAndView();
+  
+  mav.setViewName("/mkmember/mypage");
+  
+  return mav;
   }
 
 }

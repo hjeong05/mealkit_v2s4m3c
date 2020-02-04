@@ -52,19 +52,18 @@
     
   
   <ASIDE style='float: left;'>
-      <A href='./member/list.do'>회원 목록</A>  
+      <A href='./list.do?memcateno=${mkmemberVO.memcateno }&name=${param.name}&nowPage=${param.nowPage}'>${param.name} 목록</A>  
   </ASIDE>
   <ASIDE style='float: right;'>
     <A href="javascript:location.reload();">새로고침</A>
     <span class='menu_divide' >│</span> 
     <A href='./create.do'>회원 가입</A>
     <span class='menu_divide' >│</span> 
-    <A href='./create.do'>목록</A>
+    <A href='./list.do?memcateno=${mkmemberVO.memcateno }&nowPage=${param.nowPage}'>목록</A>
   </ASIDE> 
  
   <div class='menu_line'></div>
-  
- 
+
   <DIV class='title_line'>회원 정보 조회 및 수정</DIV>
  
   <FORM name='frm' id='frm' method='POST' action='./update.do' 

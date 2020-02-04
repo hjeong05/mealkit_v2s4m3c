@@ -1,5 +1,6 @@
 package dev.mvc.mkmember;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -102,5 +103,51 @@ public interface MkmemberProcInter {
    * @return
    */
   public int grade_update(HashMap<Object, Object> map);
+  
+  /**
+   * 아이디 찾기
+   * @param map
+   * @return
+   */
+  public List<String> id_find(HashMap<Object, Object> map);
+  
+  /**
+   * 전화번호 검사(아이디 찾기)
+   * @param id
+   * @param tel
+   * @return
+   */
+  public int tel_check_id(HashMap<Object, Object> map);  
+  
+  /**
+   * 비밀번호 찾기
+   * @param id
+   * @return
+   */
+  public String passwd_find(HashMap<Object, Object> map);
+  
+  /**
+   * 전화번호 검사(비밀번호 찾기)
+   * @param id
+   * @param tel
+   * @return
+   */
+  public int tel_check_passwd(HashMap<Object, Object> map); 
+  
+  /**
+   * 페이지 목록 문자열 생성, Box 형태
+   * @param listFile 목록 파일명 
+   * @param categrpno 카테고리번호
+   * @param nowPage 현재 페이지, nowPage는 1부터 시작
+   * @return
+   */
+  public String pagingBox(String listFile, int memcateno, int nowPage, int count_by_memcateno, String name);  
+  
+  /**
+   * 등급별 회원 목록 + 페이징
+   * @param map
+   * @return
+   */
+  public ArrayList<MkmemberVO> list_by_memcateno_paging(HashMap<String, Object> map);
   
 }

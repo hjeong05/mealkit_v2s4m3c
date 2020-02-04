@@ -22,7 +22,7 @@ public interface MemcateProcInter {
    * @param memccateno
    * @return
    */
-  public MemcateVO read(int memccateno);
+  public MemcateVO read(int memcateno);
   
   /**
    * ¼öÁ¤

@@ -68,8 +68,8 @@
     <c:set var="memberno" value ="${mkmemberVO.memberno}" /> 
   <TR>
     <TD class='td_basic'>${memberno}</TD>
-    <TD class='td_basic'><A href="./read.do?memberno=${memberno}&memcateno=${mkmemberVO.memcateno}&name=${param.name}">${mkmemberVO.id}</A></TD>
-    <TD class='td_basic'><A href="./read.do?memberno=${memberno}&memcateno=${mkmemberVO.memcateno}&name=${param.name}">${mkmemberVO.mname}</A></TD>
+    <TD class='td_basic'><A href="./read.do?memberno=${memberno}&memcateno=${mkmemberVO.memcateno}&name=${param.name}&nowPage=${nowPage}">${mkmemberVO.id}</A></TD>
+    <TD class='td_basic'><A href="./read.do?memberno=${memberno}&memcateno=${mkmemberVO.memcateno}&name=${param.name}&nowPage=${nowPage}">${mkmemberVO.mname}</A></TD>
     <TD class='td_basic'>${mkmemberVO.tel}</TD>
     <TD class='td_left'>
       <c:choose>
@@ -83,7 +83,7 @@
     </TD>
     <TD class='td_basic'>${mkmemberVO.mdate.substring(0, 10)}</TD> <!-- 년월일 -->
     <TD class='td_basic'>
-      <A href="./passwd_update.do?memberno=${memberno}&memcateno=${param.memcateno}"><IMG src='./images/passwd.png' title='패스워드 변경'></A>
+      <A href="./passwd_update.do?memberno=${memberno}&memcateno=${param.memcateno}&nowPage=${nowPage}"><IMG src='./images/passwd.png' title='패스워드 변경'></A>
       <A href="./grade_update.do?memberno=${memberno}&memcateno=${param.memcateno}&name=${param.name}"><IMG src='./images/grade.png' title='회원 등급 변경'></A>
       <A href="./read.do?memberno=${memberno}&memcateno=${mkmemberVO.memcateno}&name=${param.name}"><IMG src='./images/update.png' title='수정'></A>
       <A href="./delete.do?memberno=${memberno}"><IMG src='./images/delete.png' title='삭제'></A>
@@ -95,6 +95,7 @@
 </TABLE>
  
 <DIV class='bottom_menu'>
+  ${paging }<br>
   <button type='button' onclick="location.href='./create.do?memcateno=${param.memcateno}'">등록</button>
   <button type='button' onclick="location.reload();">새로 고침</button>
 </DIV>

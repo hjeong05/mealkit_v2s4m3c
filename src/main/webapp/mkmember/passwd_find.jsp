@@ -22,28 +22,35 @@
 <jsp:include page="/menu/top.jsp" flush='false' />
 
   <ASIDE style='float: left;'>
-      <A href='./mkmember/list.do'>아이디 찾기</A>  
+      <A href='./mkmember/list.do'>비밀번호 찾기</A>  
   </ASIDE>
   <ASIDE style='float: right;'>
   </ASIDE> 
  
   <div class='menu_line'></div>
     
-  <DIV class='title_line'>아이디 찾기</DIV> 
+  <DIV class='title_line'>비밀번호 찾기</DIV> 
  
-  <FORM name='frm' id='frm' method='POST' action='./id_find.do' class="form-horizontal">
+  <FORM name='frm' id='frm' method='POST' action='./passwd_find.do' class="form-horizontal">
     <div class="message">
-      가입시 입력한 이름과 전화번호를 입력해주세요.<br><br>   
+      <span class='span_success'>본인확인을 위해 아이디와 가입시 입력한 전화번호를 입력해주세요.</span><br><br>   
       <div class="form-group">
-        <label class="col-md-4 control-label">이름</label>
+        <label class="col-md-4 control-label">아이디</label>
         <div class="col-md-8">
-        <input type="text" class="form-control input-md" name='mname' id='mname' value='' required="required" style='width: 30%; margin: 0px auto;' placeholder="이름">
+        <input type="text" class="form-control input-md" name='id' id='id' value='' required="required" style='width: 30%; margin: 0px auto;' placeholder="아이디">
         </div>
       </div>
-      <div class="form-group">
+      <div class="form-group" style="padding-bottom: 20px;">
         <label class="col-md-4 control-label">전화번호</label>
         <div class="col-md-8">
         <input type="text" class="form-control input-md" name='tel' id='tel' value='' required="required" style='width: 30%; margin: 0px auto;' placeholder="전화번호">
+        </div>
+      </div>
+      <span class='span_success'>비밀번호를 받을 이메일을 입력해주세요.</span><br><br>   
+      <div class="form-group">
+        <label class="col-md-4 control-label">이메일</label>
+        <div class="col-md-8">
+        <input type="text" class="form-control input-md" name='email' id='email' value='' required="required" style='width: 50%; margin: 0px auto;' placeholder="이메일">
         </div>
       </div>
     </div>   

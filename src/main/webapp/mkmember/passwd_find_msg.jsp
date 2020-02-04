@@ -26,20 +26,33 @@
   <fieldset class='fieldset_basic'>
     <UL>
       <c:choose>
-        <c:when test="${param.count == 1 }">
-          <LI class='li_none'>회원가입이 완료되었습니다.</LI>
+        <c:when test="${param.count == 0 }">
+          <LI class='li_none'>
+            <span class='span_fail'>해당 정보로 가입된 아이디가 없습니다.</span>
+          </LI>
+          <LI class='li_none'>
+            <button type='button' 
+                        onclick="history.back();"
+                        class="btn btn-info">다시 찾기</button>
+            <button type='button' 
+                        onclick="location.href='${pageContext.request.contextPath}'" 
+                        class="btn btn-info">취소</button>                        
+          </LI>
         </c:when>
         <c:otherwise>
-          <LI class='li_none'>회원가입에 실패했습니다.</LI>
-          <LI class='li_none'>다시 한 번 시도해주세요.</LI>
-          <LI class='li_none'>계속 실패시 ☏000-0000-0000 문의해주세요.</LI>
+          <LI class='li_none'>
+            <span class='span_success'>입력하신 메일로 비밀번호가 전송되었습니다.</span>
+          </LI>
+          <LI class='li_none'>
+            <button type='button' 
+                        onclick="location.href='${pageContext.request.contextPath}'" 
+                        class="btn btn-info">확인</button>      
+            <button type='button' 
+                        onclick="location.href='./login.do'" 
+                        class="btn btn-info">로그인</button>             
+          </LI>
         </c:otherwise>
       </c:choose>
-      <LI class='li_none'>
-        <br>
-        <button type='button' onclick="location.href='./create.do'"class="btn btn-info">회원 등록</button>
-        <button type='button' onclick="location.href='./list.do?memcateno=${param.memcateno}&nowPage=${param.nowPage}'" class="btn btn-info">목록</button>
-      </LI>
      </UL>
   </fieldset>
  
@@ -48,4 +61,4 @@
 <jsp:include page="/menu/bottom.jsp" flush='false' />
 </body>
  
-</html> 
+</html>

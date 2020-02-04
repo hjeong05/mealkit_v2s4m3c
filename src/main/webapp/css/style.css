@@ -23,19 +23,13 @@
     margin-top: 20px;
   }
   
-  .bottom_paging_menu {
-    text-align: center; 
-    margin: 20px auto;
-    clear: both;
-  }
-  
   .container {
     width: 90%;
     margin: 0px auto;
   }
 
   .content {
-    width: 100%;
+    width: 75%;
     margin: 10px auto;
   }
   
@@ -89,6 +83,7 @@
   A:hover{  /* A 태그에 마우스가 올라간 상태 */
     text-decoration: underline; /* 밑줄 출력 */
     color: #7777FF;
+    cursor: pointer;
   }
   
   A:active{  /* A 태그를 클릭한 상태 */
@@ -138,7 +133,7 @@
   .li_msg_success {
     background: url(./images/url5.png) left center no-repeat;
     line-height: 30px;
-    padding-left: 20px;
+    margin-left: 50px;
     list-style: none;  
     background-size: 12px;
   }
@@ -147,7 +142,7 @@
   .li_msg_fail {
     background: url(./images/url8.png) left center no-repeat;
     line-height: 30px;
-    padding-left: 20px;
+    margin-left: 50px;
     list-style: none;  
     background-size: 12px;
   }
@@ -203,11 +198,12 @@
   } 
   
   /* ASIDE 메뉴 세로 구분선 */
-  .menu_divide {
+  .menu_divide { /* 서브 메뉴의 세로 구분선 */
     color: #777777;
-    font-size: 0.6em; /* 부모 태그에비해 글자를 60% 크기로 출력 */
-    vertical-align: 10%; /* 0%는 bottom 기준 */
-  }  
+    font-size: 0.8em; /* 부모 글자 크기에 비해서 60%로 출력 */
+    vertical-align: 10%;  /* 0%는 bottom 기준 */
+  }
+    
   
   /* ASIDE 서브메뉴의 종료 -------------------------- */
     
@@ -225,7 +221,8 @@
     
   /* Top 메뉴의 시작 -------------------------- */  
   .top_menu {
-    background: url('./images/top_image.jpg');
+    background-image: url('./images/top_image7_1440_150.jpg');
+    background-size: 100%;
     margin-top: 0px;
     width: 100%;
     height: 80px;  
@@ -239,8 +236,7 @@
     position: relative; /* 속해있는 부모 태그 기준 설정 */
     top: 1%;
     left: 0.5%;
-    color: #000000;
-    font-weight: bold;
+    color: #FFFFFF;
   }
     
   .top_menu_list {
@@ -394,21 +390,23 @@
     padding: 2px; 
   }
   
-  .span_success{
+  /* 처리 성공 메시지 */
+  .span_success {
     background: url('./images/url5.png') left center no-repeat;
-    padding-left: 20px;
+    padding-left: 20px; 
   }
   
-  .span_fail{
+  /* 처리 실패 메시지 */
+  .span_fail {
     background: url('./images/url8.png') left center no-repeat;
-    padding-left: 20px;
+    padding-left: 20px; 
   }
   
   .label_basic {
-    width: 150px;
+    width: 200px;
     background-color: #6fcdfb;
     color: #FFFFFF;
-    font-weight: bold;
+    font-weight: normal;
     display: inline-block; /* 한줄의 영역을 박스 영역으로 확장 표시, 박스 모양에 float='left' 적용 */
     text-align: right;
     padding-right: 10px;
@@ -489,50 +487,3 @@
     margin: 10px auto;  /* 가운데 정렬 */
     text-align: center;
   }
-  
-  /* pdcontents read.jsp에 이용되는 css*/
-  .tab_wrap {
-    position: relative;
-    margin-top: -64px;
-}
-
-.tab_list {
-    position: relative;
-    width: 1180px;
-    marin: 0 auto;
-}
-
-.tabs_li {
-    display: inline-block;
-    width: initial;
-    text-align: center;
-    vertical-align: top;
-}
-
-ul.tabs{
-  margin: 0px;
-  padding: 0px;
-  list-style: none;
-}
-ul.tabs li{
-  background: none;
-  color: #222;
-  display: inline-block;
-  padding: 10px 15px;
-  cursor: pointer;
-}
- 
-ul.tabs li.current{
-  background: #ededed;
-  color: #222;
-}
- 
-.tab-content{
-  display: none;
-  background: #ededed;
-  padding: 15px;
-}
- 
-.tab-content.current{
-  display: inherit;
-}

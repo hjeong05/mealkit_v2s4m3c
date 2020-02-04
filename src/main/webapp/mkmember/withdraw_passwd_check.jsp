@@ -34,13 +34,10 @@
   <FORM name='frm' id='frm' method='POST' action='./withdraw_passwd_check.do' class="form-horizontal">
     <input type="hidden" name="memberno" value="${param.memberno }">
     <input type="hidden" name="memcateno" value="${param.memcateno }">
-    <div class="form-group">
-      탈퇴를 위해 비밀번호를 입력해주세요.
+    <div class="message">
+      탈퇴를 위해 비밀번호를 입력해주세요.<br><br>
+      <input type='password' class="form-control input-md" name='passwd' id='passwd' value='' required="required" style='width: 30%; margin: 0px auto;' placeholder="패스워드">
     </div>   
-    <div class="col-md-6">
-        <input type='password' class="form-control input-md" name='passwd' id='passwd' value='' required="required" style='width: 30%;' placeholder="패스워드">
-    </div>
-    
     <div class="form-group">
       <div class="col-md-offset-6 col-md-6">
         <button type="submit" class="btn btn-primary btn-md">탈퇴</button>

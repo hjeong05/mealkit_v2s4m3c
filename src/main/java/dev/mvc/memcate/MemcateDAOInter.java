@@ -43,14 +43,14 @@ public interface MemcateDAOInter {
    * @param categrpno
    * @return
    */
-  public int increaseCnt(int categrpno);
+  public int increaseCnt(int memcateno);
   
   /**
    * 회원 수 감소
    * @param categrpno
    * @return
    */
-  public int decreaseCnt(int categrpno);
+  public int decreaseCnt(int memcateno);
   
   /**
    * 순서 up

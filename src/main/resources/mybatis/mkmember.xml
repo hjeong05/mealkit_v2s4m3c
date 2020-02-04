@@ -93,7 +93,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <select id="login" parameterType="Map" resultType ="int">
     SELECT COUNT(memberno) as cnt
     FROM mkmember
-    WHERE id=#{id} AND passwd=#{passwd}
+    WHERE id=#{id} AND passwd=#{passwd} AND memcateno  IN (1, 2)
   </select>
   
   <!-- 회원 등급 변경 -->
@@ -102,5 +102,50 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     SET memcateno=#{memcateno}
     WHERE memberno=#{memberno}
   </update>
+  
+  <!-- 아이디 찾기 -->
+  <select id="id_find" parameterType="HashMap" resultType ="String">
+    SELECT id
+    FROM mkmember
+    WHERE mname=#{mname} AND tel=#{tel}
+  </select>
+  
+  <!-- 전화번호 검사(아이디 찾기) -->
+  <select id="tel_check_id"  resultType ="int" parameterType="HashMap">
+    SELECT COUNT(memberno) as cnt
+    FROM mkmember
+    WHERE mname=#{mname} AND tel=#{tel}
+  </select>  
+  
+  <!-- 비밀번호 찾기 -->
+  <select id="passwd_find" parameterType="String" resultType ="String">
+    SELECT passwd
+    FROM mkmember
+    WHERE id=#{id} AND tel=#{tel}
+  </select> 
+  
+  <!-- 전화번호 검사(비밀번호 찾기) -->
+  <select id="tel_check_passwd"  resultType ="int" parameterType="HashMap">
+    SELECT COUNT(memberno) as cnt
+    FROM mkmember
+    WHERE id=#{id} AND tel=#{tel}
+  </select>
+  
+  <!-- 등급별 회원 목록 + 페이징 -->
+  <select id="list_by_memcateno_paging"  resultType ="MkmemberVO" parameterType="HashMap">
+    SELECT memberno, memcateno, id, passwd, mname, tel, zipcode, address1, address2, mdate, r
+    FROM (
+               SELECT memberno, memcateno, id, passwd, mname, tel, zipcode, address1, address2, mdate, rownum as r
+               FROM (
+                         SELECT memberno, memcateno, id, passwd, mname, tel, zipcode, address1, address2, mdate
+                         FROM mkmember
+                         WHERE memcateno=#{memcateno}
+                         ORDER BY memberno DESC
+               )          
+    )
+    WHERE r &gt;= #{startNum} AND r &lt;= #{endNum}   
+  </select>  
+  
+   
 
 </mapper> 
