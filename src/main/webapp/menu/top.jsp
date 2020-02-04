@@ -29,11 +29,9 @@
       <ul class="nav navbar-nav" style="margin: 15px;">
         <li class="dropdown">
         <a class="dropdown-toggle" id="dropdown" data-toggle="dropdown" style="color: #333333;">카테고리<span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <li><a href="#" style="color: #333333;">한식</a></li>
-          <li><a href="#" style="color: #333333;">중식</a></li>
-          <li><a href="#" style="color: #333333;">일식</a></li>
-        </ul>
+        <!-- Spring 출력 카테고리 그룹 / 카테고리 -->
+         <c:import url="/productcate/list_for_user.do" />
+        
         </li>
         <li><a href="#">리뷰</a></li>
       <c:choose>
