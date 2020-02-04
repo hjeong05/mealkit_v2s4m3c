@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dev.mvc.ordergrp.OrdergrpDAOInter">
+  <insert id="create" parameterType="OrdergrpVO">
+    INSERT INTO order_pay_grp(order_pay_grpNO, order_payPostName, order_payPostTel, order_payPostAddress1, order_payPostAddress2,
+                order_payGetName, order_payGetTel, order_payGetAddress1, order_payGetAddress2, order_payGetRequest,
+                order_pay_grpMethod, order_pay_grpStatus, order_pay_grpDate)
+    VALUES((SELECT NVL(MAX(order_pay_grpNO),0) + 1 as order_pay_grpNO FROM order_pay_grp), 
+              #{order_payPostName}, #{order_payPostTel}, #{order_payPostAddress1}, #{order_payPostAddress2},
+              #{order_payGetName}, #{order_payGetTel}, #{order_payGetAddress1}, #{order_payGetAddress2}, #{order_payGetRequest},
+              #{order_pay_grpMethod}, #{order_pay_grpStatus}, sysdate)
+  </insert>
+  
+  <select id="now_grpNo" resultType="int">
+     SELECT MAX(order_pay_grpNO)
+     FROM order_pay_grp
+  </select>
+  
+</mapper>

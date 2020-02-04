@@ -32,7 +32,11 @@
                             dev.mvc.pdatfile,
                             dev.mvc.pdreply,
                             dev.mvc.memcate,
-                            dev.mvc.mkmember" />
+                            dev.mvc.mkmember,
+                            dev.mvc.cartgrp,
+                            dev.mvc.cart,
+                            dev.mvc.order,
+                            dev.mvc.ordergrp" />
                             
     <property name="mapperLocations" value="classpath:mybatis/*.xml" />
   </bean>

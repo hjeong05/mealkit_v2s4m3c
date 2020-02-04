@@ -39,13 +39,15 @@
           <li><a href="${root}/mkmember/mypage.do?memberno=${sessionScope.memberno }">마이페이지</a></li>
         </c:when>
       </c:choose>          
-        <li><a href="#" >장바구니</a></li>
+        <li><a href="${root }/cart/cartlist.do?cartgrpno=1&orderID=${sessionScope.id}" >장바구니</a></li>
+        <li><a href="${root }/pay/list.do?id=${sessionScope.id }" >결제 목록</a></li>
         <li><a href="#" >Q&A</a></li>
       </ul>
       
       <!-- 관리자용 메뉴 -->
       <ul class="nav navbar-nav navbar-right">
         <li><a href="${root }/memcate/list.do">멤버카테고리</a></li>
+        <li><a href="${root }/cartgrp/list.do">장바구니 카테고리</a></li>
         <c:choose>
           <c:when test="${sessionScope.id_admin == null}"> <!-- 관리자 로그인 되어있지 않을 때 -->
             <li><a href="${root}/admin/login.do">관리자로그인</a></li>

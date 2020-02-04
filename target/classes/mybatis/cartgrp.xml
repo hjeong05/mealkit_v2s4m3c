@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<!-- dev.mvc.categrp.CategrpDAOInter 패키지에 등록된 interface 명시,
+      패키지명과 인터페이스명은 실제로 존재해야함,
+      Spring이 내부적으로 자동으로 interface를 구현해줌. -->
+<mapper namespace="dev.mvc.cartgrp.CartgrpDAOInter"> 
+ <!-- 
+  insert: INSERT SQL 실행
+  id: Spring에서 호출시 사용
+  parameterType: 전달받는 데이터 객체
+  return: 등록한 레코드 갯수 리턴
+  SQL선언시 ';'은 삭제
+  #{}: ? 동일
+  #{name}: public String getName(){...
+   -->
+   <insert id="create" parameterType="CartgrpVO">
+     INSERT INTO cartgrp(cartgrpno, name, seqno, visible, rdate, cnt)
+     VALUES((SELECT NVL(MAX(cartgrpno), 0) + 1 as cartgrpno FROM cartgrp),
+                #{name}, #{seqno}, #{visible}, sysdate, 0)
+   </insert>
+   
+    <!-- 우선 순위에따른 목록 출력 -->
+  <select id="list_seqno_asc" resultType="CartgrpVO" >  
+    SELECT cartgrpno, name, seqno, visible, TO_CHAR(rdate, 'YYYY-MM-DD hh:mi:ss') as rdate, cnt
+    FROM cartgrp
+    ORDER BY seqno ASC
+  </select>
+   
+   <!-- 조회, id:read, 입력: cartgrpno, 출력: CartgrpVO -->
+   <select id="read" resultType="CartgrpVO" parameterType="int">
+    SELECT cartgrpno, name, seqno, visible, rdate, cnt
+    FROM cartgrp
+    WHERE cartgrpno = #{cartgrpno}
+   </select>
+     
+   <!-- 수정, id:update, 입력: CategrpVO, 리턴 int 수정된 개수 -->
+   <update id="update" parameterType="CartgrpVO">
+      UPDATE cartgrp
+      SET name=#{name}, seqno = #{seqno}, visible= #{visible}
+      WHERE cartgrpno = #{cartgrpno}
+   </update>
+   
+   <!-- 삭제 id: delete, 입력:PK, 리턴: int 삭제된 개수 -->
+   <delete id="delete" parameterType="int"> 
+    DELETE FROM cartgrp
+    WHERE cartgrpno = #{cartgrpno}
+   </delete>
+   
+     <!-- 우선순위 up 10 -> 1 -->
+  <update id="update_seqno_up" parameterType="int">
+    UPDATE cartgrp
+    SET seqno = seqno - 1
+    WHERE cartgrpno= #{cartgrpno}
+  </update>
+  
+    <!--우선순위 down 1 -> 10   -->
+  <update id="update_seqno_down" parameterType="int">
+   UPDATE cartgrp
+   SET seqno = seqno + 1
+   WHERE cartgrpno = #{cartgrpno}
+  </update>
+  
+  <update id="increase_cnt" parameterType="int">
+    UPDATE cartgrp 
+    SET cnt = cnt + 1 
+    WHERE cartgrpno = #{cartgrpno}
+  </update>
+  
+  <update id="decrease_cnt" parameterType="int">
+    UPDATE cartgrp 
+    SET cnt = cnt - 1 
+    WHERE cartgrpno = #{cartgrpno}
+  </update>
+  
+  <update id="cnt_zero" parameterType="int">
+    UPDATE cartgrp 
+    SET cnt = 0
+    WHERE cartgrpno=#{cartgrpno}
+  </update>
+</mapper>

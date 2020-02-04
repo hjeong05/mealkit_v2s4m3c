@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dev.mvc.order.OrderDAOInter">
+  <insert id="create" parameterType="HashMap">
+     INSERT INTO order_pay(order_payNo, cartNo, order_pay_grpNO)
+     VALUES((SELECT NVL(MAX(order_payNo),0) + 1 as order_payNo FROM order_pay), #{cartNo}, #{order_pay_grpNO})
+  </insert>
+  
+  <select id="list_all" resultType="OrderVO" >
+    SELECT order_payNo, cartNo, order_pay_grpNO
+    FROM order_pay
+    ORDER BY order_payNo DESC
+  </select>
+  
+  <select id="list_by_grpno" resultType="OrderVO" parameterType='int'>
+    SELECT order_payNo, cartNo, order_pay_grpNO
+    FROM order_pay
+    WHERE order_payNo = #{order_pay_grpNO}
+  </select>
+</mapper>

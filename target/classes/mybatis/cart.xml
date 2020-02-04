@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<!-- dev.mvc.categrp.CategrpDAOInter 패키지에 등록된 interface 명시,
+      패키지명과 인터페이스명은 실제로 존재해야함,
+      Spring이 내부적으로 자동으로 interface를 구현해줌. -->
+<mapper namespace="dev.mvc.cart.CartDAOInter"> 
+  <select id="list_by_cartgrpno" resultType="CartVO" parameterType="int">
+    SELECT cartno, cartgrpno, productno, orderID, productCount, rdate
+    FROM cart
+    WHERE cartgrpno=#{cartgrpno}
+    ORDER BY cartno DESC
+  </select>
+  
+  <select id="list_all" resultType="CartVO" >
+    SELECT cartno, cartgrpno, productno, orderID, productCount, rdate
+    FROM cart
+    ORDER BY cartno DESC
+  </select>
+  
+  <insert id="create" parameterType="CartVO" >
+    INSERT INTO cart(cartno, cartgrpno, productno, orderID,
+                              productCount, rdate)
+    VALUES((SELECT NVL(MAX(cartno),0) + 1 as cartno FROM cart),
+               #{cartgrpno}, #{productno}, #{orderID}, 
+               #{productCount}, sysdate)  
+  </insert> 
+     
+   <select id="read" parameterType="int" resultType="CartVO">
+     SELECT cartno, cartgrpno, productno, orderID, productCount, rdate
+     FROM cart
+     WHERE cartno = #{cartno}
+   </select>
+   
+   <select id="read_by_id" parameterType="String" resultType="CartVO">
+     SELECT cartno, cartgrpno, productno, orderID, productCount, rdate
+     FROM cart
+     WHERE orderID = #{orderID}
+   </select>
+   
+  <update id="update" parameterType="CartVO">
+      UPDATE cart
+      SET productCount= #{productCount}
+      WHERE cartno = #{cartno}
+   </update>
+   
+   <delete id="delete" parameterType="HashMap"> 
+    DELETE FROM cart
+    WHERE cartno = #{cartno} AND cartgrpno = #{cartgrpno}
+   </delete>
+   
+   <select id="count_by_cartgrpno" resultType="int" parameterType="int">
+    SELECT COUNT(*) as cnt
+    FROM cart
+    WHERE cartgrpno = #{cartgrpno}
+  </select>
+  
+  <delete id="delete_by_cartgrpno" parameterType="int"> 
+    DELETE FROM cart
+    WHERE cartgrpno = #{cartgrpno}
+   </delete>
+   
+   <select id="list_cart_product" resultType='Cart_ProductVO' parameterType="int">
+     SELECT c.cartno, c.cartgrpno, c.productno, c.orderID, c.productCount, c.rdate, p.pdcontentsno, p.title, p.thumb, p.price
+     FROM cart c INNER JOIN pdcontents p
+     ON c.productno = p.pdcontentsno 
+     WHERE cartgrpno = #{cartgrpno}
+     ORDER BY cartno DESC
+   </select>
+   
+   <select id="list_cart_product_id" resultType='Cart_ProductVO' parameterType="HashMap">
+     SELECT c.cartno, c.cartgrpno, c.productno, c.orderID, c.productCount, c.rdate, p.pdcontentsno, p.title, p.thumb, p.price
+     FROM cart c INNER JOIN pdcontents p
+     ON c.productno = p.pdcontentsno 
+     WHERE cartgrpno = #{cartgrpno} AND orderID=#{orderID}
+     ORDER BY cartno DESC
+   </select>
+   
+   <select id="read_cart_product" parameterType="int" resultType="Cart_ProductVO">
+     SELECT c.cartno, c.cartgrpno, c.productno, c.orderID, c.productCount, c.rdate, p.pdcontentsno, p.title, p.thumb, p.price
+     FROM cart c INNER JOIN pdcontents p
+     ON c.productno = p.pdcontentsno 
+     WHERE cartno = #{cartno}
+   </select>
+   
+   <select id="list_all_cart_product" resultType='Cart_ProductVO' >
+     SELECT c.cartno, c.cartgrpno, c.productno, c.orderID, c.productCount, c.rdate, p.pdcontentsno, p.title, p.thumb, p.price
+     FROM cart c INNER JOIN pdcontents p
+     ON c.productno = p.pdcontentsno 
+     ORDER BY cartno DESC
+   </select>
+   
+   <update id="move_to_payed" parameterType='int'>
+      UPDATE cart
+      SET cartgrpno=3, rdate = sysdate
+      WHERE cartno = #{cartno}
+   </update>
+</mapper>
