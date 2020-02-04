@@ -23,13 +23,13 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="dev.mvc.mealkit" />
-	<context:component-scan base-package="dev.mvc.productcate" /> <!-- 아로미 -->
-  <context:component-scan base-package="dev.mvc.pdcontents" /> <!-- 아로미 -->
-  <context:component-scan base-package="dev.mvc.pdatfile" /> <!-- 아로미 -->
-  <context:component-scan base-package="dev.mvc.pdreply" /> <!-- 아로미 -->
-  <context:component-scan base-package="dev.mvc.admin" /><!-- 아로미 -->
-  <context:component-scan base-package="dev.mvc.mkmember" /> <!--  아로미 -->
-  <context:component-scan base-package="dev.mvc.memcate" />  <!-- 아로미 -->
+	<context:component-scan base-package="dev.mvc.productcate" /> <!-- 이현정 -->
+  <context:component-scan base-package="dev.mvc.pdcontents" /> <!-- 이현정 -->
+  <context:component-scan base-package="dev.mvc.pdatfile" /> <!-- 이현정 -->
+  <context:component-scan base-package="dev.mvc.pdreply" /> <!-- 이현정 -->
+  <context:component-scan base-package="dev.mvc.admin" /><!-- 이현정 -->
+  <context:component-scan base-package="dev.mvc.mkmember" /> <!--  박희영 -->
+  <context:component-scan base-package="dev.mvc.memcate" />  <!-- 박희영 -->
   <context:component-scan base-package="dev.mvc.cartgrp" /> <!-- 박예림 -->
   <context:component-scan base-package="dev.mvc.cart" /> <!-- 박예림 -->
   <context:component-scan base-package="dev.mvc.order" /> <!-- 박예림 -->
@@ -37,8 +37,8 @@
   <context:component-scan base-package="dev.mvc.notice_cate"/> <!-- 홍기빈 -->
   <context:component-scan base-package="dev.mvc.notice_contents"/> <!-- 홍기빈 -->
   <context:component-scan base-package="dev.mvc.faq_cate"/> <!-- 홍기빈 -->
-  <context:component-scan base-package="dev.mvc.faq"/><!-- ghdrlqls -->
-  <context:component-scan base-package="dev.mvc.qna"/><!-- ghdrlqls -->
+  <context:component-scan base-package="dev.mvc.faq"/><!-- 홍기빈 -->
+  <context:component-scan base-package="dev.mvc.qna"/><!-- 홍기빈 -->
 <!-- FORM의 FILE 태그를 읽어 MultipartFile 객체로 변환 -->
   <beans:bean id="multipartResolver"
     class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
