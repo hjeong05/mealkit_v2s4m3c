@@ -36,9 +36,6 @@ COMMENT ON COLUMN pdcontents.fupname is '업로드 파일명';
 COMMENT ON COLUMN pdcontents.thumb is 'Thumb 파일';
 COMMENT ON COLUMN pdcontents.fsize is '파일 사이즈';
 
-1) 등록
-INSERT INTO contents(mkcontentsno, productcateno,title,
-                              content,recom,cnt,replycnt,rdate,word)
                               
  -- PK 생성
  SELECT NVL(MAX(pdcontentsno),0) + 1 as pdcontentsno FROM pdcontents;
@@ -58,8 +55,8 @@ INSERT INTO pdcontents(pdcontentsno,
                               productcateno, title, price, content,
                               recom,cnt,replycnt,rdate,word, fname, fupname, thumb, fsize )
  VALUES((SELECT NVL(MAX(pdcontentsno),0)+1 as pdcontentsno FROM pdcontents),
-              1, '비빔밥', 1200, '내용1',
-             0, 0, 0, sysdate, '', 'bibmbap.jpg', 'bibmbap_1.jpg', 'bibmbap_t.jpg', 1000);
+              1, '소고기듬뿍 버섯잡채', 19400, '<div style="text-align:center"><input alt="" src="/mealkit/ckstorage/images/%EC%86%8C%EA%B3%A0%EA%B8%B0%EC%9E%A1%EC%B1%84/beef.jpg" style="width: 755px; height: 1200px;" type="image" />  <p><span style="font-size:36px"><strong>소고기듬뿍 버섯잡채</strong></span></p>    <div style="text-align:left"><span style="font-size:16px">기분 좋은 일이 있는 잔칫날이면 빠질 수 없는 메뉴가 바로 잡채인데요. 가족 모두 좋아하지만 재료 준비부터 엄두가 안나셨다면, 바로 COOKIT의 소고기듬뿍 버섯잡채 추천드립니다. 보내드리는 담백한 소고기 우둔살과 향긋한 세 가지 버섯, 신선한 네 가지 채소를 맛있는 간장양념에 버무려 주시기만 하면 양도 풍미도 최고!</span><br />  &nbsp;</div>    <div><span style="font-size:16px"><input alt="" src="/mealkit/ckstorage/images/%EC%86%8C%EA%B3%A0%EA%B8%B0%EC%9E%A1%EC%B1%84/beef1.gif" style="width: 780px; height: 500px;" type="image" /></span>    <div style="text-align:left"><span style="font-size:24px"><strong>고소한 소고기와 다양한 버섯, 채소가 어우러져 기교 없어도 진한 맛</strong></span></div>    <p style="text-align:left">향긋하고 쫄깃한 버섯의 맛과 먹기좋게 채썬 푸짐한 소고기가 COOKIT 잡채의 차별점이죠. 시중에서 판매하는 어묵과 시금치로만 맛낸 잡채와는 확실히 다르다고 느끼실 거에요. 소소한 우리 가족의 일상도 COOKIT 소고기듬뿍 버섯잡채와 함께 기분 좋은 잔칫날처럼 보내시면 어떨까요.</p>    <p><input alt="" src="/mealkit/ckstorage/images/%EC%86%8C%EA%B3%A0%EA%B8%B0%EC%9E%A1%EC%B1%84/beef2.jpg" style="width: 780px; height: 520px;" type="image" /></p>    <p><input alt="" src="/mealkit/ckstorage/images/%EC%86%8C%EA%B3%A0%EA%B8%B0%EC%9E%A1%EC%B1%84/beef3.jpg" style="width: 780px; height: 520px;" type="image" /></p>  <br />  <p style="text-align:left"><span style="font-size:24px"><strong>이렇게 보내드려요!</strong></span></p>    <div style="text-align:left"><span style="font-size:16px"><strong>3인분&nbsp;<img alt="enlightened" src="http://localhost:9090/mealkit/ckeditor/plugins/smiley/images/lightbulb.png" style="height:23px; width:23px" title="enlightened" /></strong><br />  <strong>1.</strong>소고기 1팩&nbsp;&nbsp;&nbsp;<strong>2.</strong>당면 2팩&nbsp;&nbsp;&nbsp;<strong>3.</strong>간장불고기양념 1팩&nbsp;<strong>4.</strong>볶음용간장양념 1팩&nbsp;<strong>5.</strong>혼합채소 [적파프리카, 양파, 당근] 1팩&nbsp;&nbsp;&nbsp;<strong>6.</strong>혼합버섯 [표고버섯, 만가닥버섯, 느타리버섯] 1팩&nbsp;&nbsp;&nbsp;<strong>7.</strong>부추 1팩&nbsp;&nbsp;&nbsp;<strong>8.</strong>다진마늘 1팩 &nbsp;&nbsp;&nbsp;<strong>9.</strong>콩기름 1팩&nbsp;&nbsp;&nbsp;<strong>10.</strong>참기름 1병&nbsp;&nbsp;</span></div>    <p style="text-align:left"><strong><span style="color:#e74c3c"><span style="font-size:16px">*수급상황에 따라 일부 재료는 변경될 수 있습니다.</span></span></strong><br />  &nbsp;</p>    <p><strong><span style="color:#e74c3c"><span style="font-size:16px"><input alt="" src="/mealkit/ckstorage/images/%EC%86%8C%EA%B3%A0%EA%B8%B0%EC%9E%A1%EC%B1%84/beef6.PNG" style="width: 600px; height: 546px;" type="image" /></span></span></strong><br />  <input alt="" src="/mealkit/ckstorage/images/%EC%86%8C%EA%B3%A0%EA%B8%B0%EC%9E%A1%EC%B1%84/receipe1.PNG" style="width: 600px; height: 763px;" type="image" /><br />  <input alt="" src="/mealkit/ckstorage/images/%EC%86%8C%EA%B3%A0%EA%B8%B0%EC%9E%A1%EC%B1%84/receipe2.PNG" style="width: 422px; height: 546px;" type="image" /></p>    <div>&nbsp;</div>  </div>  </div>',
+             0, 10, 0, sysdate, '소고기,잡채,버섯잡채,소고기잡채', 'japchae1.jpg', 'japchae1.jpg', 'japchae1_t.jpg', 92275);
                         
 -- 2) 목록
 SELECT pdcontentsno, productcateno, title, price, content,
