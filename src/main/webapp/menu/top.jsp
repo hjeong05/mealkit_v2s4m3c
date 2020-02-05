@@ -8,9 +8,9 @@
   <nav class="navbar navbar-fixed-top" style="background-color: #000d1a; width: 100%;">
     <div class="container-fluid" style="width: 100%;">
     <ul class="nav navbar-nav navbar-right">
-      <li><a href='${root}/mkmember/create.do' style="color: #FFFFFF; font-size: 14px;"><span class="glyphicon glyphicon-user" style="color: #FFFFFF;"></span> 회원가입</a></li>    
       <c:choose>
         <c:when test="${sessionScope.id == null}"> <!-- 로그인 되어있지 않을 때 -->
+          <li><a href='${root}/mkmember/create.do' style="color: #FFFFFF; font-size: 14px;"><span class="glyphicon glyphicon-user" style="color: #FFFFFF;"></span> 회원가입</a></li>    
           <li><a href='${root}/mkmember/login.do'  style="color: #FFFFFF; font-size: 14px;"><span class="glyphicon glyphicon-log-in" style="color: #FFFFFF;"></span> 로그인</a></li>
         </c:when>
         <c:otherwise> <!-- 로그인 되어있을 때 -->

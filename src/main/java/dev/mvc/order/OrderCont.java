@@ -75,14 +75,32 @@ public class OrderCont {
     return mav;
   }
   
-//  @RequestMapping(value = "/order/create.do", method = RequestMethod.GET)
-//  public ModelAndView create(int cartno_list[]) {
-//    ModelAndView mav = new ModelAndView();
-//    
-//    
-//    mav.setViewName("/order/create"); 
-//    return mav;
-//  }
+  @RequestMapping(value = "/order/list_direct.do", method = RequestMethod.GET)
+  public ModelAndView list_direct(int cartgrpno, String orderID, int productno, int productCount) {
+    ModelAndView mav = new ModelAndView();
+    CartVO cartVO = new CartVO();
+    
+    cartVO.setCartgrpno(cartgrpno);
+    cartVO.setOrderID(orderID);
+    cartVO.setProductCount(productCount);
+    cartVO.setProductno(productno);
+    
+    cartProc.create_retrun_no(cartVO);
+    
+    Cart_ProductVO cart_productVO = new Cart_ProductVO();
+    List<Cart_ProductVO> list = new ArrayList<Cart_ProductVO>();
+    int total_price = 0;
+    cart_productVO = cartProc.read_cart_product(cartVO.getCartno());
+    
+    total_price = total_price + cart_productVO.getPrice();
+    list.add(cart_productVO);
+    mav.addObject("list", list);
+    mav.addObject("list_count", 1);
+    mav.addObject("total_price", total_price);
+    
+    mav.setViewName("/order/list"); // /webapp/categrp/create_msg.jsp
+    return mav;
+  }
 
   @RequestMapping(value = "/order/create.do", method = RequestMethod.POST)
   public ModelAndView create(int cartno_list[], OrdergrpVO ordergrpVO) {

@@ -625,6 +625,9 @@ public class MkmemberCont {
   public ModelAndView mypage(int memberno){
   ModelAndView mav = new ModelAndView();
   
+  MkmemberVO mkmemberVO = mkmemberProc.read(memberno);
+  mav.addObject("mkmemberVO", mkmemberVO);
+  
   mav.setViewName("/mkmember/mypage");
   
   return mav;
