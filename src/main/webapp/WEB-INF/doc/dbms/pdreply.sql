@@ -7,7 +7,7 @@ CREATE TABLE pdreply(
         pdreplyno                               NUMBER(10)          NOT NULL         PRIMARY KEY,
         pdcontentsno                       NUMBER(10)          NOT NULL ,
         memberno                             NUMBER(6) NOT NULL, -- 회원 번호, 레코드를 구분하는 컬럼 
-        starcnt                                  NUMBER(3,1)           NOT NULL , -- 평점
+        starcnt                                  NUMBER(3)           NOT NULL , -- 평점
         content                               VARCHAR2(1000)     NOT NULL,
         passwd                                VARCHAR2(20)       NOT NULL,
         rdate                                   DATE                  NOT NULL,
@@ -76,7 +76,7 @@ WHERE pdreplyno=1;
 5) contentsno에 해당하는 댓글 수 확인 및 삭제 
 SELECT COUNT(*) as cnt
 FROM pdreply
-WHERE pdcontentsno = 1;
+WHERE pdcontentsno = 2;
 
  CNT
  ---
@@ -118,7 +118,12 @@ WHERE pdreplyno=1 AND passwd='1234';
    0
    
 ##  조인 부분
-
+SELECT m.id, 
+          r.pdreplyno, r.pdcontentsno, r.starcnt, r.memberno, r.content, r.passwd, r.rdate
+    FROM mkmember m,  pdreply r
+    WHERE (m.memberno = r.memberno) AND r.pdcontentsno=1
+    ORDER BY r.pdreplyno DESC
+    
    SELECT m.id, 
           r.pdreplyno, r.pdcontentsno, r.starcnt, r.memberno, r.content, r.passwd, r.rdate
     FROM pdreply r

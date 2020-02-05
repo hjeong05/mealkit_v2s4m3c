@@ -81,15 +81,15 @@ public class PdcontentsProc implements PdcontentsProcInter {
 
   // 댓글 수 증가
   @Override
-  public int increaseReplycnt(int pdcontentsno) {
-    int count = pdcontentsDAO.increaseReplycnt(pdcontentsno);
+  public int increasePdreplycnt(PdcontentsVO pdcontentsVO) {
+    int count = pdcontentsDAO.increasePdreplycnt(pdcontentsVO);
     return count;
   }
 
   // 댓글 수 감소
   @Override
-  public int decreaseReplycnt(int pdcontentsno) {
-    int count = pdcontentsDAO.decreaseReplycnt(pdcontentsno);
+  public int decreasePdreplycnt(PdcontentsVO pdcontentsVO) {
+    int count = pdcontentsDAO.decreasePdreplycnt(pdcontentsVO);
     return count;
   }
 
@@ -204,6 +204,14 @@ public class PdcontentsProc implements PdcontentsProcInter {
     
     return list;
   }
+
+  // 평점 수정 
+  @Override
+  public int update_recom(PdcontentsVO pdcontentsVO) {
+    int count = pdcontentsDAO.update_recom(pdcontentsVO);
+    return count;
+  }
+  
 }
 
 

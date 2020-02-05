@@ -6,9 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  
 <mapper namespace="dev.mvc.notice_contents.No_contentsDAOInter"> 
   <insert id ="create" parameterType="No_contentsVO"> 
-    INSERT INTO notice_contents(no_contentsno, 
-                                memberno, cateno, no_title, no_contents, 
-                                no_cnt,no_rdate, no_word)
+    INSERT INTO notice_contents(no_contentsno, memberno, cateno, no_title, no_contents,  no_cnt,no_rdate, no_word)
     VALUES((SELECT NVL(MAX(no_contentsno), 0) + 1 as no_contentsno FROM notice_contents),
                #{memberno}, #{cateno}, #{no_title}, #{no_contents},
                 0, sysdate, #{no_word})
@@ -35,8 +33,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    </select> 
    
    <select id="read" resultType="No_contentsVO" parameterType="int">
-     SELECT no_contentsno,memberno, cateno, no_title, 
-               no_contents, no_cnt,no_rdate, no_word
+     SELECT no_contentsno,memberno, cateno, no_title, no_contents, no_cnt,no_rdate, no_word
      FROM notice_contents
      WHERE no_contentsno=#{no_contentsno}
    </select>

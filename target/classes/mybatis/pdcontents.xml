@@ -62,19 +62,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
      DELETE FROM pdcontents
      WHERE productcateno=#{productcateno}
    </delete> 
-   
-   
-   <update id="increasePdreplycnt" parameterType="int">
-      UPDATE pdreply
+    
+   <update id="increasePdreplycnt" parameterType="PdcontentsVO">
+      UPDATE pdcontents
       SET replycnt = replycnt + 1 
       WHERE pdcontentsno=#{pdcontentsno}
    </update>
   
-   <update id="decreasePdreplycnt" parameterType="int">
-      UPDATE pdreply
+   <update id="decreasePdreplycnt" parameterType="PdcontentsVO">
+      UPDATE pdcontents
       SET replycnt = replycnt - 1 
       WHERE pdcontentsno=#{pdcontentsno}
    </update> 
+   
+    <!-- 댓글에 따른 총 평점 수정 -->
+   <update id="update_recom" parameterType="PdcontentsVO">
+      UPDATE pdcontents
+      SET recom= #{recom}
+      WHERE pdcontentsno = #{pdcontentsno}
+   </update>
    
    <!-- categrpno 별 검색된 레코드 목록 -->
    <select id="list_by_productcateno_search" resultType="PdcontentsVO" parameterType="HashMap">

@@ -44,6 +44,13 @@ public interface PdcontentsProcInter {
   public int update_thumb(PdcontentsVO pdcontentsVO);
   
   /**
+   * 댓글에 따른 총 평점 수정
+   * @param pdcontentsVO
+   * @return
+   */
+  public int update_recom(PdcontentsVO pdcontentsVO);
+  
+  /**
    * 한건 삭제 
    * @param pdcontentsno
    * @return
@@ -62,14 +69,15 @@ public interface PdcontentsProcInter {
    * @param pdcontentsno
    * @return
    */
-  public int increaseReplycnt(int pdcontentsno);
+  public int increasePdreplycnt(PdcontentsVO pdcontentsVO);
   
   /**
    * 댓글 수 감소
    * @param pdcontentsno
    * @return
    */
-  public int decreaseReplycnt(int pdcontentsno);
+  public int decreasePdreplycnt(PdcontentsVO pdcontentsVO);
+  
   
   /**
    * 검색어 찾기 목록

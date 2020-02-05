@@ -7,7 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <insert id="create" parameterType="PdreplyVO">
     INSERT INTO pdreply(pdreplyno, pdcontentsno, memberno, starcnt, content, passwd, rdate)
     VALUES((SELECT NVL(MAX(pdreplyno), 0) + 1 as pdreplyno FROM pdreply),
-             #{pdcontentsno},#{memberno}, #{starcnt}, #{content}, #{passwd}, sysdate);
+             #{pdcontentsno},#{memberno}, #{starcnt}, #{content}, #{passwd}, sysdate)
   </insert>
   
   <select id="list" resultType="PdreplyVO">
@@ -26,11 +26,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <select id="list_by_pdcontentsno_join" resultType="PdreplyMemberVO" parameterType="int">
     SELECT m.id, 
           r.pdreplyno, r.pdcontentsno, r.starcnt, r.memberno, r.content, r.passwd, r.rdate
-    FROM pdreply r
-    INNER JOIN mkmember m
-    ON m.memberno = r.memberno
-    WHERE r.pdcontentsno=#{r.pdcontentsno}
-    ORDER BY pdreplyno DESC
+    FROM mkmember m,  pdreply r
+    WHERE (m.memberno = r.memberno) AND r.pdcontentsno=#{r.pdcontentsno}
+    ORDER BY r.pdreplyno DESC
   </select>
   
   <select id="pdreply_cnt" resultType="int">

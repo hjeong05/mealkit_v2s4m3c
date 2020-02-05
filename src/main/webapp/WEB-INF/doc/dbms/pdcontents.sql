@@ -9,7 +9,7 @@ CREATE TABLE pdcontents(
 		title                         		    VARCHAR2(300)		 NOT NULL,
 		price                             NUMBER(10)    NOT NULL,
 		content                       		CLOB		 NOT NULL,
-		recom                         		NUMBER(7)		 DEFAULT 0		 NOT NULL,
+		recom                         		NUMBER(5,1)		 DEFAULT 0		 NOT NULL,
 		cnt                           		NUMBER(7)		 DEFAULT 0		 NOT NULL,
 		replycnt                      		NUMBER(10)		 DEFAULT 0		 NOT NULL,
 		rdate                         		DATE		 NOT NULL,
@@ -26,7 +26,7 @@ COMMENT ON COLUMN pdcontents.productcateno is '상품 카테고리 번호';
 COMMENT ON COLUMN pdcontents.title is '상품명';
 COMMENT ON COLUMN pdcontents.content is '내용';
 COMMENT ON COLUMN pdcontents.price is '가격';
-COMMENT ON COLUMN pdcontents.recom is '추천수';
+COMMENT ON COLUMN pdcontents.recom is '평점';
 COMMENT ON COLUMN pdcontents.cnt is '조회수';
 COMMENT ON COLUMN pdcontents.replycnt is '댓글수';
 COMMENT ON COLUMN pdcontents.rdate is '등록일';
@@ -99,12 +99,23 @@ FROM pdcontents;
 SELECT pdcontentsno, productcateno, title, price, content,
                               recom,cnt,replycnt,rdate,word, fname, fupname, thumb, fsize 
 FROM pdcontents
-WHERE pdcontentsno=1;
+WHERE pdcontentsno=2;
      
 -- 6) 수정
 UPDATE pdcontents
 SET title='김치볶음밥', content='내용 수정', word='검색어'
 WHERE pdcontentsno = 1;
+
+
+-- 추천 수정
+UPDATE pdcontents
+SET recom= 3
+WHERE pdcontentsno = 2;
+
+SELECT pdcontentsno, productcateno, title, price, 
+                              recom,cnt,replycnt,rdate,word, fname, fupname, thumb, fsize 
+FROM pdcontents
+WHERE pdcontentsno=1;
 
 -- 7) 삭제
 DELETE FROM pdcontents

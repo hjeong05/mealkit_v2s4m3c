@@ -39,10 +39,10 @@
     </ASIDE>
     <ASIDE style='float: right;'>
       <A href="javascript:location.reload();">새로고침</A>
-      <%-- <c:if test="${sessionScope.id_admin != null}"> --%>
+      <c:if test="${sessionScope.id_admin != null}"> 
         <span class='menu_divide' > | </span>
         <A href='./create.do?productcateno=${productcateVO.productcateno }'>등록</A>
-    <%--   </c:if> --%>
+      </c:if> 
       
       <c:choose>
         <c:when test="${param.word != '' }">
@@ -81,6 +81,7 @@
         <br>
         ${pdcontentsVO.rdate.substring(0, 10)}<br> 
         <span style='font-weight: bold;'>${pdcontentsVO.price} 원</span><br>
+        남은 수량:${pdcontentsVO.cnt }<br>
         추천 수 ${pdcontentsVO.recom}<br> 
         <%-- <c:if test="${sessionScope.id_admin != null}"> --%>
         <a  href="./update.do?pdcontentsno=${pdcontentsno}&productcateno=${productcateVO.productcateno}">

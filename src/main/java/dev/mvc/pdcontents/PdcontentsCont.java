@@ -604,7 +604,7 @@ public class PdcontentsCont {
   @ResponseBody
   @RequestMapping(value = "/pdcontents/pdreply_delete.do", 
                            method = RequestMethod.POST)
-  public String reply_delete(int pdreplyno, String passwd) {
+  public String pdreply_delete(int pdreplyno, String passwd) {
     Map<String, Object> map = new HashMap<String, Object>();
     map.put("pdreplyno", pdreplyno);
     map.put("passwd", passwd);

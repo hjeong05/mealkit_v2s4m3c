@@ -63,8 +63,8 @@ DecimalFormat df = new DecimalFormat("￦ ###,###,### 원");
     if ('${sessionScope.memberno}' != '') { // 로그인된 경우
       // alert('sessionScope.memberno: ' + '${sessionScope.memberno}');
 
-      var frm_reply = $('#frm_reply');
-      $('#content', frm_reply).attr('placeholder', '댓글 작성');
+      var frm_pdreply = $('#frm_pdreply');
+      $('#content', frm_pdreply).attr('placeholder', '댓글 작성');
     }
   });
   
@@ -80,7 +80,7 @@ DecimalFormat df = new DecimalFormat("￦ ###,###,### 원");
   }
   
   function create_pdreply() {
-    var frm_reply = $('#frm_pdreply');
+    var frm_pdreply = $('#frm_pdreply');
     var params = frm_pdreply.serialize();
     // alert('checkId() 호출됨: ' + params);
     // return;
@@ -184,18 +184,18 @@ DecimalFormat df = new DecimalFormat("￦ ###,###,### 원");
   
   // 삭제 레이어 출력
   function pdreply_delete(pdreplyno) {
-    // alert('replyno: ' + replyno);
-    var frm_reply_delete = $('#frm_reply_delete');
-    $('#pdreplyno', frm_reply_delete).val(pdreplyno);  // 삭제할 댓글 번호 저장 
+     alert('pdreplyno: ' + pdreplyno);
+    var frm_pdreply_delete = $('#frm_[dreply_delete');
+    $('#pdreplyno', frm_pdreply_delete).val(pdreplyno);  // 삭제할 댓글 번호 저장 
     $('#modal_panel_delete').modal();              // 삭제 폼 다이얼로그 출력
   }
   
   // 삭제 처리
   function pdreply_delete_proc(pdreplyno) {
     // alert('replyno: ' + replyno);
-    var params = $('#frm_reply_delete').serialize();
+    var params = $('#frm_pdreply_delete').serialize();
     $.ajax({
-      url: "./reply_delete.do", // action 대상 주소
+      url: "./pdreply_delete.do", // action 대상 주소
       type: "post",           // get, post
       cache: false,          // 브러우저의 캐시영역 사용안함.
       async: true,           // true: 비동기
@@ -208,7 +208,7 @@ DecimalFormat df = new DecimalFormat("￦ ###,###,### 원");
         if (rdata.count ==1) { // 패스워드 일치
           if (rdata.delete_count == 1) { // 삭제 성공
 
-            $('#btn_frm_reply_delete_close').trigger("click"); // 삭제폼 닫기 
+            $('#btn_frm_pdreply_delete_close').trigger("click"); // 삭제폼 닫기 
             
             list_by_pdcontentsno(${pdcontentsVO.pdcontentsno }); // 목록을 다시 읽어옴
             
@@ -277,9 +277,9 @@ DecimalFormat df = new DecimalFormat("￦ ###,###,### 원");
           <h4 class="modal-title">댓글 삭제</h4><!-- 제목 -->
         </div>
         <div class="modal-body">
-          <form name='frm_reply_delete' id='frm_reply_delete' method='POST' 
+          <form name='frm_pdreply_delete' id='frm_pdreply_delete' method='POST' 
                     action='./pdreply_delete.do'>
-            <input type='hidden' name='replyno' id='replyno' value=''>
+            <input type='hidden' name='pdreplyno' id='pdreplyno' value=''>
             
             <label>패스워드</label>
             <input type='password' name='passwd' id='passwd' class='form-control'>
@@ -291,7 +291,7 @@ DecimalFormat df = new DecimalFormat("￦ ###,###,### 원");
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal" 
-                       id='btn_frm_reply_delete_close'>Close</button>
+                       id='btn_frm_pdreply_delete_close'>Close</button>
         </div>
       </div>
     </div>
@@ -328,6 +328,7 @@ DecimalFormat df = new DecimalFormat("￦ ###,###,### 원");
     <span class='menu_divide' > | </span> 
     <A href='./list.do?productcateno=${productcateno }&nowPage=${param.nowPage}'>목록</A>
     <span class='menu_divide' > | </span> 
+    <c:if test="${sessionScope.id_admin != null}"> 
     <A href='./update.do?productcateno=${productcateno }&pdcontentsno=${pdcontentsno}&nowPage=${param.nowPage}'>수정</A>
     <span class='menu_divide' > | </span> 
     <a href="../pdatfile/create.do?pdcontentsno=${pdcontentsno}&productcateno=${productcateVO.productcateno}&nowPage=${param.nowPage}">첨부 파일 등록</A>
@@ -335,12 +336,11 @@ DecimalFormat df = new DecimalFormat("￦ ###,###,### 원");
     <a href="./file_delete.do?pdcontentsno=${pdcontentsno}&productcateno=${productcateVO.productcateno}&nowPage=${param.nowPage}">첨부 파일 삭제</A>
     <span class='menu_divide' > | </span> 
     <A href='./delete.do?productcateno=${productcateno }&pdcontentsno=${pdcontentsno}&nowPage=${param.nowPage}'>삭제</A>
-    
+    </c:if>
   </ASIDE> 
   
   <div class='menu_line'></div>
 
-  
       <fieldset class="fieldset">
         <ul>
           <li class="li_none" style='border-bottom: solid 1px #AAAAAA;'>
@@ -372,14 +372,14 @@ DecimalFormat df = new DecimalFormat("￦ ###,###,### 원");
       <input type="hidden" name="pdcontentsno" value="${pdcontentsno}">
             <DIV style='float: right; width: 50%;'>
               <UL style='padding-left: 30px;'>
-                <li>
+                <li class="li_none" >
                   <span style='display: block;  color: #101010;  font-size: 50px; line-height: 40px; font-weight: 700;  word-break: break-all;' >${pdcontentsVO.title}</span>
                 </li>
-                <li>
+                <li class="li_none" >
                   판매가 :
                     <span style='box-sizing: border-box; font-size: 30px; box-sizing: border-box;'>${pdcontentsVO.price}</span>원
                 </li>
-                <li>
+                <li class="li_none" >
                   수량:
                   <input type='number' name =cnt value='0' id='productCnt'>개
                   <button type='button' id="btn_order">확인</button>
@@ -422,10 +422,11 @@ DecimalFormat df = new DecimalFormat("￦ ###,###,### 원");
               <!-- 댓글 영역 시작 -->
             <DIV style='width: 80%;'>
               <HR>
-              <FORM name='frm_reply' id='frm_reply' method ='post' action ='#평점 보내기update로'>
+              <FORM name='frm_pdreply' id='frm_pdreply' >
                 <input type='hidden' name='pdcontentsno' id='pdcontentsno' value='${pdcontentsno}'> 
-                <input type='number' name='recom' id='recom' max= '5' min = '0' step = '0.1' placeholder="0.0 ~ 5.0" >
                 <input type='hidden' name='memberno' id='memberno' value='${sessionScope.memberno}'>
+                
+                <input type='number' name='recom' id='recom' max= '5' min = '0' step = '1' placeholder="0.0 ~ 5.0" >
                 <textarea name='content' id='content' style='width: 100%; height: 60px;' placeholder="댓글 작성, 로그인해야 등록 할 수 있습니다."></textarea>
                 <input type='password' name='passwd' id='passwd' placeholder="비밀번호">
                 <button type='button' id='btn_create' onclick="create_pdreply();">등록</button>
