@@ -73,7 +73,7 @@ function delete_form(cartgrpno) {
         <%list_count++; %> 
           <c:set var="cartno" value="${cart_productVO.cartno }" />
           <tr style='width:100%; '>
-            <td style='display:table-cell; vertical-align: middle;'><img src='./images/${cart_productVO.thumb }' style='width:100px;'></img></td>
+            <td style='display:table-cell; vertical-align: middle;'><IMG src="../pdatfile/storage/${cart_productVO.thumb }"></td>
             <td style='display:table-cell; vertical-align: middle; text-align: left;'>${cart_productVO.title }</td>
             <td style='display:table-cell; vertical-align: middle;'>${cart_productVO.productCount}개</td>
             <td style='display:table-cell; vertical-align: middle;'>${cart_productVO.price}원</td>
