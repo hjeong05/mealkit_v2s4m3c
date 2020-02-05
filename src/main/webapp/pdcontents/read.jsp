@@ -229,12 +229,6 @@ DecimalFormat df = new DecimalFormat("￦ ###,###,### 원");
        
     }
     
-    function order_direct(f){
-    	var count = parseInt(f.productCnt.value);
-    	
-    	window.location.href="../order/list_direct.do?cartgrpno=1&orderID=${sessionScope.id }&productno=${pdcontentsno }&productCount=count";
-    }
-    
 </script>
 </head>
 
@@ -391,7 +385,7 @@ DecimalFormat df = new DecimalFormat("￦ ###,###,### 원");
                     
                     </DIV>
                     <DIV id ="ordering">
-                      <button type='button' id="order" onclick=order_direct(document.frm);>주문하기</button>
+                      <button type='button' id="order" >주문하기</button>
                       <button type='button' id="cart" >장바구니에 담기</button>
                     </DIV>
                     
