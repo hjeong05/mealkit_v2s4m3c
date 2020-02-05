@@ -50,17 +50,17 @@ function delete_form(cartgrpno, cartno) {
     win.moveTo(x, y); // 지정된 좌표로 이동    
   }
   
- function check_box(list_count) {
-	 var cartno_list = new Array();
-	 var j = 0;
-	 for(var i = 1; i <= list_count; i++) {
-		 if(find(i).checked) {
-			 cartno_list[j] = find(i).value;
-			 j++;
-		 }
-	 } 
-	 location.href="../order/list.do?cartno_list=" + cartno_list;
- }
+function check_box(list_count) {
+	   var cartno_list = new Array();
+	   var j = 0;
+	   for(var i = 1; i <= list_count; i++) {
+	     if(find(i).checked) {
+	       cartno_list[j] = find(i).value;
+	       j++;
+	     }
+	   } 
+	   location.href="../order/list.do?cartno_list=" + cartno_list;
+	 }
  
 </script>
  
@@ -108,7 +108,7 @@ function delete_form(cartgrpno, cartno) {
           <c:set var="cartno" value="${cart_productVO.cartno }" />
           <tr style='width:100%; '>
             <td style='display:table-cell; vertical-align: middle;'><input type="checkbox" name="check_product" value="${cart_productVO.cartno }" id="<%=list_count %>" ></td>
-            <td style='display:table-cell; vertical-align: middle;'><img src='./images/${cart_productVO.thumb }' style='width:100px;'></img></td>
+            <td style='display:table-cell; vertical-align: middle;'><IMG src="../pdatfile/storage/${cart_productVO.thumb }"></td>
             <td style='display:table-cell; vertical-align: middle; text-align: left;'>${cart_productVO.title }</td>
             <td style='display:table-cell; vertical-align: middle;'>${cart_productVO.productCount}개</td>
             <td style='display:table-cell; vertical-align: middle;'>${cart_productVO.price}원</td>
@@ -122,8 +122,6 @@ function delete_form(cartgrpno, cartno) {
       </div>
       <div style='text-align: right;' >
         <button type='button' class='btn btn-primary' onclick="check_box(<%=list_count %>);">주문</button>
-        <%-- <button type='button' class='btn btn-primary' onclick="list_length(<%=list_count %>);" >주문</button> --%>
-        <%-- <button type='button' class='btn btn-primary' onclick="location.href='../order/list.do?cartno=${cart_productVO.cartno }'" >주문</button> --%>
       </div>
     </div>
   </div>
