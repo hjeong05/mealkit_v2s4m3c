@@ -17,6 +17,16 @@ public interface CartDAOInter {
    */
   public int create(CartVO cartVO);
 
+  /**
+   * <Xmp>
+   *  등록 후 cartno 리턴
+   * <insert id="create" parameterType="CartVO"> 
+   * </Xmp>
+   * @param cartVO
+   * @return 조회된 레코드 갯수
+   */
+   public int create_retrun_no(CartVO cartVO);
+   
   /** 
    * <xmp>
    * cartgrpno별 목록

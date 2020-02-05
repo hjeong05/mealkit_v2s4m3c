@@ -19,6 +19,12 @@ public class CartProc  implements CartProcInter {
   }
 
   @Override
+  public int create_retrun_no(CartVO cartVO) {
+    int count = cartDAO.create_retrun_no(cartVO);
+    return count;
+  }
+  
+  @Override
   public List<CartVO> list_by_cartgrpno(int cartgrpno) {
     List<CartVO> list = cartDAO.list_by_cartgrpno(cartgrpno);
     return list;

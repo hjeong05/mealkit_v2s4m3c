@@ -29,17 +29,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                #{productCount}, sysdate)  
   </insert> 
      
-   <select id="read" parameterType="int" resultType="CartVO">
-     SELECT cartno, cartgrpno, productno, orderID, productCount, rdate
-     FROM cart
-     WHERE cartno = #{cartno}
-   </select>
+  <insert id="create_retrun_no" parameterType="CartVO">
+    <selectKey keyProperty="cartno" resultType="int" order="AFTER">
+      select MAX(cartno) FROM cart
+    </selectKey>
+    INSERT INTO cart(cartno, cartgrpno, productno, orderID,
+                              productCount, rdate)
+    VALUES((SELECT NVL(MAX(cartno),0) + 1 as cartno FROM cart),
+               #{cartgrpno}, #{productno}, #{orderID}, 
+               #{productCount}, sysdate)
+  </insert>
+  
+  <select id="read" parameterType="int" resultType="CartVO">
+    SELECT cartno, cartgrpno, productno, orderID, productCount, rdate
+    FROM cart
+    WHERE cartno = #{cartno}
+  </select>
    
-   <select id="read_by_id" parameterType="String" resultType="CartVO">
-     SELECT cartno, cartgrpno, productno, orderID, productCount, rdate
-     FROM cart
-     WHERE orderID = #{orderID}
-   </select>
+  <select id="read_by_id" parameterType="String" resultType="CartVO">
+    SELECT cartno, cartgrpno, productno, orderID, productCount, rdate
+    FROM cart
+    WHERE orderID = #{orderID}
+  </select>
    
   <update id="update" parameterType="CartVO">
       UPDATE cart
