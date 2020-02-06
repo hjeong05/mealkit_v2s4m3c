@@ -87,4 +87,10 @@ public class PdreplyProc implements PdreplyProcInter {
     return count;
   }
 
+  @Override
+  public PdreplyMemberVO read(int pdreplyno) {
+    PdreplyMemberVO pdreplyMemberVO = pdreplyDAO.read(pdreplyno);
+    return pdreplyMemberVO;
+  }
+
 }

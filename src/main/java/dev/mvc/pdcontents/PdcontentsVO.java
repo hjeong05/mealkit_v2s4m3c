@@ -24,7 +24,7 @@ public class PdcontentsVO {
   private String content;
   
   /** 추천 */
-  private int recom;
+  private float recom;
   
   /** 조회수 */
   private int cnt;
@@ -102,11 +102,11 @@ public class PdcontentsVO {
     this.content = content;
   }
 
-  public int getRecom() {
+  public float getRecom() {
     return recom;
   }
 
-  public void setRecom(int recom) {
+  public void setRecom(float recom) {
     this.recom = recom;
   }
 

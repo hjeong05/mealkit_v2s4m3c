@@ -5,12 +5,21 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import dev.mvc.pdreply.PdreplyMemberVO;
+
 public interface PdcontentsProcInter {
   
-  // 상품 등록
+  /**
+   * 등록
+   * @param pdcontentsVO
+   * @return
+   */
   public int create(PdcontentsVO pdcontentsVO);
   
-  // 상품 목록
+  /**
+   * 목록
+   * @return
+   */
   public List<PdcontentsVO> list_all();
   
   // productcateno별 전체 목록
@@ -69,14 +78,14 @@ public interface PdcontentsProcInter {
    * @param pdcontentsno
    * @return
    */
-  public int increasePdreplycnt(PdcontentsVO pdcontentsVO);
+  public int increasePdreplycnt(int pdcontentsno);
   
   /**
    * 댓글 수 감소
    * @param pdcontentsno
    * @return
    */
-  public int decreasePdreplycnt(PdcontentsVO pdcontentsVO);
+  public int decreasePdreplycnt(int pdcontentsno);
   
   
   /**

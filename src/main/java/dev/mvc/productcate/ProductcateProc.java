@@ -18,7 +18,6 @@ public class ProductcateProc implements ProductcateProcInter{
     return list;
   }
 
-  
   @Override
   public int create(ProductcateVO productcateVO) {
     int count = productcateDAO.create(productcateVO);

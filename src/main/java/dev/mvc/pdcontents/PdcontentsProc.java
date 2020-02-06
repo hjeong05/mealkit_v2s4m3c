@@ -81,15 +81,15 @@ public class PdcontentsProc implements PdcontentsProcInter {
 
   // ´ñ±Û ¼ö Áõ°¡
   @Override
-  public int increasePdreplycnt(PdcontentsVO pdcontentsVO) {
-    int count = pdcontentsDAO.increasePdreplycnt(pdcontentsVO);
+  public int increasePdreplycnt(int pdcontentsno) {
+    int count = pdcontentsDAO.increasePdreplycnt(pdcontentsno);
     return count;
   }
 
   // ´ñ±Û ¼ö °¨¼Ò
   @Override
-  public int decreasePdreplycnt(PdcontentsVO pdcontentsVO) {
-    int count = pdcontentsDAO.decreasePdreplycnt(pdcontentsVO);
+  public int decreasePdreplycnt(int pdcontentsno) {
+    int count = pdcontentsDAO.decreasePdreplycnt(pdcontentsno);
     return count;
   }
 

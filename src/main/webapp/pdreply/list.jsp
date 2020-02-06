@@ -65,15 +65,15 @@
               ${pdreplyVO.pdreplyno }
             </td>
             <td style='text-align: center; vertical-align: middle;'>
-              <a href="../contents/read.do?contentsno=${pdcontentsno }">${pdcontentsno}</a>
+              <a href="../pdcontents/read.do?pdcontentsno=${pdcontentsno }">${pdcontentsno}</a>
             </td>
             <td style='text-align: center; vertical-align: middle;'>
-              <a href="../member/read.do?memberno=${pdreplyVO.memberno}">${pdreplyVO.memberno}</a>
+              <a href="../mkmember/read.do?memberno=${pdreplyVO.memberno}">${pdreplyVO.memberno}</a>
             </td>
             <td style='text-align: left; vertical-align: middle;'>${pdreplyVO.content}</td>
             <td style='text-align: center; vertical-align: middle;'>${pdreplyVO.rdate.substring(0,10)}</td>
             <td style='text-align: center; vertical-align: middle;'>
-              <a href="./delete.do?replyno=${pdreplyVO.pdreplyno}"><img src="./images/delete2.png" title="삭제"  border='0' /></a>
+              <a href="./delete.do?pdreplyno=${pdreplyVO.pdreplyno}"><img src="./images/delete2.png" title="삭제"  border='0' /></a>
             </td>
           </tr>
         </c:forEach>

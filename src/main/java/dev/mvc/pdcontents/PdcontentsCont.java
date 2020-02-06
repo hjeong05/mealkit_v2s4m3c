@@ -32,6 +32,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import dev.mvc.pdatfile.PdatfileProcInter;
 import dev.mvc.pdatfile.PdatfileVO;
+import dev.mvc.pdreply.PdreplyMemberVO;
 import dev.mvc.pdreply.PdreplyProcInter;
 import dev.mvc.productcate.ProductcateProcInter;
 import dev.mvc.productcate.ProductcateVO;
@@ -196,6 +197,7 @@ public class PdcontentsCont {
     
     ModelAndView mav = new ModelAndView();
     // /contents/list_by_categrpno_search_paging.jsp
+    
     mav.setViewName("/pdcontents/list_by_productcateno_search_paging");   
     
     // 숫자와 문자열 타입을 저장해야함으로 Obejct 사용
@@ -234,6 +236,21 @@ public class PdcontentsCont {
     return mav;
   }    
  
+  
+  // 총 평점 수정
+  @RequestMapping(value = "/pdcontents/update_recom.do", method = RequestMethod.POST)
+  public ModelAndView update_recom(PdcontentsVO pdcontentsVO) {
+    ModelAndView mav = new ModelAndView();
+
+    
+    int count = pdcontentsProc.update_recom(pdcontentsVO);
+
+    mav.addObject("pdcontentsVO", pdcontentsVO);
+    
+    mav.setViewName("redirect:/pdcontents/list_by_productcateno_search_paging.jsp");
+
+    return mav;
+  }
   
   /**
    * productcateno별 전체 목록 // 검색어 포함
@@ -286,7 +303,7 @@ public class PdcontentsCont {
 
     PdcontentsVO pdcontentsVO = pdcontentsProc.read(pdcontentsno);
     mav.addObject("pdcontentsVO", pdcontentsVO);
-
+    
     ProductcateVO productcateVO = productcateProc.read(pdcontentsVO.getProductcateno());
     mav.addObject("productcateVO", productcateVO);
     
@@ -604,7 +621,7 @@ public class PdcontentsCont {
   @ResponseBody
   @RequestMapping(value = "/pdcontents/pdreply_delete.do", 
                            method = RequestMethod.POST)
-  public String pdreply_delete(int pdreplyno, String passwd) {
+  public String pdreply_delete(int pdcontentsno, int pdreplyno, String passwd) {
     Map<String, Object> map = new HashMap<String, Object>();
     map.put("pdreplyno", pdreplyno);
     map.put("passwd", passwd);
@@ -612,7 +629,33 @@ public class PdcontentsCont {
     int count = pdreplyProc.checkPasswd(map); // 패스워드 검사
     int delete_count = 0;
     if (count == 1) {
+
+     // 해당 상품 읽기 
+      PdcontentsVO pdcontentsVO = pdcontentsProc.read(pdcontentsno);
+      // 해당 상품 내 댓글 수, 총 평점 가져오기
+      int reply_cnt = pdcontentsVO.getReplycnt();
+      float recom = pdcontentsVO.getRecom();
+      System.out.println("reply_cnt: "+ pdcontentsVO.getReplycnt());
+      System.out.println("초기 recom: "+ pdcontentsVO.getRecom());
+      
+      // 삭제하려는 댓글 읽어오기
+      PdreplyMemberVO pdreplyMemberVO = pdreplyProc.read(pdreplyno);
+      // 총 평점 계산 (수정)
+      int tot_recom = (int) ((recom * reply_cnt) - pdreplyMemberVO.getStarcnt());
+      if(reply_cnt == 1) { // 마지막 댓글 삭제 시
+        recom = 0;
+      }
+      else { 
+        recom = tot_recom/(reply_cnt-1);
+      }
+      
+      pdcontentsVO.setRecom(recom);
+      // 총 평점 수정
+      pdcontentsProc.update_recom(pdcontentsVO);
+      
       delete_count = pdreplyProc.delete(pdreplyno); // 댓글 삭제
+      // 댓글 삭제시 댓글 개수 감소
+      pdcontentsProc.decreasePdreplycnt(pdcontentsno);
     }
     
     JSONObject obj = new JSONObject();

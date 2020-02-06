@@ -1,4 +1,6 @@
 eclipse.preferences.version=1
+encoding//src/main/java/dev/mvc/cart/CartDAOInter.java=UTF-8
+encoding//src/main/java/dev/mvc/cartgrp/CartgrpDAOInter.java=UTF-8
 encoding//src/main/webapp/WEB-INF/doc/dbms=UTF-8
 encoding//src/main/webapp/WEB-INF/doc/dbms/cart.sql=UTF-8
 encoding//src/main/webapp/WEB-INF/doc/dbms/cartgrp.sql=UTF-8

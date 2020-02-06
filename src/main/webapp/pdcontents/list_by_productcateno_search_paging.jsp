@@ -14,15 +14,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-<!--  <script type="text/javascript">
-  function price_txt(price  
-    DecimalFormat df = new DecimalFormat("#,###,###"); // 생성자
-    var tag ="";
-    tag += df.format(price);
-    
-    $('#price_panel').html(tag);
-}
-</script> -->
+
 </head>
  
 <body>
@@ -77,20 +69,20 @@
              ${pdcontentsVO.fname}
           </c:otherwise>
         </c:choose> <br>
-        <a href="./read.do?pdcontentsno=${pdcontentsno}&nowPage=${param.nowPage}" style='font-weight: bold; font-size: 1.2em;'>${pdcontentsVO.title}</a> 
-        <br>
+        <a href="./read.do?pdcontentsno=${pdcontentsno}&nowPage=${param.nowPage}" style='font-weight: bold; font-size: 1.2em;'>${pdcontentsVO.title}</a><br>
+        (<span style='color:#FFE400 ;'>★</span>${pdcontentsVO.recom}) 리뷰 수: ${pdcontentsVO.replycnt}<br>
         ${pdcontentsVO.rdate.substring(0, 10)}<br> 
         <span style='font-weight: bold;'>${pdcontentsVO.price} 원</span><br>
         남은 수량:${pdcontentsVO.cnt }<br>
-        추천 수 ${pdcontentsVO.recom}<br> 
-        <%-- <c:if test="${sessionScope.id_admin != null}"> --%>
+         <br> 
+        <c:if test="${sessionScope.id_admin != null}">
         <a  href="./update.do?pdcontentsno=${pdcontentsno}&productcateno=${productcateVO.productcateno}">
           <img src="./images/update2.png" title="수정" border='0' /></a> 
         <a href="./delete.do?pdcontentsno=${pdcontentsno}&productcateno=${productcateVO.productcateno}">
           <img src="./images/delete2.png" title="삭제" border='0' /></a> 
         <a href="../pdatfile/create.do?pdcontentsno=${pdcontentsno }&productcateno=${productcateVO.productcateno }">
           <img src="./images/upload2.png" title="파일 업로드" border='0' /></a>
-         <%-- </c:if>  --%>
+         </c:if> 
          
           <br>
       </DIV>

@@ -79,6 +79,12 @@ DecimalFormat df = new DecimalFormat("￦ ###,###,### 원");
     $('#pdatfile_panel').show();
   }
   
+  function update_recom(){
+    var frm_pdreply = $('#frm_pdreply');
+    var params = frm_pdreply.serialize();
+    
+    
+  }
   function create_pdreply() {
     var frm_pdreply = $('#frm_pdreply');
     var params = frm_pdreply.serialize();
@@ -135,6 +141,7 @@ DecimalFormat df = new DecimalFormat("￦ ###,###,### 원");
         console.log(msg);
       }
     });
+   
   }
   
   // 댓글 목록
@@ -157,10 +164,11 @@ DecimalFormat df = new DecimalFormat("￦ ###,###,### 원");
         
         for (i=0; i < rdata.list.length; i++) {
           var row = rdata.list[i];
-          
+
           msg += "<DIV style='border-bottom: solid 1px #EEEEEE; margin-bottom: 10px;'>";
           msg += "<span style='font-weight: bold;'>" + row.id + "</span>";
-          msg += "  " + row.rdate;
+          msg += "<span style='font-weight: bold; color: magenta;'>" + " 평점: " + row.starcnt + "</span>";
+          msg += "<br> " + row.rdate;
           if ('${sessionScope.memberno}' == row.memberno) { // 글쓴이 일치여부 확인
             msg += " <A href='javascript:pdreply_delete("+row.pdreplyno+")'><IMG src='./images/delete.png'></A>";
           }
@@ -184,15 +192,15 @@ DecimalFormat df = new DecimalFormat("￦ ###,###,### 원");
   
   // 삭제 레이어 출력
   function pdreply_delete(pdreplyno) {
-     alert('pdreplyno: ' + pdreplyno);
-    var frm_pdreply_delete = $('#frm_[dreply_delete');
+   //  alert('pdreplyno: ' + pdreplyno);
+    var frm_pdreply_delete = $('#frm_pdreply_delete');
     $('#pdreplyno', frm_pdreply_delete).val(pdreplyno);  // 삭제할 댓글 번호 저장 
     $('#modal_panel_delete').modal();              // 삭제 폼 다이얼로그 출력
   }
   
   // 삭제 처리
-  function pdreply_delete_proc(pdreplyno) {
-    // alert('replyno: ' + replyno);
+  function pdreply_delete_proc(pdcontentsno,pdreplyno) {
+   //  alert('pdreplyno: ' + pdreplyno);
     var params = $('#frm_pdreply_delete').serialize();
     $.ajax({
       url: "./pdreply_delete.do", // action 대상 주소
@@ -202,7 +210,7 @@ DecimalFormat df = new DecimalFormat("￦ ###,###,### 원");
       dataType: "json",   // 응답 형식: json, xml, html...
       data: params,        // 서버로 전달하는 데이터
       success: function(rdata) { // 서버로부터 성공적으로 응답이 온경우
-        // alert(rdata);
+       //  alert(rdata);
         var msg = "";
         
         if (rdata.count ==1) { // 패스워드 일치
@@ -261,7 +269,7 @@ DecimalFormat df = new DecimalFormat("￦ ###,###,### 원");
           <p id='modal_content'></p>  <!-- 내용 -->
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" onclick="javascript:location.reload();" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
@@ -280,18 +288,19 @@ DecimalFormat df = new DecimalFormat("￦ ###,###,### 원");
           <form name='frm_pdreply_delete' id='frm_pdreply_delete' method='POST' 
                     action='./pdreply_delete.do'>
             <input type='hidden' name='pdreplyno' id='pdreplyno' value=''>
+            <input type="hidden" name="pdcontentsno" value="${pdcontentsno}">
             
             <label>패스워드</label>
             <input type='password' name='passwd' id='passwd' class='form-control'>
             <div style='text-align: right; margin: 5px;'>
               <button type='button' class='btn btn-success' 
-                           onclick="pdreply_delete_proc(this.form.pdreplyno.value);this.form.passwd.value='';">삭제</button>
+                           onclick="pdreply_delete_proc(this.form.pdcontentsno.value,this.form.pdreplyno.value);this.form.passwd.value='';">삭제</button>
             </div> 
           </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal" 
-                       id='btn_frm_pdreply_delete_close'>Close</button>
+                       onclick="javascript:location.reload();" id='btn_frm_pdreply_delete_close'>Close</button>
         </div>
       </div>
     </div>
@@ -395,7 +404,7 @@ DecimalFormat df = new DecimalFormat("￦ ###,###,### 원");
           <DIV style='clear: both; width: 100%;'>
                       <ul class="tabs">
             <li class="tab-link current" data-tab="tab-1" style='font-weight: bold;'>상세설명</li>
-            <li class="tab-link" data-tab="tab-2">리뷰( )</li>
+            <li class="tab-link" data-tab="tab-2">리뷰(${pdcontentsVO.replycnt })</li>
           </ul>
           <DIV style='clear: both; width: 100%;'>
           <!-- 상세설명 탭 내용 -->
@@ -423,10 +432,10 @@ DecimalFormat df = new DecimalFormat("￦ ###,###,### 원");
             <DIV style='width: 80%;'>
               <HR>
               <FORM name='frm_pdreply' id='frm_pdreply' >
-                <input type='hidden' name='pdcontentsno' id='pdcontentsno' value='${pdcontentsno}'> 
+                <input type='hidden' name='pdcontentsno' id='pdcontentsno' value='${pdcontentsVO.pdcontentsno }'> 
                 <input type='hidden' name='memberno' id='memberno' value='${sessionScope.memberno}'>
                 
-                <input type='number' name='recom' id='recom' max= '5' min = '0' step = '1' placeholder="0.0 ~ 5.0" >
+                <input type='number' name='starcnt' id='starcnt' max= '5' min = '0' step = '1' placeholder="0.0 ~ 5.0" >
                 <textarea name='content' id='content' style='width: 100%; height: 60px;' placeholder="댓글 작성, 로그인해야 등록 할 수 있습니다."></textarea>
                 <input type='password' name='passwd' id='passwd' placeholder="비밀번호">
                 <button type='button' id='btn_create' onclick="create_pdreply();">등록</button>

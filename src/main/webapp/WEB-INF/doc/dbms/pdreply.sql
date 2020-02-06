@@ -1,6 +1,8 @@
 /**********************************/
 /* Table Name: ´ñ±Û */
 /**********************************/
+DELETE FROM pdreply;
+
 DROP TABLE pdreply;
 
 CREATE TABLE pdreply(
@@ -58,6 +60,10 @@ ORDER BY pdreplyno DESC;
        2          1        1 ´ñ±Û2     1234
        1          1        1 ´ñ±Û1     1234
 
+-- ´ñ±Û ÇÑ °Ç read
+SELECT pdreplyno, pdcontentsno, memberno, starcnt, content, passwd, rdate
+FROM pdreply
+WHERE pdreplyno = 1;
 
 4) »èÁ¦
 -- ÆÐ½º¿öµå °Ë»ç

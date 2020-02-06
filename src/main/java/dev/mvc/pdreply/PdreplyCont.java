@@ -49,24 +49,33 @@ public class PdreplyCont {
     
     // 해당 상품 읽기 
     PdcontentsVO pdcontentsVO = pdcontentsProc.read(pdreplyVO.getPdcontentsno());
-    
+    int reply_cnt = 0;
      // 댓글 등록 시 pdcontents 댓글 수 증가 
     if (count == 1) {
-      pdcontentsProc.increasePdreplycnt(pdcontentsVO);
+      pdcontentsProc.increasePdreplycnt(pdreplyVO.getPdcontentsno());
+      // 해당 상품 댓글 개수 확인
+      reply_cnt = pdcontentsVO.getReplycnt();
+      System.out.println("reply_cnt" + reply_cnt);
     }
 
-    // 해당 상품 댓글 개수 확인
-    int reply_cnt = pdcontentsVO.getReplycnt();
-    
     // 상품 추천 평점 저장
-    int recom = (pdcontentsVO.getRecom() * reply_cnt) + pdreplyVO.getStarcnt();
-    if(reply_cnt == 0) { // 댓글 처음 등록시
+    if(reply_cnt == 0) {
+      int recom = pdreplyVO.getStarcnt();
       pdcontentsVO.setRecom(recom);
-    } else { // 댓글 이미 존재 시
-      int tot_recom = recom/reply_cnt;  
-      pdcontentsVO.setRecom(tot_recom);
+    } else {
+      float recom = (float) (((pdcontentsVO.getRecom() * reply_cnt) + pdreplyVO.getStarcnt())/(reply_cnt+1));
+      pdcontentsVO.setRecom(recom);
     }
     
+    int cnt = pdcontentsProc.update_recom(pdcontentsVO);
+    
+    if( cnt == 1 ) {
+      System.out.println("recom_update성공");
+      System.out.println("reply_cnt: " + reply_cnt);
+      System.out.println("recom: " + pdcontentsVO.getRecom());
+    }else {
+      System.out.println("recom_update실패");
+    }
     JSONObject obj = new JSONObject();
     obj.put("count", count);
     
@@ -114,7 +123,7 @@ public class PdreplyCont {
   
   /**
    * 댓글 리스트 조인
-   * @param contentsno
+   * @param pdcontentsno
    * @return
    */
   @ResponseBody

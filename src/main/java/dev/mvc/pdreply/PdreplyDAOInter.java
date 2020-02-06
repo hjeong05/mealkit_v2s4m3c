@@ -26,6 +26,13 @@ public interface PdreplyDAOInter {
   public List<PdreplyVO> list_by_pdcontentsno(int pdcontentsno);
 
   /**
+   * ´ñ±Û Á¶È¸
+   * @param pdreplyno
+   * @return
+   */
+  public PdreplyMemberVO read(int pdreplyno);
+  
+  /**
    * »óÇ° ³» ¸â¹ö º° ´ñ±Û ¸ñ·Ï
    * @param pdcontentsno
    * @return

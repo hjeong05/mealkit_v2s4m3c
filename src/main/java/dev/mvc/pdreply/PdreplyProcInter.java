@@ -18,6 +18,14 @@ public interface PdreplyProcInter {
   public List<PdreplyVO> list();
  
   /**
+   * 댓글 조회
+   * @param pdreplyno
+   * @return
+   */
+  public PdreplyMemberVO read(int pdreplyno);
+  
+  
+  /**
    * 상품 별 댓글 목록
    * @param pdcontentsno
    * @return

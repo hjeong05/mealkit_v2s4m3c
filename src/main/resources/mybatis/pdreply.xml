@@ -31,6 +31,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     ORDER BY r.pdreplyno DESC
   </select>
   
+  <select id = "read" resultType="PdreplyMemberVO" parameterType="int">
+    SELECT pdreplyno, pdcontentsno, memberno, starcnt, content, passwd, rdate
+    FROM pdreply
+    WHERE pdreplyno = #{pdreplyno}
+  </select>
+  
   <select id="pdreply_cnt" resultType="int">
     SELECT COUNT(*) as cnt
     FROM pdreply

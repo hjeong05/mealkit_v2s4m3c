@@ -63,13 +63,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
      WHERE productcateno=#{productcateno}
    </delete> 
     
-   <update id="increasePdreplycnt" parameterType="PdcontentsVO">
+   <update id="increasePdreplycnt" parameterType="int">
       UPDATE pdcontents
       SET replycnt = replycnt + 1 
       WHERE pdcontentsno=#{pdcontentsno}
    </update>
   
-   <update id="decreasePdreplycnt" parameterType="PdcontentsVO">
+   <update id="decreasePdreplycnt" parameterType="int">
       UPDATE pdcontents
       SET replycnt = replycnt - 1 
       WHERE pdcontentsno=#{pdcontentsno}
@@ -141,6 +141,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
      3page : WHERE r >=21 AND r <=30
      -->
    </select>
+
 </mapper>
 
 

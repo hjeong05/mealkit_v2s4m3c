@@ -42,7 +42,6 @@
     <FORM name='frm' method='POST' action='./create.do' 
              enctype="multipart/form-data" class="form-horizontal">
                
-       <!-- 테스트를 위하여 FK productcateno 지정 -->
       <input type='hidden' name='productcateno' id='productcateno' value=${param.productcateno }>
        <input type='hidden' name='pdcontentsno' id='pdcontentsno' value='${param.pdcontentsno }'>
       <input type='hidden' name='nowPage' id='nowPage' value='${param.nowPage }'>
@@ -67,12 +66,6 @@
           <textarea class="form-control input-lg" name='content' id='content' placeholder="내용" rows='10'></textarea>
         </div>
       </div>
-      
-<!--       <div class="form-group">   
-        <div class="col-md-12">
-          <textarea class="form-control input-lg" name='info' id='info' placeholder="상품정보" rows='10'></textarea>
-        </div>
-      </div> -->
       
       <div class="form-group">   
         <div class="col-md-12">

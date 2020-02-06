@@ -81,14 +81,14 @@ public interface PdcontentsDAOInter {
    * @param pdcontentsno
    * @return
    */
-  public int increasePdreplycnt(PdcontentsVO pdcontentsVO);
+  public int increasePdreplycnt(int pdcontentsno);
   
   /**
    * ´ñ±Û ¼ö °¨¼Ò
    * @param pdcontentsno
    * @return
    */
-  public int decreasePdreplycnt(PdcontentsVO pdcontentsVO);
+  public int decreasePdreplycnt(int pdcontentsno);
   
   
   /**
