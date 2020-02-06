@@ -505,6 +505,7 @@
     padding: 15px 0;
     margin: 15px;
     float: left;
+
   }
   
   /* pdcontents read.jsp에 이용되는 css*/
@@ -553,3 +554,6 @@ ul.tabs li.current{
 .tab-content.current{
   display: inherit;
 }
+
+}
+
