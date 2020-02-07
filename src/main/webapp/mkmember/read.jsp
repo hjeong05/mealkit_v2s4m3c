@@ -5,7 +5,7 @@
 <head> 
 <meta charset="UTF-8"> 
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
-<title>Resort world</title>
+<title>Meal Kit</title>
  
 <link href="../css/style.css" rel="Stylesheet" type="text/css">
  
@@ -69,7 +69,8 @@
   <FORM name='frm' id='frm' method='POST' action='./update.do' 
               onsubmit="return send();" class="form-horizontal">
     <input type='hidden' name='memberno' id='memberno' value='${mkmemberVO.memberno }'>   
-    <input type='hidden' name='memcateno' id='memcateno' value='${mkmemberVO.memcateno }'>         
+    <input type='hidden' name='memcateno' id='memcateno' value='${mkmemberVO.memcateno }'>    
+    <input type='hidden' name='nowPage' value='${param.nowPage }'>     
  
     <div class="form-group">
       <label class="col-md-2 control-label">아이디</label>    

@@ -6,7 +6,7 @@
 <head> 
 <meta charset="UTF-8"> 
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
-<title>delete_by_categrp_msg.jsp</title>
+<title>Meal Kit</title>
  
 <link href="../css/style.css" rel="Stylesheet" type="text/css">
 <script type="text/JavaScript"
@@ -30,15 +30,15 @@
       <c:choose>
         <c:when test="${param.count > 0 }">
           <LI class='li_none'>
-            <span class='span_success'>해당 등급 회원을 삭제했습니다.</span>
+            <span class='span_success'>해당 등급 회원들을 삭제했습니다.</span>
           </LI>
           <LI class='li_none'>
             <button type='button' 
-                        onclick="location.href='../memcate/delete.do?memcateno=${param.memcateno}'"
-                        class="btn btn-info">계속 삭제 진행</button>
+                        onclick="location.href='../memcate/delete.do?memcateno=${param.memcateno}&nowPage=${param.nowPage}'"
+                        class="btn btn-primary">계속 삭제 진행</button>
             <button type='button' 
                         onclick="opener.location.reload(); window.close();"
-                        class="btn btn-info">삭제 중지</button>                                                
+                        class="btn btn-primary">삭제 중지</button>                                                
           </LI>
         </c:when>
         <c:otherwise>
@@ -48,10 +48,10 @@
           <LI class='li_none'>
             <button type='button' 
                         onclick="history.back();"
-                        class="btn btn-info">재시도</button>
+                        class="btn btn-primary">재시도</button>
             <button type='button' 
                         onclick="window.close();"
-                        class="btn btn-info">삭제 중지</button>                        
+                        class="btn btn-primary">삭제 중지</button>                        
           </LI>
         </c:otherwise>
       </c:choose>

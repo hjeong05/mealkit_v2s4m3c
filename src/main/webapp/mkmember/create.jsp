@@ -5,7 +5,7 @@
 <html lang="ko"> 
 <head> 
 <meta charset="UTF-8"> 
-<title></title> 
+<title>Meal Kit</title> 
  
 <link href="../css/style.css" rel="Stylesheet" type="text/css">
  
@@ -129,21 +129,19 @@ function send() {
   </ASIDE> 
  
   <div class='menu_line'></div>
-  
- 
+   
   <DIV class='title_line'>회원가입</DIV>
- 
   <FORM name='frm' id='frm' method='POST' action='./create.do' 
               onsubmit="return send();" class="form-horizontal">
     <!-- 가입 등급 -->
     <c:choose>
-        <c:when test="${param.memcateno == null }">
-          <input type="hidden" name="memcateno" id="memcateno" value="2"> 
-        </c:when>
-        <c:otherwise>
-          <input type="hidden" name="memcateno" id="memcateno" value="${param.memcateno }"> 
-        </c:otherwise>
-      </c:choose>      
+      <c:when test="${param.memcateno == null }">
+        <input type="hidden" name="memcateno" id="memcateno" value="2"> 
+      </c:when>
+      <c:otherwise>
+        <input type="hidden" name="memcateno" id="memcateno" value="${param.memcateno }"> 
+      </c:otherwise>
+    </c:choose>      
  
     <div class="form-group">
       <label class="col-md-2 control-label">아이디</label>    

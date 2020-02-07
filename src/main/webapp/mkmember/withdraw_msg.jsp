@@ -5,7 +5,7 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title></title>
+<title>Meal Kit</title>
 <link href="../css/style.css" rel="Stylesheet" type="text/css">
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -34,10 +34,10 @@
           <LI class='li_none'>
             <button type='button' 
                         onclick="history.back();"
-                        class="btn btn-info">재시도</button>
+                        class="btn btn-primary">재시도</button>
             <button type='button' 
                         onclick="location.href='${pageContext.request.contextPath}'" 
-                        class="btn btn-info">탈퇴 취소</button>                        
+                        class="btn btn-primary">탈퇴 취소</button>                        
           </LI>
         </c:when>
         <c:otherwise>
@@ -47,7 +47,7 @@
           <LI class='li_none'>
             <button type='button' 
                         onclick="location.href='${pageContext.request.contextPath}'" 
-                        class="btn btn-info">확인</button>                  
+                        class="btn btn-primary">확인</button>                  
           </LI>
         </c:otherwise>
       </c:choose>
@@ -55,6 +55,6 @@
   </fieldset>
  
 </DIV>
-
+<jsp:include page="/menu/bottom.jsp" flush='false' />
 </body>
 </html>

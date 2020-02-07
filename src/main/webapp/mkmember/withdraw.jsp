@@ -5,7 +5,7 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title></title>
+<title>Meal Kit</title>
 <link href="../css/style.css" rel="Stylesheet" type="text/css">
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -77,8 +77,8 @@ function send() {
         <LI class='li_none'>
           <button type='button' 
                       onclick="location.href='${pageContext.request.contextPath}'" 
-                      class="btn btn-info">탈퇴 취소</button> 
-          <button type="button" onclick="send();" class="btn btn-info">다음 단계</button>                        
+                      class="btn btn-primary">탈퇴 취소</button> 
+          <button type="button" onclick="send();" class="btn btn-primary">다음 단계</button>                        
         </LI>
        </UL>
     </fieldset>

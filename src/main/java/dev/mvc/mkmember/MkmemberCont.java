@@ -246,19 +246,41 @@ public class MkmemberCont {
         method=RequestMethod.POST)
   public ModelAndView delete(RedirectAttributes ra,
                                            HttpServletRequest request,
-                                           int memberno){
+                                           int memberno, int memcateno, int nowPage){
     ModelAndView mav = new ModelAndView();
     MkmemberVO mkmemberVO = mkmemberProc.read(memberno);
     
     ra.addAttribute("mname", mkmemberProc.read(memberno).getMname());
     
-    int count = mkmemberProc.delete(memberno);
+    int count = 0;
+    
+    try{
+      count = mkmemberProc.delete(memberno);
+    } catch(Exception e){
+      e.printStackTrace();
+      count = 0;
+    }
     
     if(count == 1) {
       memcateProc.decreaseCnt(mkmemberVO.getMemcateno());
+
+      // -------------------------------------------------------------------------------------
+      // 마지막 페이지의 레코드 삭제시의 페이지 번호 -1 처리
+      HashMap<String, Object> map = new HashMap<String, Object>();
+      map.put("memcateno", memcateno);
+      if (mkmemberProc.count_by_memcateno(memcateno) % Mkmember.RECORD_PER_PAGE == 0) {
+        nowPage = nowPage - 1;
+        if (nowPage < 1) {
+          nowPage = 1;
+        }
+      }
+      // -------------------------------------------------------------------------------------      
+      
     }
     
     ra.addAttribute("count", count);
+    ra.addAttribute("memcateno", memcateno);
+    ra.addAttribute("nowPage", nowPage);
 
     mav.setViewName("redirect:/mkmember/delete_msg.jsp");
 

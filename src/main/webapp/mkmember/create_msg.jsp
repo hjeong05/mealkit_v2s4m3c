@@ -6,7 +6,7 @@
 <head> 
 <meta charset="UTF-8"> 
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
-<title>Resort world</title>
+<title>Meal Kit</title>
  
 <link href="../css/style.css" rel="Stylesheet" type="text/css">
 <script type="text/JavaScript"
@@ -37,8 +37,15 @@
       </c:choose>
       <LI class='li_none'>
         <br>
-        <button type='button' onclick="location.href='./create.do'"class="btn btn-info">회원 등록</button>
-        <button type='button' onclick="location.href='./list.do?memcateno=${param.memcateno}&nowPage=${param.nowPage}'" class="btn btn-info">목록</button>
+        <c:choose>
+        <c:when test="${sessionScope.id_admin == null}"> <!-- 관리자 로그인 되어있지 않을 때 -->
+          <button type='button'  onclick="location.href='${pageContext.request.contextPath}'"  class="btn btn-primary">확인</button>  
+        </c:when>
+        <c:otherwise> <!-- 관리자 로그인 되어있을 때 -->
+         <button type='button' onclick="location.href='./create.do?memcateno=${param.memcateno}'"class="btn btn-primary">회원 등록</button>
+         <button type='button' onclick="location.href='./list.do?memcateno=${param.memcateno}&nowPage=${param.nowPage}'" class="btn btn-primary">목록</button>
+        </c:otherwise>
+        </c:choose>
       </LI>
      </UL>
   </fieldset>

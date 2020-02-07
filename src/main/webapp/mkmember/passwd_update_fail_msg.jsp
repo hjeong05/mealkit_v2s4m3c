@@ -6,7 +6,7 @@
 <head> 
 <meta charset="UTF-8"> 
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
-<title>Resort world</title>
+<title>Meal Kit</title>
  
 <link href="../css/style.css" rel="Stylesheet" type="text/css">
 <script type="text/JavaScript"
@@ -33,10 +33,10 @@
           <LI class='li_none'>
             <button type='button' 
                         onclick="history.back();"
-                        class="btn btn-info">변경 재시도</button>
+                        class="btn btn-primary">변경 재시도</button>
             <button type='button' 
                         onclick="location.href='./list_all.do'"
-                        class="btn btn-info">목록</button>                        
+                        class="btn btn-primary">목록</button>                        
           </LI>
         </c:when>
       </c:choose>
