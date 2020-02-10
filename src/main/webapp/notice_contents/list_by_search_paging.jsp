@@ -20,7 +20,7 @@
  
 <body>
 <jsp:include page="/menu/top.jsp" flush='false' />
-
+<DIV class='title_line'>공지사항</DIV>
   <form name="frm" id="frm" method="get" action="./list.do">
   <input type="hidden" name="cateno"  value="${notice_cateVO.cateno }">
     <ASIDE style='float: left;'>

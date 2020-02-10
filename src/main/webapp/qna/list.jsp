@@ -27,6 +27,7 @@ $(function(){
  
 <body>
 <jsp:include page="/menu/top.jsp" flush='false' />
+<DIV class='title_line'>Q&A</DIV>
   <ASIDE style='float: left;'>
   질문 전 FAQ(자주 묻는 질문)을 먼저 확인해 주세요. → 
   <button type='button' onclick="location.href='../faq_cate/list.do'"  class="btn btn-info">FAQ</button>

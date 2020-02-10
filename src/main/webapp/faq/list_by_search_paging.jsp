@@ -20,7 +20,8 @@
  
 <body>
 <jsp:include page="/menu/top.jsp" flush='false' />
-
+ <DIV class='title_line'>FAQ</DIV>
+ 
   <form name="frm" id="frm" method="get" action="./list.do">
   <input type="hidden" name="faq_cateno"  value="${faq_cateVO.faq_cateno }">
     <ASIDE style='float: left;'>
