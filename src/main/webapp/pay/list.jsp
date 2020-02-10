@@ -68,9 +68,7 @@ function delete_form(cartgrpno) {
           <th style='text-align: center;'>결제일</th>
         </tr>
       </thead>
-        <%int list_count = 0; %>
         <c:forEach var="cart_productVO" items="${list }">
-        <%list_count++; %> 
           <c:set var="cartno" value="${cart_productVO.cartno }" />
           <tr style='width:100%; '>
             <td style='display:table-cell; vertical-align: middle;'><IMG src="../pdatfile/storage/${cart_productVO.thumb }"></td>

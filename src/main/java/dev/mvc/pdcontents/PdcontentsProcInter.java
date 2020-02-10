@@ -10,78 +10,84 @@ import dev.mvc.pdreply.PdreplyMemberVO;
 public interface PdcontentsProcInter {
   
   /**
-   * µî·Ï
+   * ï¿½ï¿½ï¿½
    * @param pdcontentsVO
    * @return
    */
   public int create(PdcontentsVO pdcontentsVO);
   
   /**
-   * ¸ñ·Ï
+   * ï¿½ï¿½ï¿½
    * @return
    */
   public List<PdcontentsVO> list_all();
   
-  // productcatenoº° ÀüÃ¼ ¸ñ·Ï
+  // productcatenoï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½
   public List<PdcontentsVO> list_by_productcateno(int productcateno);
   
   /**
-   * ÀüÃ¼ µî·Ï ·¹ÄÚµå °¹¼ö
-   * @return ÀüÃ¼ µî·Ï ·¹ÄÚµå °¹¼ö
+   * ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Úµï¿½ ï¿½ï¿½ï¿½ï¿½
+   * @return ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Úµï¿½ ï¿½ï¿½ï¿½ï¿½
    */
   public int total_count();
 
   /**
-   * Á¶È¸
+   * ï¿½ï¿½È¸
    * @param pdcontentsno
    * @return
    */
   public PdcontentsVO read(int pdcontentsno);
   
   /**
-   * ¼öÁ¤
+   * ï¿½ï¿½ï¿½ï¿½
    * @param pdcontentsVO
-   * @return ¼öÁ¤µÈ ·¹ÄÚµå °¹¼ö 
+   * @return ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Úµï¿½ ï¿½ï¿½ï¿½ï¿½ 
    */
   public int update(PdcontentsVO pdcontentsVO);
   
   /**
-   * ½æ³×ÀÏ ¼öÁ¤ 
+   * ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
    * @param pdcontentsVO
    * @return
    */
   public int update_thumb(PdcontentsVO pdcontentsVO);
   
   /**
-   * ´ñ±Û¿¡ µû¸¥ ÃÑ ÆòÁ¡ ¼öÁ¤
+   * ï¿½ï¿½Û¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
    * @param pdcontentsVO
    * @return
    */
   public int update_recom(PdcontentsVO pdcontentsVO);
   
+  /** 
+   * ìƒí’ˆ ì¬ê³  ìˆ˜ì •
+   * @param pdcontentsVO
+   * @return
+   */
+  public int update_cnt(PdcontentsVO pdcontentsVO);
   /**
-   * ÇÑ°Ç »èÁ¦ 
+   * ï¿½Ñ°ï¿½ ï¿½ï¿½ï¿½ï¿½ 
    * @param pdcontentsno
    * @return
    */
   public int delete(int pdcontentsno);
 
   /**
-   * ºÎ¸ğ Ä«Å×°í¸® ¹øÈ£º° ·¹ÄÚµå »èÁ¦
+   * ï¿½Î¸ï¿½ Ä«ï¿½×°ï¿½ ï¿½ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½Úµï¿½ ï¿½ï¿½ï¿½ï¿½
    * @param productcateno
    * @return
    */
   public int delete_by_productcateno(int productcateno);
   
   /**
-   * ´ñ±Û ¼ö Áõ°¡
+   * ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
    * @param pdcontentsno
    * @return
    */
   public int increasePdreplycnt(int pdcontentsno);
   
   /**
-   * ´ñ±Û ¼ö °¨¼Ò
+   * ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
    * @param pdcontentsno
    * @return
    */
@@ -89,32 +95,32 @@ public interface PdcontentsProcInter {
   
   
   /**
-   * °Ë»ö¾î Ã£±â ¸ñ·Ï
+   * ï¿½Ë»ï¿½ï¿½ï¿½ Ã£ï¿½ï¿½ ï¿½ï¿½ï¿½
    * @param hashMap
    * @return
    */
   public List<PdcontentsVO> list_by_productcateno_search(HashMap<String,Object>hashMap);
   
   /**
-   * Ä«Å×°í¸®º° °Ë»ö ·¹ÄÚµå °³¼ö
+   * Ä«ï¿½×°ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½ ï¿½ï¿½ï¿½Úµï¿½ ï¿½ï¿½ï¿½ï¿½
    * @param map
    * @return
    */
   public int search_count(HashMap<String,Object> hashMap);
   
   /**
-   * ÆäÀÌÁö ¸ñ·Ï ¹®ÀÚ¿­ »ı¼º Box ÇüÅÂ 
-   * @param listFile ¸ñ·Ï ÆÄÀÏ¸í 
-   * @param categrpno Ä«Å×°í¸®¹øÈ£
-   * @param search_count °Ë»ö °¹¼ö
-   * @param nowPage ÇöÀç ÆäÀÌÁö, nowPage´Â 1ºÎÅÍ ½ÃÀÛ
-   * @param word °Ë»ö¾î
+   * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¿ï¿½ ï¿½ï¿½ï¿½ï¿½ Box ï¿½ï¿½ï¿½ï¿½ 
+   * @param listFile ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï¸ï¿½ 
+   * @param categrpno Ä«ï¿½×°ï¿½ï¿½ï¿½È£
+   * @param search_count ï¿½Ë»ï¿½ ï¿½ï¿½ï¿½ï¿½
+   * @param nowPage ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, nowPageï¿½ï¿½ 1ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+   * @param word ï¿½Ë»ï¿½ï¿½ï¿½
    * @return
    */
   public String pagingBox(String listFile, int categrpno, int search_count, int nowPage, String word);
   
   /**
-   * °Ë»ö + ÆäÀÌÂ¡ ¸ñ·Ï
+   * ï¿½Ë»ï¿½ + ï¿½ï¿½ï¿½ï¿½Â¡ ï¿½ï¿½ï¿½
    * @param map
    * @return
    */

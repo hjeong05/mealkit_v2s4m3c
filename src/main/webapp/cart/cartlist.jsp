@@ -50,17 +50,17 @@ function delete_form(cartgrpno, cartno) {
     win.moveTo(x, y); // 지정된 좌표로 이동    
   }
   
-function check_box(list_count) {
-	   var cartno_list = new Array();
-	   var j = 0;
-	   for(var i = 1; i <= list_count; i++) {
-	     if(find(i).checked) {
-	       cartno_list[j] = find(i).value;
-	       j++;
-	     }
-	   } 
-	   location.href="../order/list.do?cartno_list=" + cartno_list;
-	 }
+ function check_box(list_count) {
+   var cartno_list = new Array();
+   var j = 0;
+   for(var i = 1; i <= list_count; i++) {
+     if(find(i).checked) {
+       cartno_list[j] = find(i).value;
+       j++;
+     }
+   } 
+   location.href="../order/list.do?cartno_list=" + cartno_list;
+ }
  
 </script>
  

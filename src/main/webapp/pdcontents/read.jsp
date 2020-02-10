@@ -32,7 +32,7 @@ $(document).ready(function(){
     var tab_id = $(this).attr('data-tab');
 
     $('ul.tabs li').removeClass('current');
-    $('.tab-content').removeClass('current');
+    $('.tab-pdcontent').removeClass('current');
 
     $(this).addClass('current');
     $("#"+tab_id).addClass('current');
@@ -47,34 +47,44 @@ DecimalFormat df = new DecimalFormat("￦ ###,###,### 원");
 function order_direct(f){
     var count = parseInt(f.productCnt.value);
     var id = f.id.value;
-    
-    window.location.href="../order/list_direct.do?cartgrpno=1&orderID="+id+"&productno="+${pdcontentsVO.pdcontentsno }+"&productCount="+count;
+    if(count > ${pdcontentsVO.cnt}){
+    	alert('재고가 부족합니다. 남은 수량: ' + ${pdcontentsVO.cnt} +' 개');
+    } else {
+    	   window.location.href="../order/list_direct.do?cartgrpno=1&orderID="+id+"&productno="+${pdcontentsVO.pdcontentsno }+"&productCount="+count;
+    }
   }
 
 function create_form_n(f) {
 	var count = parseInt(f.productCnt.value);
   var id = f.id.value;
-  
-  var url = "../cart/create.do?cartgrpno=1&orderID="+id+"&productno="+${pdcontentsVO.pdcontentsno }+"&productCount="+count;
-  var win = window.open(url, '장바구니 담기', 'width=800px, height=300px');
-  
-  var x = (screen.width - 700) / 2;
-  var y = (screen.height - 400) / 2;
-  
-  win.moveTo(x, y); // 지정된 좌표로 이동    
+  if(count > ${pdcontentsVO.cnt}){
+      alert('재고가 부족합니다. 남은 수량: ' + ${pdcontentsVO.cnt} +' 개');
+    } else {
+      var url = "../cart/create.do?cartgrpno=1&orderID="+id+"&productno="+${pdcontentsVO.pdcontentsno }+"&productCount="+count;
+      var win = window.open(url, '장바구니 담기', 'width=800px, height=300px');
+      
+      var x = (screen.width - 700) / 2;
+      var y = (screen.height - 400) / 2;
+      
+      win.moveTo(x, y); // 지정된 좌표로 이동    
+    }
 }
 
 function create_form_r(f) {
 	var count = parseInt(f.productCnt.value);
 	var id = f.id.value;
-	  
-	var url = "../cart/create.do?cartgrpno=2&orderID="+id+"&productno="+${pdcontentsVO.pdcontentsno }+"&productCount="+count;
-  var win = window.open(url, '장바구니 담기', 'width=800px, height=300px');
-  
-  var x = (screen.width - 700) / 2;
-  var y = (screen.height - 400) / 2;
-  
-  win.moveTo(x, y); // 지정된 좌표로 이동    
+	
+  if(count > ${pdcontentsVO.cnt}){
+      alert('재고가 부족합니다. 남은 수량: ' + ${pdcontentsVO.cnt} +' 개');
+    } else {
+    	var url = "../cart/create.do?cartgrpno=2&orderID="+id+"&productno="+${pdcontentsVO.pdcontentsno }+"&productCount="+count;
+      var win = window.open(url, '장바구니 담기', 'width=800px, height=300px');
+      
+      var x = (screen.width - 700) / 2;
+      var y = (screen.height - 400) / 2;
+      
+      win.moveTo(x, y); // 지정된 좌표로 이동    
+    }
 }
 
   window.onload = function(){
@@ -88,7 +98,7 @@ function create_form_r(f) {
     
     tot = productCnt * ${pdcontentsVO.price};
  
-    find('price').innerHTML = '￦ ' + tot + '원';
+    find('price').innerHTML = '총 금액 : ￦ ' + tot + '원';
   }
   
   $(function() { // 자동 실행
@@ -420,9 +430,9 @@ function create_form_r(f) {
                 </li>
                 <li class="li_none" >
                   수량:
-                  <input type='number' name =productCnt value=0 id='productCnt'>개
+                  <input type='number' name =productCnt value=1 id='productCnt' min='1' max='10'>개
                 <!--   <button type='button' id="btn_order">확인</button> -->
-                  <div class="col-md-11">총 금액 : <span id='price' style='color: #FF0000; font-weight: bold;'>￦ 0원</span>
+                  <div class="col-md-11"><span id='price' style='color: #FF0000; font-weight: bold; font-size: 2em; text-align: right;'>총 금액 : ￦ ${pdcontentsVO.price}원</span>
         </div>
                 </li>
                 <li class="li_none" >
@@ -441,7 +451,7 @@ function create_form_r(f) {
           </ul>
           <DIV style='clear: both; width: 100%;'>
           <!-- 상세설명 탭 내용 -->
-          <div id="tab-1" class="tab-content current">  
+          <div id="tab-1" class="tab-pdcontent current">  
             <DIV>${pdcontentsVO.content }</DIV>
             <DIV style='text-decoration: none;'>
               <span class="glyphicon glyphicon-search"></span>
@@ -459,7 +469,7 @@ function create_form_r(f) {
           </DIV>
       
           <!-- 리뷰 탭 내용 -->
-          <div id="tab-2" class="tab-content">
+          <div id="tab-2" class="tab-pdcontent">
               <!-- 댓글 영역 시작 -->
             <DIV style='width: 80%;'>
               <HR>

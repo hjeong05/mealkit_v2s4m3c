@@ -9,82 +9,89 @@ import java.util.List;
 public interface PdcontentsDAOInter {
 
   /**
-   * »óÇ° µî·Ï
+   * å ì™ì˜™í’ˆ å ì™ì˜™å ï¿½
    * @param pdcontentsVO
    * @return
    */
   public int create(PdcontentsVO pdcontentsVO);
   
   /**
-   * ÀüÃ¼ ¸ñ·Ï
+   * å ì™ì˜™ì²´ å ì™ì˜™å ï¿½
    * @return
    */
   public List<PdcontentsVO> list_all();
   
   /**
-   * productcatenoº° ÀüÃ¼ ¸ñ·Ï
+   * productcatenoå ì™ì˜™ å ì™ì˜™ì²´ å ì™ì˜™å ï¿½
    * @param productcateno
    * @return
    */
   public List<PdcontentsVO> list_by_productcateno(int productcateno);
 
   /**
-   * ÀüÃ¼ µî·Ï ·¹ÄÚµå °¹¼ö
-   * @return ÀüÃ¼ µî·Ï ·¹ÄÚµå °¹¼ö
+   * å ì™ì˜™ì²´ å ì™ì˜™å ï¿½ å ì™ì˜™å ìŒ˜ë“¸ì˜™ å ì™ì˜™å ì™ì˜™
+   * @return å ì™ì˜™ì²´ å ì™ì˜™å ï¿½ å ì™ì˜™å ìŒ˜ë“¸ì˜™ å ì™ì˜™å ì™ì˜™
    */
   public int total_count();
 
   /**
-   * Á¶È¸
+   * å ì™ì˜™íšŒ
    * @param pdcontentsno
    * @return
    */
   public PdcontentsVO read(int pdcontentsno);
   
   /**
-   * ¼öÁ¤
+   * å ì™ì˜™å ì™ì˜™
    * @param pdcontentsVO
-   * @return ¼öÁ¤µÈ ·¹ÄÚµå °¹¼ö 
+   * @return å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ìŒ˜ë“¸ì˜™ å ì™ì˜™å ì™ì˜™ 
    */
   public int update(PdcontentsVO pdcontentsVO);
   
   /**
-   * ½æ³×ÀÏ ¼öÁ¤ 
+   * å ì™ì˜™å ì™ì˜™å ï¿½ å ì™ì˜™å ì™ì˜™ 
    * @param pdcontentsVO
    * @return
    */
   public int update_thumb(PdcontentsVO pdcontentsVO);
   
   /**
-   * ´ñ±Û¿¡ µû¸¥ ÃÑ ÆòÁ¡ ¼öÁ¤
+   * å ì™ì˜™è¬—å ï¿½ å ì™ì˜™å ì™ì˜™ å ì™ì˜™ å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™
    * @param pdcontentsVO
    * @return
    */
   public int update_recom(PdcontentsVO pdcontentsVO);
   
+  /** 
+   * ìƒí’ˆ ì¬ê³  ìˆ˜ì •
+   * @param pdcontentsVO
+   * @return
+   */
+  public int update_cnt(PdcontentsVO pdcontentsVO);
+  
   /**
-   * ÇÑ°Ç »èÁ¦ 
+   * å ì‹¼ê³¤ì˜™ å ì™ì˜™å ì™ì˜™ 
    * @param pdcontentsno
    * @return
    */
   public int delete(int pdcontentsno);
   
   /**
-   * ºÎ¸ğ Ä«Å×°í¸® ¹øÈ£º° ·¹ÄÚµå »èÁ¦
+   * å ì‹¸ëªŒì˜™ ì¹´å ìŒ“ê³¤ì˜™ å ì™ì˜™í˜¸å ì™ì˜™ å ì™ì˜™å ìŒ˜ë“¸ì˜™ å ì™ì˜™å ì™ì˜™
    * @param productcateno
    * @return
    */
   public int delete_by_productcateno(int productcateno);
   
   /**
-   * ´ñ±Û ¼ö Áõ°¡
+   * å ì™ì˜™å ï¿½ å ì™ì˜™ å ì™ì˜™å ì™ì˜™
    * @param pdcontentsno
    * @return
    */
   public int increasePdreplycnt(int pdcontentsno);
   
   /**
-   * ´ñ±Û ¼ö °¨¼Ò
+   * å ì™ì˜™å ï¿½ å ì™ì˜™ å ì™ì˜™å ì™ì˜™
    * @param pdcontentsno
    * @return
    */
@@ -92,21 +99,21 @@ public interface PdcontentsDAOInter {
   
   
   /**
-   * °Ë»ö¾î Ã£±â ¸ñ·Ï
+   * å ì‹¯ì‚¼ì˜™å ì™ì˜™ ì°¾å ì™ì˜™ å ì™ì˜™å ï¿½
    * @param hashMap
    * @return
    */
   public List<PdcontentsVO> list_by_productcateno_search(HashMap<String,Object>hashMap);
   
   /**
-   * Ä«Å×°í¸®º° °Ë»ö ·¹ÄÚµå °³¼ö
+   * ì¹´å ìŒ“ê³¤ì˜™å ì™ì˜™ å ì‹¯ì‚¼ì˜™ å ì™ì˜™å ìŒ˜ë“¸ì˜™ å ì™ì˜™å ì™ì˜™
    * @param map
    * @return
    */
   public int search_count(HashMap<String,Object> hashMap);
   
   /**
-   * °Ë»ö + ÆäÀÌÂ¡ ¸ñ·Ï
+   * å ì‹¯ì‚¼ì˜™ + å ì™ì˜™å ì™ì˜™ì§• å ì™ì˜™å ï¿½
    * @param map
    * @return
    */

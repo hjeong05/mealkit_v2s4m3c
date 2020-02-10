@@ -79,14 +79,14 @@ public class PdcontentsProc implements PdcontentsProcInter {
     return count;
   }
 
-  // ´ñ±Û ¼ö Áõ°¡
+  // ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
   @Override
   public int increasePdreplycnt(int pdcontentsno) {
     int count = pdcontentsDAO.increasePdreplycnt(pdcontentsno);
     return count;
   }
 
-  // ´ñ±Û ¼ö °¨¼Ò
+  // ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
   @Override
   public int decreasePdreplycnt(int pdcontentsno) {
     int count = pdcontentsDAO.decreasePdreplycnt(pdcontentsno);
@@ -94,23 +94,23 @@ public class PdcontentsProc implements PdcontentsProcInter {
   }
 
   /** 
-   * SPANÅÂ±×¸¦ ÀÌ¿ëÇÑ ¹Ú½º ¸ðµ¨ÀÇ Áö¿ø, 1 ÆäÀÌÁöºÎÅÍ ½ÃÀÛ 
-   * ÇöÀç ÆäÀÌÁö: 11 / 22   [ÀÌÀü] 11 12 13 14 15 16 17 18 19 20 [´ÙÀ½] 
+   * SPANï¿½Â±×¸ï¿½ ï¿½Ì¿ï¿½ï¿½ï¿½ ï¿½Ú½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, 1 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
+   * ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½: 11 / 22   [ï¿½ï¿½ï¿½ï¿½] 11 12 13 14 15 16 17 18 19 20 [ï¿½ï¿½ï¿½ï¿½] 
    *
-   * @param listFile ¸ñ·Ï ÆÄÀÏ¸í 
-   * @param categrpno Ä«Å×°í¸®¹øÈ£ 
-   * @param search_count °Ë»ö(ÀüÃ¼) ·¹ÄÚµå¼ö 
-   * @param nowPage     ÇöÀç ÆäÀÌÁö
-   * @param word °Ë»ö¾î
-   * @return ÆäÀÌÂ¡ »ý¼º ¹®ÀÚ¿­
+   * @param listFile ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï¸ï¿½ 
+   * @param categrpno Ä«ï¿½×°ï¿½ï¿½ï¿½È£ 
+   * @param search_count ï¿½Ë»ï¿½(ï¿½ï¿½Ã¼) ï¿½ï¿½ï¿½Úµï¿½ï¿½ 
+   * @param nowPage     ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+   * @param word ï¿½Ë»ï¿½ï¿½ï¿½
+   * @return ï¿½ï¿½ï¿½ï¿½Â¡ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¿ï¿½
    */ 
   @Override
   public String pagingBox(String listFile, int productcateno, int search_count, int nowPage, String word){ 
-     int totalPage = (int)(Math.ceil((double)search_count/Pdcontents.RECORD_PER_PAGE)); // ÀüÃ¼ ÆäÀÌÁö  
-    int totalGrp = (int)(Math.ceil((double)totalPage/Pdcontents.PAGE_PER_BLOCK));// ÀüÃ¼ ±×·ì 
-    int nowGrp = (int)(Math.ceil((double)nowPage/Pdcontents.PAGE_PER_BLOCK));    // ÇöÀç ±×·ì 
-    int startPage = ((nowGrp - 1) * Pdcontents.PAGE_PER_BLOCK) + 1; // Æ¯Á¤ ±×·ìÀÇ ÆäÀÌÁö ¸ñ·Ï ½ÃÀÛ  
-    int endPage = (nowGrp * Pdcontents.PAGE_PER_BLOCK);             // Æ¯Á¤ ±×·ìÀÇ ÆäÀÌÁö ¸ñ·Ï Á¾·á   
+     int totalPage = (int)(Math.ceil((double)search_count/Pdcontents.RECORD_PER_PAGE)); // ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  
+    int totalGrp = (int)(Math.ceil((double)totalPage/Pdcontents.PAGE_PER_BLOCK));// ï¿½ï¿½Ã¼ ï¿½×·ï¿½ 
+    int nowGrp = (int)(Math.ceil((double)nowPage/Pdcontents.PAGE_PER_BLOCK));    // ï¿½ï¿½ï¿½ï¿½ ï¿½×·ï¿½ 
+    int startPage = ((nowGrp - 1) * Pdcontents.PAGE_PER_BLOCK) + 1; // Æ¯ï¿½ï¿½ ï¿½×·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½  
+    int endPage = (nowGrp * Pdcontents.PAGE_PER_BLOCK);             // Æ¯ï¿½ï¿½ ï¿½×·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½   
      
     StringBuffer str = new StringBuffer(); 
      
@@ -125,8 +125,8 @@ public class PdcontentsProc implements PdcontentsProcInter {
     str.append("    border: 1px;"); 
     str.append("    border-style: solid;"); 
     str.append("    border-color: #cccccc;"); 
-    str.append("    padding:1px 6px 1px 6px; /*À§, ¿À¸¥ÂÊ, ¾Æ·¡, ¿ÞÂÊ*/"); 
-    str.append("    margin:1px 2px 1px 2px; /*À§, ¿À¸¥ÂÊ, ¾Æ·¡, ¿ÞÂÊ*/"); 
+    str.append("    padding:1px 6px 1px 6px; /*ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½Æ·ï¿½, ï¿½ï¿½ï¿½ï¿½*/"); 
+    str.append("    margin:1px 2px 1px 2px; /*ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½Æ·ï¿½, ï¿½ï¿½ï¿½ï¿½*/"); 
     str.append("  }"); 
     str.append("  .span_box_2{"); 
     str.append("    text-align: center;");    
@@ -136,20 +136,20 @@ public class PdcontentsProc implements PdcontentsProcInter {
     str.append("    border: 1px;"); 
     str.append("    border-style: solid;"); 
     str.append("    border-color: #cccccc;"); 
-    str.append("    padding:1px 6px 1px 6px; /*À§, ¿À¸¥ÂÊ, ¾Æ·¡, ¿ÞÂÊ*/"); 
-    str.append("    margin:1px 2px 1px 2px; /*À§, ¿À¸¥ÂÊ, ¾Æ·¡, ¿ÞÂÊ*/"); 
+    str.append("    padding:1px 6px 1px 6px; /*ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½Æ·ï¿½, ï¿½ï¿½ï¿½ï¿½*/"); 
+    str.append("    margin:1px 2px 1px 2px; /*ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½Æ·ï¿½, ï¿½ï¿½ï¿½ï¿½*/"); 
     str.append("  }"); 
     str.append("</style>"); 
     str.append("<DIV id='paging'>"); 
-//    str.append("ÇöÀç ÆäÀÌÁö: " + nowPage + " / " + totalPage + "  "); 
+//    str.append("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½: " + nowPage + " / " + totalPage + "  "); 
  
-    // ÀÌÀü 10°³ ÆäÀÌÁö·Î ÀÌµ¿
+    // ï¿½ï¿½ï¿½ï¿½ 10ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
     // nowGrp: 1 (1 ~ 10 page),  nowGrp: 2 (11 ~ 20 page),  nowGrp: 3 (21 ~ 30 page) 
-    // ÇöÀç 2±×·ìÀÏ °æ¿ì: (2 - 1) * 10 = 1±×·ìÀÇ 10
-    // ÇöÀç 3±×·ìÀÏ °æ¿ì: (3 - 1) * 10 = 2±×·ìÀÇ 20
+    // ï¿½ï¿½ï¿½ï¿½ 2ï¿½×·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½: (2 - 1) * 10 = 1ï¿½×·ï¿½ï¿½ï¿½ 10
+    // ï¿½ï¿½ï¿½ï¿½ 3ï¿½×·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½: (3 - 1) * 10 = 2ï¿½×·ï¿½ï¿½ï¿½ 20
     int _nowPage = (nowGrp-1) * Pdcontents.PAGE_PER_BLOCK;  
     if (nowGrp >= 2){ 
-      str.append("<span class='span_box_1'><A href='"+listFile+"?&word="+word+"&nowPage="+_nowPage+"&productcateno="+productcateno+"'>ÀÌÀü</A></span>"); 
+      str.append("<span class='span_box_1'><A href='"+listFile+"?&word="+word+"&nowPage="+_nowPage+"&productcateno="+productcateno+"'>ï¿½ï¿½ï¿½ï¿½</A></span>"); 
     } 
  
     for(int i=startPage; i<=endPage; i++){ 
@@ -158,20 +158,20 @@ public class PdcontentsProc implements PdcontentsProcInter {
       } 
   
       if (nowPage == i){ 
-        str.append("<span class='span_box_2'>"+i+"</span>"); // ÇöÀç ÆäÀÌÁö, °­Á¶ 
+        str.append("<span class='span_box_2'>"+i+"</span>"); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ 
       }else{
-        // ÇöÀç ÆäÀÌÁö°¡ ¾Æ´Ñ ÆäÀÌÁö
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         str.append("<span class='span_box_1'><A href='"+listFile+"?word="+word+"&nowPage="+i+"&productcateno="+productcateno+"'>"+i+"</A></span>");   
       } 
     } 
  
-    // 10°³ ´ÙÀ½ ÆäÀÌÁö·Î ÀÌµ¿
+    // 10ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
     // nowGrp: 1 (1 ~ 10 page),  nowGrp: 2 (11 ~ 20 page),  nowGrp: 3 (21 ~ 30 page) 
-    // ÇöÀç 1±×·ìÀÏ °æ¿ì: (1 * 10) + 1 = 2±×·ìÀÇ 11
-    // ÇöÀç 2±×·ìÀÏ °æ¿ì: (2 * 10) + 1 = 3±×·ìÀÇ 21
+    // ï¿½ï¿½ï¿½ï¿½ 1ï¿½×·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½: (1 * 10) + 1 = 2ï¿½×·ï¿½ï¿½ï¿½ 11
+    // ï¿½ï¿½ï¿½ï¿½ 2ï¿½×·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½: (2 * 10) + 1 = 3ï¿½×·ï¿½ï¿½ï¿½ 21
     _nowPage = (nowGrp * Pdcontents.PAGE_PER_BLOCK)+1;  
     if (nowGrp < totalGrp){ 
-      str.append("<span class='span_box_1'><A href='"+listFile+"?&word="+word+"&nowPage="+_nowPage+"&productcateno="+productcateno+"'>´ÙÀ½</A></span>"); 
+      str.append("<span class='span_box_1'><A href='"+listFile+"?&word="+word+"&nowPage="+_nowPage+"&productcateno="+productcateno+"'>ï¿½ï¿½ï¿½ï¿½</A></span>"); 
     } 
     str.append("</DIV>"); 
      
@@ -181,21 +181,21 @@ public class PdcontentsProc implements PdcontentsProcInter {
   @Override
   public ArrayList<PdcontentsVO> list_by_productcateno_search_paging(HashMap<String, Object> map) {
     /* 
-    ÆäÀÌÁö¿¡¼­ Ãâ·ÂÇÒ ½ÃÀÛ ·¹ÄÚµå ¹øÈ£ °è»ê ±âÁØ°ª, nowPage´Â 1ºÎÅÍ ½ÃÀÛ
-    1 ÆäÀÌÁö: nowPage = 1, (1 - 1) * 10 --> 0 
-    2 ÆäÀÌÁö: nowPage = 2, (2 - 1) * 10 --> 10
-    3 ÆäÀÌÁö: nowPage = 3, (3 - 1) * 10 --> 20
+    ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Úµï¿½ ï¿½ï¿½È£ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ø°ï¿½, nowPageï¿½ï¿½ 1ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    1 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½: nowPage = 1, (1 - 1) * 10 --> 0 
+    2 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½: nowPage = 2, (2 - 1) * 10 --> 10
+    3 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½: nowPage = 3, (3 - 1) * 10 --> 20
     */
    int beginOfPage = ((Integer)map.get("nowPage") - 1) * Pdcontents.RECORD_PER_PAGE;
    
-    // ½ÃÀÛ rownum, 1 ÆäÀÌÁö: 1 / 2 ÆäÀÌÁö: 11 / 3 ÆäÀÌÁö: 21 
+    // ï¿½ï¿½ï¿½ï¿½ rownum, 1 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½: 1 / 2 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½: 11 / 3 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½: 21 
    int startNum = beginOfPage + 1; 
-   //  Á¾·á rownum, 1 ÆäÀÌÁö: 10 / 2 ÆäÀÌÁö: 20 / 3 ÆäÀÌÁö: 30
+   //  ï¿½ï¿½ï¿½ï¿½ rownum, 1 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½: 10 / 2 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½: 20 / 3 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½: 30
    int endNum = beginOfPage + Pdcontents.RECORD_PER_PAGE;   
    /*
-    1 ÆäÀÌÁö: WHERE r >= 1 AND r <= 10
-    2 ÆäÀÌÁö: WHERE r >= 11 AND r <= 20
-    3 ÆäÀÌÁö: WHERE r >= 21 AND r <= 30
+    1 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½: WHERE r >= 1 AND r <= 10
+    2 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½: WHERE r >= 11 AND r <= 20
+    3 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½: WHERE r >= 21 AND r <= 30
     */
    map.put("startNum", startNum);
    map.put("endNum", endNum);
@@ -205,10 +205,16 @@ public class PdcontentsProc implements PdcontentsProcInter {
     return list;
   }
 
-  // ÆòÁ¡ ¼öÁ¤ 
+  // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
   @Override
   public int update_recom(PdcontentsVO pdcontentsVO) {
     int count = pdcontentsDAO.update_recom(pdcontentsVO);
+    return count;
+  }
+
+  @Override
+  public int update_cnt(PdcontentsVO pdcontentsVO) {
+    int count = pdcontentsDAO.update_cnt(pdcontentsVO);
     return count;
   }
   

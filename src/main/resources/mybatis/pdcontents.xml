@@ -82,6 +82,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       WHERE pdcontentsno = #{pdcontentsno}
    </update>
    
+   <!-- 결제 후 상품 재고 수정 -->
+   <update id="update_cnt" parameterType="PdcontentsVO">
+     UPDATE pdcontents
+     SET cnt=#{cnt}
+     WHERE pdcontentsno = #{pdcontentsno}
+   </update>
+   
    <!-- categrpno 별 검색된 레코드 목록 -->
    <select id="list_by_productcateno_search" resultType="PdcontentsVO" parameterType="HashMap">
       SELECT pdcontentsno, productcateno, title, price, content,

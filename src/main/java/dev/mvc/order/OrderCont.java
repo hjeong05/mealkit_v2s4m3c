@@ -23,6 +23,8 @@ import dev.mvc.mkmember.MkmemberProcInter;
 import dev.mvc.mkmember.MkmemberVO;
 import dev.mvc.ordergrp.OrdergrpProcInter;
 import dev.mvc.ordergrp.OrdergrpVO;
+import dev.mvc.pdcontents.PdcontentsProcInter;
+import dev.mvc.pdcontents.PdcontentsVO;
 
 @Controller
 public class OrderCont {
@@ -45,6 +47,10 @@ public class OrderCont {
   @Autowired
   @Qualifier("dev.mvc.mkmember.MkmemberProc")
   private MkmemberProcInter mkmemberProc;
+  
+  @Autowired
+  @Qualifier("dev.mvc.pdcontents.PdcontentsProc")
+  private PdcontentsProcInter pdcontentsProc;
   
   public OrderCont() {
     System.out.println("--> OrderCont created");
@@ -109,11 +115,11 @@ public class OrderCont {
     ModelAndView mav = new ModelAndView();
     int count = 0;
     
-    System.out.println(cartno_list.length);
-    System.out.println(cartno);
-    
     HashMap<String, Object> create_map = new HashMap<String, Object>();
     
+    PdcontentsVO pdcontentsVO = new PdcontentsVO();
+    int cnt = 0;
+    int tot_cnt = 0;
     ordergrpProc.create(ordergrpVO);
     create_map.put("order_pay_grpNO", ordergrpProc.now_grpNo());
     
@@ -122,7 +128,7 @@ public class OrderCont {
     if(cartno_list.length > 0) {
       for(int i = 0; i < cartno_list.length; i++) {
         cartVO = cartProc.read(cartno_list[i]);
-        System.out.println(cartVO.getCartno());
+        
         create_map.put("cartNo", cartVO.getCartno());
         
         cartgrpProc.decrease_cnt(cartVO.getCartgrpno());
@@ -130,6 +136,13 @@ public class OrderCont {
         cartgrpProc.increase_cnt(3);
         
         count = orderProc.create(create_map);
+        
+        pdcontentsVO = pdcontentsProc.read(cartVO.getProductno());
+        
+        cnt = pdcontentsVO.getCnt();
+        tot_cnt = cnt - cartVO.getProductCount();
+        pdcontentsVO.setCnt(tot_cnt);
+        pdcontentsProc.update_cnt(pdcontentsVO);
       }
     } else {
       cartVO = cartProc.read(cartno);
@@ -141,6 +154,13 @@ public class OrderCont {
       cartgrpProc.increase_cnt(3);
       
       count = orderProc.create(create_map);
+      
+      pdcontentsVO = pdcontentsProc.read(cartVO.getProductno());
+      
+      cnt = pdcontentsVO.getCnt();
+      tot_cnt = cnt - cartVO.getProductCount();
+      pdcontentsVO.setCnt(tot_cnt);
+      pdcontentsProc.update_cnt(pdcontentsVO);
     }
     
     mav.addObject("count", count);

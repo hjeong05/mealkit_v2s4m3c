@@ -1,7 +1,7 @@
  /*
   version 2.5
   */
-  /* ¸ðµç ÅÂ±×¿¡ Àû¿ë */
+  /* ï¿½ï¿½ï¿½ ï¿½Â±×¿ï¿½ ï¿½ï¿½ï¿½ï¿½ */
   *{
      font-family: Malgun Gothic; 
      font-size: 16px; 
@@ -70,24 +70,24 @@
     width: 100%;
   }
    
-  A:link{  /* ¹æ¹®Àü »óÅÂ */
-    text-decoration: none; /* ¹ØÁÙ »èÁ¦ */
+  A:link{  /* ï¿½æ¹®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ */
+    text-decoration: none; /* ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ */
     color: #333333;
   }
 
-  A:visited{  /* ¹æ¹®ÈÄ »óÅÂ */
-    text-decoration: none; /* ¹ØÁÙ »èÁ¦ */
+  A:visited{  /* ï¿½æ¹®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ */
+    text-decoration: none; /* ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ */
     color: #333333;
   }
   
-  A:hover{  /* A ÅÂ±×¿¡ ¸¶¿ì½º°¡ ¿Ã¶ó°£ »óÅÂ */
-    text-decoration: underline; /* ¹ØÁÙ Ãâ·Â */
+  A:hover{  /* A ï¿½Â±×¿ï¿½ ï¿½ï¿½ï¿½ì½ºï¿½ï¿½ ï¿½Ã¶ï¿½ ï¿½ï¿½ï¿½ï¿½ */
+    text-decoration: underline; /* ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ */
     color: #7777FF;
     cursor: pointer;
   }
   
-  A:active{  /* A ÅÂ±×¸¦ Å¬¸¯ÇÑ »óÅÂ */
-    text-decoration: underline; /* ¹ØÁÙ Ãâ·Â */
+  A:active{  /* A ï¿½Â±×¸ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ */
+    text-decoration: underline; /* ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ */
     color: #7777FF;
   }
   
@@ -112,24 +112,24 @@
   }
   
   .li_none {
-    list-style: none;  /* ºí·¿ ±âÈ£ »ý·« */
+    list-style: none;  /* ï¿½ï¿½ ï¿½ï¿½È£ ï¿½ï¿½ï¿½ï¿½ */
     margin: 15px 10px;
   }
 
   .li_center {
     text-align: center;
-    list-style: none;  /* ºí·¿ ±âÈ£ »ý·« */
+    list-style: none;  /* ï¿½ï¿½ ï¿½ï¿½È£ ï¿½ï¿½ï¿½ï¿½ */
     margin: 20px auto;
   }
   
   .li_right {
     text-align: right;
-    list-style: none;  /* ºí·¿ ±âÈ£ »ý·« */
+    list-style: none;  /* ï¿½ï¿½ ï¿½ï¿½È£ ï¿½ï¿½ï¿½ï¿½ */
     margin: 20px auto;
     padding-right: 20px;
   }
   
-  /* ÀÌ¹ÌÁö ÆÄÀÏÀ» Ã£À»¶§ style.css ÆÄÀÏÀ» ±âÁØÀ¸·Î °Ë»öÇÔ. /css/images/url5.png */
+  /* ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã£ï¿½ï¿½ï¿½ï¿½ style.css ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½ï¿½ï¿½. /css/images/url5.png */
   .li_msg_success {
     background: url(./images/url5.png) left center no-repeat;
     line-height: 30px;
@@ -138,7 +138,7 @@
     background-size: 12px;
   }
   
-    /* ÀÌ¹ÌÁö ÆÄÀÏÀ» Ã£À»¶§ style.css ÆÄÀÏÀ» ±âÁØÀ¸·Î °Ë»öÇÔ. /css/images/url8.png */
+    /* ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã£ï¿½ï¿½ï¿½ï¿½ style.css ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½ï¿½ï¿½. /css/images/url8.png */
   .li_msg_fail {
     background: url(./images/url8.png) left center no-repeat;
     line-height: 30px;
@@ -183,8 +183,8 @@
     padding-left: 5px;
   }  
       
-  /* ASIDE ¼­ºê¸Þ´ºÀÇ ½ÃÀÛ -------------------------- */
-    .aside_menu { /* ¼­ºê ¸Þ´º */
+  /* ASIDE ï¿½ï¿½ï¿½ï¿½Þ´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ -------------------------- */
+    .aside_menu { /* ï¿½ï¿½ï¿½ï¿½ ï¿½Þ´ï¿½ */
     width: 100%;
     border: none;
     margin: 10px auto;
@@ -197,15 +197,15 @@
     clear: both;
   } 
   
-  /* ASIDE ¸Þ´º ¼¼·Î ±¸ºÐ¼± */
-  .menu_divide { /* ¼­ºê ¸Þ´ºÀÇ ¼¼·Î ±¸ºÐ¼± */
+  /* ASIDE ï¿½Þ´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ð¼ï¿½ */
+  .menu_divide { /* ï¿½ï¿½ï¿½ï¿½ ï¿½Þ´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ð¼ï¿½ */
     color: #777777;
-    font-size: 0.8em; /* ºÎ¸ð ±ÛÀÚ Å©±â¿¡ ºñÇØ¼­ 60%·Î Ãâ·Â */
-    vertical-align: 10%;  /* 0%´Â bottom ±âÁØ */
+    font-size: 0.8em; /* ï¿½Î¸ï¿½ ï¿½ï¿½ï¿½ï¿½ Å©ï¿½â¿¡ ï¿½ï¿½ï¿½Ø¼ï¿½ 60%ï¿½ï¿½ ï¿½ï¿½ï¿½ */
+    vertical-align: 10%;  /* 0%ï¿½ï¿½ bottom ï¿½ï¿½ï¿½ï¿½ */
   }
     
   
-  /* ASIDE ¼­ºê¸Þ´ºÀÇ Á¾·á -------------------------- */
+  /* ASIDE ï¿½ï¿½ï¿½ï¿½Þ´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ -------------------------- */
     
  .fieldset_no_line {
     border: none;
@@ -219,7 +219,7 @@
     border-bottom: solid 1px #AAAAAA;
   }
     
-  /* Top ¸Þ´ºÀÇ ½ÃÀÛ -------------------------- */  
+  /* Top ï¿½Þ´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ -------------------------- */  
   .top_menu {
     background-image: url('./images/top_image7_1440_150.jpg');
     background-size: 100%;
@@ -233,7 +233,7 @@
   }
   
   .top_menu_label {
-    position: relative; /* ¼ÓÇØÀÖ´Â ºÎ¸ð ÅÂ±× ±âÁØ ¼³Á¤ */
+    position: relative; /* ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ ï¿½Î¸ï¿½ ï¿½Â±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ */
     top: 1%;
     left: 0.5%;
     color: #FFFFFF;
@@ -244,33 +244,33 @@
     position: relative;
     top: 30%;
     left: 0%;
-    background-color: rgba(50, 50, 255, 0.3); /* 0.8: Alpha Åõ¸íµµ */
+    background-color: rgba(50, 50, 255, 0.3); /* 0.8: Alpha ï¿½ï¿½ï¿½ï¿½ */
     color: white;
   }
   
-  .menu_link:link{  /* ¹æ¹®Àü »óÅÂ */
-    text-decoration: none; /* ¹ØÁÙ »èÁ¦ */
+  .menu_link:link{  /* ï¿½æ¹®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ */
+    text-decoration: none; /* ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ */
     color: white;
   }
 
-  .menu_link:visited{  /* ¹æ¹®ÈÄ »óÅÂ */
-    text-decoration: none; /* ¹ØÁÙ »èÁ¦ */
+  .menu_link:visited{  /* ï¿½æ¹®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ */
+    text-decoration: none; /* ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ */
     color: white;
   }
 
-  .menu_link:hover{  /* A ÅÂ±×¿¡ ¸¶¿ì½º°¡ ¿Ã¶ó°£ »óÅÂ */
-    text-decoration: underline; /* ¹ØÁÙ Ãâ·Â */
+  .menu_link:hover{  /* A ï¿½Â±×¿ï¿½ ï¿½ï¿½ï¿½ì½ºï¿½ï¿½ ï¿½Ã¶ï¿½ ï¿½ï¿½ï¿½ï¿½ */
+    text-decoration: underline; /* ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ */
     color: white;
     font-weight: bold;
   }
 
-  .menu_link:active{  /* A ÅÂ±×¸¦ Å¬¸¯ÇÑ »óÅÂ */
-    text-decoration: underline; /* ¹ØÁÙ Ãâ·Â */
+  .menu_link:active{  /* A ï¿½Â±×¸ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ */
+    text-decoration: underline; /* ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ */
     color: white;
   }   
-  /* Top ¸Þ´ºÀÇ Á¾·á -------------------------- */  
+  /* Top ï¿½Þ´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ -------------------------- */  
   
-  /* ¸Þ½ÃÁö Ãâ·Â */
+  /* ï¿½Þ½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ */
   .message_basic {
     width: 60%; 
     background-color: #FFFFFF; 
@@ -278,7 +278,7 @@
     padding: 10px;
   }
   
-   /* Gallery ±¸ºÐ¼± */
+   /* Gallery ï¿½ï¿½ï¿½Ð¼ï¿½ */
    .hr_dotted {
     width:  100%;
     clear: both;
@@ -290,7 +290,7 @@
     margin: 10px auto;
   }
 
-  /* Gallery¿¡¼­ ÇÏ³ªÀÇ ÀÌ¹ÌÁö¿Í ±Û Ãâ·Â */
+  /* Galleryï¿½ï¿½ï¿½ï¿½ ï¿½Ï³ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ */
  .div_grid_img {
     background-color: #EEEEFF;
     float: left;
@@ -302,7 +302,7 @@
     height: 220px; 
   }
   
-   /* div_grid_img°¡ Àû¿ëµÈ CSS¿¡¼­ÀÇ ¹®ÀÚ Ãâ·Â ¹Ú½º */ 
+   /* div_grid_imgï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ CSSï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ú½ï¿½ */ 
   .div_grid_text {
     background-color: #FFFFFF;
     width: 100%;
@@ -315,7 +315,7 @@
     border:solid 1px #DDDDDD;
   }
   
-  /* div_grid_img°¡ Àû¿ëµÈ CSS¿¡¼­ÀÇ ¹®ÀÚ Ãâ·Â */
+  /* div_grid_imgï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ CSSï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ */
   .div_grid_text_content {
     background-color: #FFFFFF;
     vertical-align: middle;
@@ -324,7 +324,7 @@
     text-align: center;
   }
   
-   /* div_grid_img°¡ Àû¿ëµÈ CSS¿¡¼­ÀÇ ¹®ÀÚ Ãâ·Â ¹Ú½º */ 
+   /* div_grid_imgï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ CSSï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ú½ï¿½ */ 
   .div_grid_text2 {
     background-color: #FFFFFF;
     width: 100%;
@@ -337,7 +337,7 @@
     border:solid 1px #DDDDDD;
   }
   
-  /* div_grid_img°¡ Àû¿ëµÈ CSS¿¡¼­ÀÇ ¹®ÀÚ Ãâ·Â */
+  /* div_grid_imgï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ CSSï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ */
   .div_grid_text_content2 {
     background-color: #FFFFFF;
     vertical-align: middle;
@@ -347,17 +347,17 @@
   }
     
   
-  /* È­¸é »ó´Ü ¸Þ´º ±¸ºÐ¼± */
+  /* È­ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Þ´ï¿½ ï¿½ï¿½ï¿½Ð¼ï¿½ */
   .top_menu_sep {
     height: 1.8em;
     color: #EEEEFF;
     font-size: 0.8em;
-    display: inline-block; /* Å©±â ÁöÁ¤ °¡´É, ÁÙ¹Ù²Þ ¾ÈµÊ */
+    display: inline-block; /* Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½Ù¹Ù²ï¿½ ï¿½Èµï¿½ */
     vertical-align: middle;
     margin-left: 0.5em; 
   }
   
-  /* ±âÅ¸ ¸Þ½ÃÁö */
+  /* ï¿½ï¿½Å¸ ï¿½Þ½ï¿½ï¿½ï¿½ */
   .message {
     width: 70%;
     border: none;
@@ -368,14 +368,14 @@
     
   }
   
-  /* ¾Ë¸² ¸Þ½ÃÁö */ 
+  /* ï¿½Ë¸ï¿½ ï¿½Þ½ï¿½ï¿½ï¿½ */ 
   .span_info {
     color: #ffffff;
     background-color: rgba(0, 200, 0, 0.6);
     padding: 2px;
   }
   
-  /* ÁÖÀÇ ¸Þ½ÃÁö */
+  /* ï¿½ï¿½ï¿½ï¿½ ï¿½Þ½ï¿½ï¿½ï¿½ */
   .span_alert {
     color: #ffffff;
     background-color: rgba(0, 0, 200, 0.6);
@@ -383,20 +383,20 @@
   }
  
  
-  /* °æ°í ¸Þ½ÃÁö */  
+  /* ï¿½ï¿½ï¿½ ï¿½Þ½ï¿½ï¿½ï¿½ */  
   .span_warning {
     color: #FFFFFF;
     background-color: rgba(255, 0, 0, 0.6);
     padding: 2px; 
   }
   
-  /* Ã³¸® ¼º°ø ¸Þ½ÃÁö */
+  /* Ã³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Þ½ï¿½ï¿½ï¿½ */
   .span_success {
     background: url('./images/url5.png') left center no-repeat;
     padding-left: 20px; 
   }
   
-  /* Ã³¸® ½ÇÆÐ ¸Þ½ÃÁö */
+  /* Ã³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Þ½ï¿½ï¿½ï¿½ */
   .span_fail {
     background: url('./images/url8.png') left center no-repeat;
     padding-left: 20px; 
@@ -407,14 +407,14 @@
     background-color: #6fcdfb;
     color: #FFFFFF;
     font-weight: normal;
-    display: inline-block; /* ÇÑÁÙÀÇ ¿µ¿ªÀ» ¹Ú½º ¿µ¿ªÀ¸·Î È®Àå Ç¥½Ã, ¹Ú½º ¸ð¾ç¿¡ float='left' Àû¿ë */
+    display: inline-block; /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ú½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ Ç¥ï¿½ï¿½, ï¿½Ú½ï¿½ ï¿½ï¿½ç¿¡ float='left' ï¿½ï¿½ï¿½ï¿½ */
     text-align: right;
     padding-right: 10px;
   }
  
-   /* ÆË¾÷ À©µµ¿ì 1
+   /* ï¿½Ë¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 1
   <DIV id='popup' class='popup2' style='display: none;'>
-    <h2 style='color: #FFFFFF; text-decoration: underline; font-size: 1.2em;'>¾Ë¸²</h2>
+    <h2 style='color: #FFFFFF; text-decoration: underline; font-size: 1.2em;'>ï¿½Ë¸ï¿½</h2>
     <DIV id='popup_content' style='text-align: center; color: #FFFFFF; height: 200px;'></DIV>
     <DIV style='height: 50px; text-align: center;'>[<A href="javascript: hide('popup')" class='menu_link' >CLOSE</A>]</DIV>
   </DIV>
@@ -435,9 +435,9 @@
     color: #FFFFFF;
   }
   
-   /* ÆË¾÷ À©µµ¿ì 2 
+   /* ï¿½Ë¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 2 
   <DIV id='popup' class='popup2' style='display: none;'>
-    <h2 style='color: #FFFFFF; text-decoration: underline; font-size: 1.2em;'>¾Ë¸²</h2>
+    <h2 style='color: #FFFFFF; text-decoration: underline; font-size: 1.2em;'>ï¿½Ë¸ï¿½</h2>
     <DIV id='popup_content' style='text-align: center; color: #FFFFFF; height: 150px;'></DIV>
     <DIV style='height: 50px; text-align: center;'>[<A href="javascript: hide('popup')" class='menu_link' >CLOSE</A>]</DIV>
   </DIV>
@@ -460,7 +460,7 @@
 
   /*
   <DIV id='popup' class='popup3' style='display: none;'>
-    <h2 style='color: #FFFFFF; text-decoration: underline; font-size: 1.2em;'>¾Ë¸²</h2>
+    <h2 style='color: #FFFFFF; text-decoration: underline; font-size: 1.2em;'>ï¿½Ë¸ï¿½</h2>
     <DIV id='popup_content' style='text-align: center; color: #FFFFFF; height: 100px;'></DIV>
     <DIV style='height: 50px; text-align: center;'>
       [<A href="javascript: hide('popup'); focus();" class='menu_link' >CLOSE</A>]
@@ -484,7 +484,7 @@
   }
   
   .main_panel {
-    margin: 10px auto;  /* °¡¿îµ¥ Á¤·Ä */
+    margin: 10px auto;  /* ï¿½ï¿½ï¿½îµ¥ ï¿½ï¿½ï¿½ï¿½ */
     text-align: center;
   }
   
@@ -508,7 +508,7 @@
 
   }
   
-  /* pdcontents read.jsp¿¡ ÀÌ¿ëµÇ´Â css*/
+  /* pdcontents read.jspï¿½ï¿½ ï¿½Ì¿ï¿½Ç´ï¿½ css*/
   .tab_wrap {
     position: relative;
     margin-top: -64px;
@@ -545,13 +545,13 @@ ul.tabs li.current{
   color: #222;
 }
  
-.tab-content{
+.tab-pdcontent{
   display: none;
   background: #ededed;
   padding: 15px;
 }
  
-.tab-content.current{
+.tab-pdcontent.current{
   display: inherit;
 }
 
