@@ -159,7 +159,7 @@ function load_info(f) {
         <tbody><c:forEach var="cart_productVO" items="${list }">
             <c:set var="cartno" value="${cart_productVO.cartno }" />
             <tr style='text-align: center;'>
-              <td style='display:table-cell; vertical-align: middle;'><img src='./images/${cart_productVO.thumb }' style='width:100px;'></img></td>
+              <td style='display:table-cell; vertical-align: middle;'><IMG src="../pdatfile/storage/${cart_productVO.thumb }"></td>
               <td style='display:table-cell; vertical-align: middle;'>
                 <a href="./read.do?cartno=${cartno}">${cart_productVO.title}</a> 
               </td> 
