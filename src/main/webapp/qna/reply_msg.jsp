@@ -6,7 +6,7 @@
 <head> 
 <meta charset="UTF-8"> 
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
-<title>Meal Kit</title>
+<title>qna</title>
  
 <link href="../css/style.css" rel="Stylesheet" type="text/css">
 <script type="text/JavaScript"
@@ -23,29 +23,33 @@
 <DIV class='title_line'>알림</DIV>
  
 <DIV class='message'>
+
   <fieldset class='fieldset_basic'>
     <UL>
       <c:choose>
         <c:when test="${param.count == 1 }">
-          <LI class='li_none'>회원가입이 완료되었습니다.</LI>
+          <LI class='li_none'>
+            <span class='span_success'>새로운 답변을 등록했습니다.</span>
+                
+          </LI>
         </c:when>
-        <c:otherwise>
-          <LI class='li_none'>회원가입에 실패했습니다.</LI>
-          <LI class='li_none'>다시 한 번 시도해주세요.</LI>
-          <LI class='li_none'>계속 실패시 ☏000-0000-0000 문의해주세요.</LI>
-        </c:otherwise>
+        
+         <c:when test="${param.count == 0 }">
+          <LI class='li_none'>
+            <span class='span_fail'>새로운 답변 등록에 실패했습니다.</span>
+            <span class='span_fail'>다시 시도해주세요.</span>
+            <button type='button' onclick='history.back()'>다시 시도</button>
+            <button type='button' class="btn btn-default" onclick="location.href='./list.do'">목록</button>
+          </LI>
+          </c:when>
+        
       </c:choose>
       <LI class='li_none'>
         <br>
-        <c:choose>
-        <c:when test="${sessionScope.id_admin == null}"> <!-- 관리자 로그인 되어있지 않을 때 -->
-          <button type='button'  onclick="location.href='${pageContext.request.contextPath}'"  class="btn btn-primary">확인</button>  
-        </c:when>
-        <c:otherwise> <!-- 관리자 로그인 되어있을 때 -->
-         <button type='button' onclick="location.href='./create.do?memcateno=${param.memcateno}'"class="btn btn-primary">회원 등록</button>
-         <button type='button' onclick="location.href='./list.do?memcateno=${param.memcateno}&nowPage=${param.nowPage}'" class="btn btn-primary">목록</button>
-        </c:otherwise>
-        </c:choose>
+        
+        <button type='button' 
+                    onclick="location.href='./list.do?qnano=${param.qnano}'"
+                    class="btn btn-info">목록</button>
       </LI>
      </UL>
   </fieldset>
@@ -56,3 +60,5 @@
 </body>
  
 </html> 
+   
+ 

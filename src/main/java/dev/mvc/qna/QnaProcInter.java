@@ -15,4 +15,8 @@ public interface QnaProcInter {
   public int delete(int qnano);
   
   public List<QnaVO> choice_list(String choice);
+  
+  public int updateAnsnum(QnaVO qnaVO);
+  
+  public int reply(QnaVO qnaVO);
 }

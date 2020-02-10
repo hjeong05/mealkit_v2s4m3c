@@ -85,11 +85,22 @@ $(function(){
         <c:forEach var="qnaVO" items="${list }"> <!-- 컨트롤러에서 저장해준 리스트 -->
           <c:set var = "qnano" value="${qnaVO.qnano }"/>
           <tr> 
+          
             <%-- <td style='text-align: center;'>${qnaVO.qnano}</td> --%>
             
             <td style='text-align: center;'>${qnaVO.choice}</td>
-             <td style='text-align: center;'>
-              <a href="./read.do?qnano=${qnano}">${qnaVO.title}</a> 
+           <td style='vertical-align: center;'>
+              <c:choose>
+                <c:when test="${qnaVO.ansnum == 0 }"> <!-- 부모글인 경우 -->
+                 
+                </c:when>
+                <c:when test="${qnaVO.ansnum > 0}">    <!-- 답변글인 경우 -->
+               <img src='./images/white.png' style='width: ${qnaVO.indent * 20}px; opacity: 0.0;'> 
+                  <img src='./images/reply4.png'>RE:
+                </c:when>
+              </c:choose>
+              
+              <a href="./read.do?qnano=${qnaVO.qnano}">${qnaVO.title}</a> 
             </td> 
             
             <td style='text-align: center;'>${qnaVO.rdate.substring(0, 10)}</td>
@@ -98,10 +109,12 @@ $(function(){
             <td style='text-align: center;'>
             <c:if test="${sessionScope.id != null || sessionScope.id_admin != null}">
               <a href="./update.do?qnano=${qnano}"><img src="./images/update.png" title="수정" border='0'/></a>
-              <a href="./delete.do?qnano=${qnano}"><img src="./images/delete.png" title="삭제"  border='0'/></a>
-             </c:if>
-      
-             </td>
+              <a href="./delete.do?qnano=${qnano}"><img src="./images/delete.png" title="삭제"  border='0'/></a> 
+             </c:if>     
+       <c:if test="${sessionScope.id_admin != null}">
+        <a href="./reply.do?qnano=${qnano}"><img src="./images/reply.png" title="답변"  border='0'/></a>
+       </c:if>
+          </td>
              
              
           </tr>

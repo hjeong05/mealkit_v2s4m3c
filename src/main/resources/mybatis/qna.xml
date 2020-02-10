@@ -18,7 +18,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <select id="list" resultType="QnaVO">
      SELECT qnano, memberno,seqno, title, content, choice, grpno, indent, ansnum, rdate
      FROM qna
-     ORDER BY qnano desc
+     ORDER BY grpno DESC, ansnum ASC
    </select> 
    
    <select id="total_count" resultType="int">
@@ -43,8 +43,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
      WHERE qnano = #{qnano}
    </delete> 
    
-    <!-- ******************** 답변 관련 시작 ******************** -->
-  <!-- 신규 답변을 최우선으로 출력하기위한 답변 순서 조절 -->
+  <!-- 답변 순서 -->
   <update id='update_Ansnum' parameterType="QnaVO">
     UPDATE qna
     SET ansnum = ansnum + 1
@@ -53,13 +52,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    
   <!-- 답변 --> 
   <insert id="reply" parameterType="QnAVO">
-    INSERT INTO qna(qnano, memberno, seqno, title, content, choice, grpno, indent, ansum, rdate)  
+    INSERT INTO qna(qnano, memberno, seqno, title, content, choice, grpno, indent, ansnum, rdate)  
     VALUES((SELECT NVL(MAX(qnano), 0) + 1 as qnano FROM qna),
                #{memberno}, #{seqno}, #{title}, #{content}, #{choice},
                 #{grpno}, #{indent}, #{ansnum}, sysdate)
   </insert>
-  
-  <!-- ******************** 답변 관련 종료 ******************** -->
   
   <!-- 초이스 별 목록 추출 -->
 <!--    <select id="choice_list" resultType="QnaVO" parameterType="string">

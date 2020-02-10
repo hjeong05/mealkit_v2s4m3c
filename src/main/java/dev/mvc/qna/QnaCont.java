@@ -2,6 +2,7 @@ package dev.mvc.qna;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -131,6 +132,47 @@ public class QnaCont {
      return mav;
    }
    
+	 @RequestMapping(value="/qna/reply.do", method=RequestMethod.GET)
+	  public ModelAndView reply(QnaVO qnaVO){
+	    
+	    ModelAndView mav = new ModelAndView();
+	    mav.setViewName("/qna/reply");
+	   
+	    mav.addObject("qnaVO", qnaVO);
+	   
+	    return mav;
+	  }
+
+	   @RequestMapping(value="/qna/reply.do", method=RequestMethod.POST)
+	    public ModelAndView reply(HttpServletRequest request,   
+	                                         RedirectAttributes ra, 
+	                                         int qnano)
+	    {  
+	      ModelAndView mav = new ModelAndView();
+	      mav.setViewName("/qna/reply_msg"); 
+	      
+	      QnaVO qnaVO = qnaProc.read(qnano);
+	    
+	      QnaVO parentVO = qnaProc.read(qnaVO.getQnano()); // 부모글 정보 추출
+	    
+	      qnaVO.setGrpno(parentVO.getGrpno());
+	      qnaVO.setAnsnum(parentVO.getAnsnum());
+	      
+	      qnaProc.updateAnsnum(qnaVO);
+
+	      qnaVO.setIndent(parentVO.getIndent() + 1); // 답변 차수 증가
+	      qnaVO.setAnsnum(parentVO.getAnsnum() + 1); // 부모 바로 아래 등록
+
+	      int count = qnaProc.reply(qnaVO);
+
+	      ra.addAttribute("count", count);
+	      ra.addAttribute("qnano",qnaVO.getQnano());
+	      
+	      mav.setViewName("redirect:/qna/reply_msg.jsp");
+	      
+	      return mav;
+	    }
+	   
 	 /*@RequestMapping(value="/qna/choice_list.do", method=RequestMethod.GET)
    public ModelAndView choice_list(String choice){
      ModelAndView mav = new ModelAndView();

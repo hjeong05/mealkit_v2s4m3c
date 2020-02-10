@@ -6,7 +6,7 @@
 <head> 
 <meta charset="UTF-8"> 
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
-<title>Resort world</title>
+<title>Meal Kit</title>
  
 <link href="../css/style.css" rel="Stylesheet" type="text/css">
  
@@ -36,8 +36,8 @@
         <li class='li_none'>관리자 로그인에 실패했습니다.</li>
         <li class='li_none'>ID 또는 패스워드가 일치하지 않습니다.</li>
         <li class='li_none'>
-          [<A href='./login.do'>로그인 다시 시도</A>]
-          [<A href='${pageContext.request.contextPath}/index.do'>확인</A>]
+          <button type="button" onclick="location.href='./login.do'" class="btn btn-primary btn-md">로그인 다시 시도</button>
+          <button type="button" onclick="location.href='${pageContext.request.contextPath}/index.do'" class="btn btn-primary btn-md">확인</button>
         </li>
         
       </ul>

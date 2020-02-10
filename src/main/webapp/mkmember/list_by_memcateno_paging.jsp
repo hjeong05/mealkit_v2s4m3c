@@ -7,7 +7,7 @@
 <head> 
 <meta charset="UTF-8"> 
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
-<title>Resort world</title>
+<title>Meal Kit</title>
  
 <link href="../css/style.css" rel="Stylesheet" type="text/css">
  
@@ -84,9 +84,9 @@
     <TD class='td_basic'>${mkmemberVO.mdate.substring(0, 10)}</TD> <!-- 년월일 -->
     <TD class='td_basic'>
       <A href="./passwd_update.do?memberno=${memberno}&memcateno=${param.memcateno}&nowPage=${nowPage}"><IMG src='./images/passwd.png' title='패스워드 변경'></A>
-      <A href="./grade_update.do?memberno=${memberno}&memcateno=${param.memcateno}&name=${param.name}"><IMG src='./images/grade.png' title='회원 등급 변경'></A>
-      <A href="./read.do?memberno=${memberno}&memcateno=${mkmemberVO.memcateno}&name=${param.name}"><IMG src='./images/update.png' title='수정'></A>
-      <A href="./delete.do?memberno=${memberno}"><IMG src='./images/delete.png' title='삭제'></A>
+      <A href="./grade_update.do?memberno=${memberno}&memcateno=${param.memcateno}&name=${param.name}&nowPage=${nowPage}"><IMG src='./images/grade.png' title='회원 등급 변경'></A>
+      <A href="./read.do?memberno=${memberno}&memcateno=${mkmemberVO.memcateno}&name=${param.name}&nowPage=${nowPage}"><IMG src='./images/update.png' title='수정'></A>
+      <A href="./delete.do?memberno=${memberno}&memcateno=${param.memcateno}&nowPage=${nowPage}"><IMG src='./images/delete.png' title='삭제'></A>
     </TD>
     
   </TR>
@@ -96,8 +96,8 @@
  
 <DIV class='bottom_menu'>
   ${paging }<br>
-  <button type='button' onclick="location.href='./create.do?memcateno=${param.memcateno}'">등록</button>
-  <button type='button' onclick="location.reload();">새로 고침</button>
+  <button type='button' onclick="location.href='./create.do?memcateno=${param.memcateno}'" class="btn btn-primary btn-md">등록</button>
+  <button type='button' onclick="location.reload();" class="btn btn-primary btn-md">새로 고침</button>
 </DIV>
  
 <jsp:include page="/menu/bottom.jsp" flush='false' />

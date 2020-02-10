@@ -6,7 +6,7 @@
 <head> 
 <meta charset="UTF-8"> 
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
-<title>Resort world</title>
+<title>Meal Kit</title>
  
 <link href="../css/style.css" rel="Stylesheet" type="text/css">
  
@@ -63,9 +63,9 @@
       </li>
       <li class='li_right'>
       <c:if test="${count_by_memcateno == 0 }">
-        <button type="submit" class="btn btn-info">삭제 진행</button>
+        <button type="submit" class="btn btn-primary">삭제 진행</button>
       </c:if>
-        <button type="button" onclick="window.close();" class="btn btn-info">닫기</button>
+        <button type="button" onclick="window.close();" class="btn btn-primary">닫기</button>
       </li>         
     </ul>
   </fieldset>

@@ -6,7 +6,7 @@
 <head> 
 <meta charset="UTF-8"> 
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
-<title>Resort world</title>
+<title>Meal Kit</title>
  
  
 <link href="../css/style.css" rel="Stylesheet" type="text/css">
@@ -25,7 +25,7 @@
   <DIV class='message'>
     <H3>관리자 로그인이 필요한 페이지입니다.</H3>
     <BR><BR>
-    [<A href='${pageContext.request.contextPath}/admin/login.do'>로그인</A>]
+    <button type="button" onclick="location.href='${pageContext.request.contextPath}/admin/login.do'" class="btn btn-primary btn-md">로그인</button>
   </DIV>
  
 <jsp:include page="/menu/bottom.jsp" flush='false' />

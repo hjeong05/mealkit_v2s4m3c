@@ -6,7 +6,7 @@
 <head> 
 <meta charset="UTF-8"> 
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
-<title>Resort world</title>
+<title>Meal Kit</title>
  
 <link href="../css/style.css" rel="Stylesheet" type="text/css">
 <script type="text/JavaScript"
@@ -33,10 +33,10 @@
           <LI class='li_none'>
             <button type='button' 
                         onclick="history.back();"
-                        class="btn btn-info">다시 찾기</button>
+                        class="btn btn-primary">다시 찾기</button>
             <button type='button' 
                         onclick="location.href='${pageContext.request.contextPath}'" 
-                        class="btn btn-info">취소</button>                        
+                        class="btn btn-primary">취소</button>                        
           </LI>
         </c:when>
         <c:otherwise>
@@ -51,10 +51,10 @@
           <LI class='li_none'>
             <button type='button' 
                         onclick="location.href='${pageContext.request.contextPath}'" 
-                        class="btn btn-info">확인</button>      
+                        class="btn btn-primary">확인</button>      
             <button type='button' 
                         onclick="location.href='./passwd_find.do'" 
-                        class="btn btn-info">비밀번호 찾기</button>             
+                        class="btn btn-primary">비밀번호 찾기</button>             
           </LI>
         </c:otherwise>
       </c:choose>
