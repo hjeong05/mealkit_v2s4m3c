@@ -39,10 +39,9 @@
           <li><a href="${root}/mkmember/mypage.do?memberno=${sessionScope.memberno }">마이페이지</a></li>
         </c:when>
       </c:choose>     
-       <c:if test="${sessionScope.id_admin != null}">
-        <li><a href='${root}/notice_cate/list.do'>공지사항 카테고리</a></li>
-        </c:if>
-        <li><a href='${root}/notice_contents/list_all.do'>공지사항 전체글</a></li>     
+       
+        <li><a href='${root}/notice_cate/list.do'>공지사항</a></li>
+       
         <li><a href="${root }/cart/cartlist.do?cartgrpno=1&orderID=${sessionScope.id}" >장바구니</a></li>
         <li><a href="${root }/pay/list.do?id=${sessionScope.id }" >결제 목록</a></li>
         <li><a href='${root}/qna/list.do'>Q&A</a></li>

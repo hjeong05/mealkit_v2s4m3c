@@ -53,7 +53,7 @@ function delete_form(cateno) {
   <DIV id='panel_create' style='padding: 10px 0px 10px 0px; background-color: #F9F9F9; width: 100%; text-align: center;'>
     <FORM name='frm_create' id='frm_create' method='POST' action='./create.do'>
       <!-- <input type='hidden' name='lang' id='lang' value='en'> --> <!-- ko, en -->
-        
+        <c:if test="${sessionScope.id_admin != null}">
       <label>공지사항 그룹 제목</label>
       <input type='text' name='title' value='' required="required" style='width: 25%;'>
  
@@ -69,26 +69,34 @@ function delete_form(cateno) {
        
       <button type="submit" id='submit'>등록</button>
       <button type="button" onclick="cancel();">취소</button>
+      </c:if>
     </FORM>
   </DIV>
  
   
 <TABLE class='table table-striped'>
   <colgroup>
-    <col style='width: 10%;'/>
-    <col style='width: 40%;'/>
-    <col style='width: 20%;'/>
-    <col style='width: 10%;'/>    
-    <col style='width: 20%;'/>
+  <c:choose>
+   <c:when test="${sessionScope.id_admin != null}">
+     <col style='width: 10%;'/>
+     <col style='width: 40%;'/>
+     <col style='width: 20%;'/>
+     <col style='width: 30%;'/>
+   </c:when>
+    <c:otherwise>
+       <col style="width: 15%;"></col>
+       <col style="width: 75%;"></col>
+       <col style="width: 10%;"></col>
+       </c:otherwise>
+      </c:choose>
   </colgroup>
- 
-  <thead>  
+  
+ <thead>  
   <TR>
-    <TH class='th_basic'>순서</TH>
-    <TH class='th_basic'>대분류명</TH>
-    <TH class='th_basic'>등록일</TH>
-    <TH class='th_basic'>출력</TH>
-    <TH class='th_basic'>기타</TH>
+    <th style='text-align: center;'>순서</TH>
+    <th style='text-align: center;'>대분류명</TH>
+    <th style='text-align: center;'>등록일</TH>
+    <th style='text-align: center;'><c:if test="${sessionScope.id_admin != null}">기타</c:if></TH>
   </TR>
   </thead>
   
@@ -98,15 +106,17 @@ function delete_form(cateno) {
     
     <TR>
       <TD style='text-align: center;'>${notice_cateVO.seqno }</TD>
-      <TD>
+      <TD style='text-align: center;'>
        <A href='../notice_contents/list.do?cateno=${cateno }'>${notice_cateVO.title }</A> (${notice_cateVO.cnt }) 
       </TD>
       <TD style='text-align: center;'>${notice_cateVO.rdate.substring(0, 10) }</TD>
-      <TD style='text-align: center;'>${notice_cateVO.visible }</TD>
+   
+      <c:if test="${sessionScope.id_admin != null}">
       <TD style='text-align: center;'>
         <A href="javascript: update_form(${cateno });"><IMG src='./images/update.png' title='수정'></A>
         <A href="javascript: delete_form(${cateno });"><IMG src='./images/delete.png' title='삭제'></A>
       </TD>
+      </c:if>
     </TR>
   </c:forEach> 
   </tbody>
