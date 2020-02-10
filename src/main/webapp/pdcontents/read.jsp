@@ -24,6 +24,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script type="text/javascript" src='../js/tool.js'></script>
 <script>
 $(document).ready(function(){
   
@@ -77,17 +78,18 @@ function create_form_r(f) {
 }
 
   window.onload = function(){
-    var btn_order = document.getElementById('btn_order');
-    btn_order.addEventListener('click', order1);
-  }
-
-  function order1(event) {
-    var f = event.currentTarget.form; // 이벤트가 발생한 폼
-    var str = '금액: ';
-    str += f.cnt.value*${pdcontentsVO.price} + ' 원 ';
-    document.getElementById('panel1').innerHTML = str;
+    find('productCnt').addEventListener('change', price);
   }
   
+  function price(event) {
+    var productCnt = parseInt(find('productCnt').value);
+    
+    var tot = 0;
+    
+    tot = productCnt * ${pdcontentsVO.price};
+
+    find('price').innerHTML = '￦ ' + tot + '원';
+  }
   
   $(function() { // 자동 실행
     list_by_pdcontentsno(${pdcontentsVO.pdcontentsno });  // JS의 EL 접근
@@ -215,53 +217,7 @@ function create_form_r(f) {
     });
     
   }
-  
-  function cart_normal(){
-    var frm_cart = $('#frm_cart');
-    var params = frm_cart.serialize();
-    // alert('checkId() 호출됨: ' + params);
-    // return;
-    if ($('#productCnt', frm_cart).val().length == 0) {  
-      $('#modal_title').html('주문 수량 등록'); // 제목 
-      $('#modal_content').html("주문하실 수량을 입력해주세요!"); // 내용
-      $('#modal_panel').modal();            // 다이얼로그 출력
-      return;  // 실행 종료
-    }
-    $.ajax({
-      url: "..//create.do", // action 대상 주소
-      type: "post",           // get, post
-      cache: false,          // 브러우저의 캐시영역 사용안함.
-      async: true,           // true: 비동기
-      dataType: "json",   // 응답 형식: json, xml, html...
-      data: params,        // 서버로 전달하는 데이터
-      success: function(rdata) { // 서버로부터 성공적으로 응답이 온경우
-        // alert(rdata);
-        var msg = "";
-        
-        if (rdata.count > 0) {
-          $('#modal_content').attr('class', 'alert alert-success'); // CSS 변경
-          msg = "장바구니에 담았습니다.";
-          
-          list_by_pdcontentsno(${pdcontentsVO.pdcontentsno }) // 목록을 새로 읽어옴.
-          
-        } else {
-          $('#modal_content').attr('class', 'alert alert-danger'); // CSS 변경
-          msg = "장바구니 담기에 실패했습니다.";
-        }
-        
-        $('#modal_title').html('장바구니 담기'); // 제목 
-        $('#modal_content').html(msg);        // 내용
-        $('#modal_panel').modal();              // 다이얼로그 출력
-      },
-      // Ajax 통신 에러, 응답 코드가 200이 아닌경우, dataType이 다른경우 
-      error: function(request, status, error) { // callback 함수
-        var msg = 'ERROR<br><br>';
-        msg += '<strong>request.status</strong><br>'+request.status + '<hr>';
-        msg += '<strong>error</strong><br>'+error + '<hr>';
-        console.log(msg);
-      }
-    });
-  }
+ 
   
   // 삭제 레이어 출력
   function pdreply_delete(pdreplyno) {
@@ -464,10 +420,10 @@ function create_form_r(f) {
                 </li>
                 <li class="li_none" >
                   수량:
-                  <input type='number' name =cnt value='0' id='productCnt'>개
-                  <button type='button' id="btn_order">확인</button>
-                  <DIV style= ' font-size: 32px; color: #EE0700; line-height: 48px; font-weight: 700; text-align: right;' id='panel1'>
-                    </DIV>
+                  <input type='number' name =productCnt value=0 id='productCnt'>개
+                <!--   <button type='button' id="btn_order">확인</button> -->
+                  <div class="col-md-11">총 금액 : <span id='price' style='color: #FF0000; font-weight: bold;'>￦ 0원</span>
+        </div>
                 </li>
                 <li class="li_none" >
                   <button class="btn btn-info" style='padding_bottom: 5px;' type='button' id="order" onclick=order_direct(document.frm_cart);>주문하기</button><br>
@@ -528,8 +484,6 @@ function create_form_r(f) {
   
       </fieldset>
 
-        
-   
         
 <jsp:include page="/menu/bottom.jsp" flush='false' />
 </body>
