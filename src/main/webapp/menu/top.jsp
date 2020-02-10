@@ -32,22 +32,19 @@
         <!-- Spring 출력 카테고리 그룹 / 카테고리 -->
          <c:import url="/productcate/list_for_user.do" />
         
-        </li>
-        <li><a href="#">리뷰</a></li>
-      <c:choose>
-        <c:when test="${sessionScope.id != null}"> <!-- 로그인 되어있을 때 -->
-          <li><a href="${root}/mkmember/mypage.do?memberno=${sessionScope.memberno }">마이페이지</a></li>
-        </c:when>
-      </c:choose>     
-       
-        <li><a href='${root}/notice_cate/list.do'>공지사항</a></li>
+        </li>           
        
         <li><a href="${root }/cart/cartlist.do?cartgrpno=1&orderID=${sessionScope.id}" >장바구니</a></li>
-        <li><a href="${root }/pay/list.do?id=${sessionScope.id }" >결제 목록</a></li>
+        <li><a href='${root}/notice_cate/list.do'>공지사항</a></li>
         <li><a href='${root}/qna/list.do'>Q&A</a></li>
         <c:if test="${sessionScope.id_admin != null}">
         <li><a href='${root}/faq_cate/list.do'>FAQ</a></li>
         </c:if>
+      <c:choose>
+        <c:when test="${sessionScope.id != null}"> <!-- 로그인 되어있을 때 -->
+          <li><a href="${root}/mkmember/mypage.do?memberno=${sessionScope.memberno }">마이페이지</a></li>
+        </c:when>
+      </c:choose> 
         
       </ul>
       
