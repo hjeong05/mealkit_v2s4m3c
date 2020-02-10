@@ -87,7 +87,7 @@ function create_form_r(f) {
     var tot = 0;
     
     tot = productCnt * ${pdcontentsVO.price};
-
+ 
     find('price').innerHTML = '￦ ' + tot + '원';
   }
   
