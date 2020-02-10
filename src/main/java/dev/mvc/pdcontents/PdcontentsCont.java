@@ -80,23 +80,23 @@ public class PdcontentsCont {
     ModelAndView mav = new ModelAndView();
 
  // -----------------------------------------------------
-    // ÆÄÀÏ Àü¼Û ÄÚµå ½ÃÀÛ
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½ ï¿½ï¿½ï¿½ï¿½
     // -----------------------------------------------------
-    String fname = ""; // ¿øº» ÆÄÀÏ¸í
-    String fupname = ""; // ¾÷·ÎµåµÈ ÆÄÀÏ¸í
-    long fsize = 0;  // ÆÄÀÏ »çÀÌÁî
-    String thumb = ""; // Preview ÀÌ¹ÌÁö
+    String fname = ""; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï¸ï¿½
+    String fupname = ""; // ï¿½ï¿½ï¿½Îµï¿½ï¿½ ï¿½ï¿½ï¿½Ï¸ï¿½
+    long fsize = 0;  // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    String thumb = ""; // Preview ï¿½Ì¹ï¿½ï¿½ï¿½
     
     String upDir = Tool.getRealPath(request, "/pdcontents/storage");
-    // Àü¼Û ÆÄÀÏÀÌ ¾ø¾î¼­µµ fnameMF °´Ã¼°¡ »ý¼ºµÊ, ÇÏ³ªÀÇ ÆÄÀÏ ¾÷·Îµå.
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½î¼­ï¿½ï¿½ fnameMF ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½Ï³ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Îµï¿½.
     MultipartFile fnameMF = pdcontentsVO.getFnameMF();
-    fsize = fnameMF.getSize();  // ÆÄÀÏ Å©±â
-    if (fsize > 0) { // ÆÄÀÏ Å©±â Ã¼Å©
-      fname = fnameMF.getOriginalFilename(); // ¿øº» ÆÄÀÏ¸í
-      fupname = Upload.saveFileSpring(fnameMF, upDir); // ÆÄÀÏ ÀúÀå
+    fsize = fnameMF.getSize();  // ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½
+    if (fsize > 0) { // ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½ Ã¼Å©
+      fname = fnameMF.getOriginalFilename(); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï¸ï¿½
+      fupname = Upload.saveFileSpring(fnameMF, upDir); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
           
-      if (Tool.isImage(fname)) { // ÀÌ¹ÌÁöÀÎÁö °Ë»ç
-        thumb = Tool.preview(upDir, fupname, 160, 120); // thumb ÀÌ¹ÌÁö »ý¼º
+      if (Tool.isImage(fname)) { // ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½
+        thumb = Tool.preview(upDir, fupname, 160, 120); // thumb ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
       }
     }
     pdcontentsVO.setFname(fname);
@@ -104,15 +104,15 @@ public class PdcontentsCont {
     pdcontentsVO.setThumb(thumb);
     pdcontentsVO.setFsize(fsize);
     // -----------------------------------------------------
-    // ÆÄÀÏ Àü¼Û ÄÚµå Á¾·á
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½ ï¿½ï¿½ï¿½ï¿½
     // -----------------------------------------------------
     int count = pdcontentsProc.create(pdcontentsVO);
 
     if (count == 1) {
-      productcateProc.increaseCnt(pdcontentsVO.getProductcateno()); // Ä«Å×°í¸® ±Û¼ö Áõ°¡
+      productcateProc.increaseCnt(pdcontentsVO.getProductcateno()); // Ä«ï¿½×°ï¿½ ï¿½Û¼ï¿½ ï¿½ï¿½ï¿½ï¿½
     }
     
-    redirectAttributes.addAttribute("count", count); // redirect parameter Àû¿ë
+    redirectAttributes.addAttribute("count", count); // redirect parameter ï¿½ï¿½ï¿½ï¿½
     redirectAttributes.addAttribute("productcateno", pdcontentsVO.getProductcateno());
     
     mav.setViewName("redirect:/pdcontents/create_msg.jsp");
@@ -132,7 +132,7 @@ public class PdcontentsCont {
     return mav;
   }
 
-  // »óÇ° º° »ó¼¼¼³¸í 
+  // ï¿½ï¿½Ç° ï¿½ï¿½ ï¿½ó¼¼¼ï¿½ï¿½ï¿½ 
   // http://localhost:9090/team3/cart/cartlist.do?cartgrpno=1
   @RequestMapping(value = "/pdcontents/pdread.do", method = RequestMethod.GET)
   public ModelAndView pdread(int pdcontentsno) {
@@ -156,7 +156,7 @@ public class PdcontentsCont {
   }
   
   /**
-   * Ä«Å×°í¸® ±×·ìº° ¸ñ·Ï
+   * Ä«ï¿½×°ï¿½ ï¿½×·ìº° ï¿½ï¿½ï¿½
    * http://localhost:9090/team3/pdcontents/list_by_productcateno.do?productcateno=1
    * @param productcateno
    * @return
@@ -172,15 +172,15 @@ public class PdcontentsCont {
     ProductcateVO productcateVO = productcateProc.read(productcateno);
     mav.addObject("productcateVO", productcateVO);
 
-    mav.setViewName("/pdcontents/list_by_productcateno"); // Ä«Å×°í¸® ±×·ìº° ¸ñ·Ï
+    mav.setViewName("/pdcontents/list_by_productcateno"); // Ä«ï¿½×°ï¿½ ï¿½×·ìº° ï¿½ï¿½ï¿½
 
     return mav;
   }
 
   /**
-   * ¸ñ·Ï + °Ë»ö + ÆäÀÌÂ¡ Áö¿ø
+   * ï¿½ï¿½ï¿½ + ï¿½Ë»ï¿½ + ï¿½ï¿½ï¿½ï¿½Â¡ ï¿½ï¿½ï¿½ï¿½
    * http://localhost:9090/ojt/pdcontents/list.do
-   * http://localhost:9090/ojt/pdcontents/list.do?productcateno=1&word=½ºÀ§½º&nowPage=1
+   * http://localhost:9090/ojt/pdcontents/list.do?productcateno=1&word=ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½&nowPage=1
    * @param categoryno
    * @param word
    * @param nowPage
@@ -200,17 +200,17 @@ public class PdcontentsCont {
     
     mav.setViewName("/pdcontents/list_by_productcateno_search_paging");   
     
-    // ¼ýÀÚ¿Í ¹®ÀÚ¿­ Å¸ÀÔÀ» ÀúÀåÇØ¾ßÇÔÀ¸·Î Obejct »ç¿ë
+    // ï¿½ï¿½ï¿½Ú¿ï¿½ ï¿½ï¿½ï¿½Ú¿ï¿½ Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Obejct ï¿½ï¿½ï¿½
     HashMap<String, Object> map = new HashMap<String, Object>();
     map.put("productcateno", productcateno); // #{categrpno}
     map.put("word", word);     // #{word}
     map.put("nowPage", nowPage);       
     
-    // °Ë»ö ¸ñ·Ï
+    // ï¿½Ë»ï¿½ ï¿½ï¿½ï¿½
     List<PdcontentsVO> list = pdcontentsProc.list_by_productcateno_search_paging(map);
     mav.addObject("list", list);
     
-    // °Ë»öµÈ ·¹ÄÚµå °¹¼ö
+    // ï¿½Ë»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Úµï¿½ ï¿½ï¿½ï¿½ï¿½
     int search_count = pdcontentsProc.search_count(map);
     mav.addObject("search_count", search_count);
   
@@ -218,15 +218,15 @@ public class PdcontentsCont {
     mav.addObject("productcateVO", productcateVO);
 
     /*
-     * SPANÅÂ±×¸¦ ÀÌ¿ëÇÑ ¹Ú½º ¸ðµ¨ÀÇ Áö¿ø, 1 ÆäÀÌÁöºÎÅÍ ½ÃÀÛ 
-     * ÇöÀç ÆäÀÌÁö: 11 / 22   [ÀÌÀü] 11 12 13 14 15 16 17 18 19 20 [´ÙÀ½] 
+     * SPANï¿½Â±×¸ï¿½ ï¿½Ì¿ï¿½ï¿½ï¿½ ï¿½Ú½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, 1 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
+     * ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½: 11 / 22   [ï¿½ï¿½ï¿½ï¿½] 11 12 13 14 15 16 17 18 19 20 [ï¿½ï¿½ï¿½ï¿½] 
      * 
-     * @param listFile ¸ñ·Ï ÆÄÀÏ¸í 
-     * @param categrpno Ä«Å×°í¸®¹øÈ£ 
-     * @param search_count °Ë»ö(ÀüÃ¼) ·¹ÄÚµå¼ö 
-     * @param nowPage     ÇöÀç ÆäÀÌÁö
-     * @param word °Ë»ö¾î
-     * @return ÆäÀÌÂ¡ »ý¼º ¹®ÀÚ¿­
+     * @param listFile ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï¸ï¿½ 
+     * @param categrpno Ä«ï¿½×°ï¿½ï¿½ï¿½È£ 
+     * @param search_count ï¿½Ë»ï¿½(ï¿½ï¿½Ã¼) ï¿½ï¿½ï¿½Úµï¿½ï¿½ 
+     * @param nowPage     ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+     * @param word ï¿½Ë»ï¿½ï¿½ï¿½
+     * @return ï¿½ï¿½ï¿½ï¿½Â¡ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¿ï¿½
      */ 
     String paging = pdcontentsProc.pagingBox("list.do", productcateno, search_count, nowPage, word);
     mav.addObject("paging", paging);
@@ -237,7 +237,7 @@ public class PdcontentsCont {
   }    
  
   
-  // ÃÑ ÆòÁ¡ ¼öÁ¤
+  // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
   @RequestMapping(value = "/pdcontents/update_recom.do", method = RequestMethod.POST)
   public ModelAndView update_recom(PdcontentsVO pdcontentsVO) {
     ModelAndView mav = new ModelAndView();
@@ -253,7 +253,7 @@ public class PdcontentsCont {
   }
   
   /**
-   * productcatenoº° ÀüÃ¼ ¸ñ·Ï // °Ë»ö¾î Æ÷ÇÔ
+   * productcatenoï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ // ï¿½Ë»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
    * @param categrpno
    * @param word
    * @return
@@ -282,7 +282,7 @@ public class PdcontentsCont {
     ProductcateVO productcateVO = productcateProc.read(productcateno);
     mav.addObject("productcateVO", productcateVO);
 
-    mav.setViewName("/pdcontents/list_by_productcateno_search"); // Ä«Å×°í¸® ±×·ìº° ¸ñ·Ï
+    mav.setViewName("/pdcontents/list_by_productcateno_search"); // Ä«ï¿½×°ï¿½ ï¿½×·ìº° ï¿½ï¿½ï¿½
 
  //   String paging = pdcontentsProc.pagingBox("list.do", productcateno, search_count, nowPage, word);
  //   mav.addObject("paging", paging);
@@ -292,13 +292,13 @@ public class PdcontentsCont {
   }*/
   
   /**
-   * Á¶È¸ http://localhost:9090/ojt/contents/read.do?contentsno=1
+   * ï¿½ï¿½È¸ http://localhost:9090/ojt/contents/read.do?contentsno=1
    * 
    * @param contentsno
    * @return
    */
   @RequestMapping(value = "/pdcontents/read.do", method = RequestMethod.GET)
-  public ModelAndView read(int pdcontentsno) {
+  public ModelAndView read(int pdcontentsno,@RequestParam(value="nowPage", defaultValue="1") int nowPage) {
     ModelAndView mav = new ModelAndView();
 
     PdcontentsVO pdcontentsVO = pdcontentsProc.read(pdcontentsno);
@@ -313,6 +313,8 @@ public class PdcontentsCont {
     List<PdatfileVO> pdatfile_list = pdatfileProc.list_by_pdcontentsno(pdcontentsno);
     mav.addObject("pdatfile_list", pdatfile_list);
     
+    mav.addObject("nowPage", nowPage);
+    
     mav.setViewName("/pdcontents/read");
 
     return mav;
@@ -320,7 +322,7 @@ public class PdcontentsCont {
  
   
   /**
-   * ¼öÁ¤ Æû GET
+   * ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ GET
    * @param categrpno
    * @param contentsno
    * @return
@@ -342,7 +344,7 @@ public class PdcontentsCont {
   }
   
   /**
-   * ¼öÁ¤ Ã³¸®
+   * ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
    * @param contentsVO
    * @return
    */
@@ -350,13 +352,13 @@ public class PdcontentsCont {
                              method = RequestMethod.POST)
   public ModelAndView update(RedirectAttributes ra,HttpServletRequest request,
                                         PdcontentsVO pdcontentsVO,
-                                        int nowPage) {
+                                        @RequestParam(value="nowPage", defaultValue="1") int nowPage) {
     ModelAndView mav = new ModelAndView();
 
     int count = pdcontentsProc.update(pdcontentsVO);
 
     // mav.setViewName("/contents/create"); // /webapp/contents/create.jsp
-    // redirect: form¿¡¼­ º¸³½ µ¥ÀÌÅÍ ¸ðµÎ »èÁ¦µÊ, »õ·Î°íÄ§ Áßº¹ µî·Ï ¹æÁö¿ë.
+    // redirect: formï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½Î°ï¿½Ä§ ï¿½ßºï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
     ra.addAttribute("count", count);
     ra.addAttribute("productcateno", pdcontentsVO.getProductcateno());
     ra.addAttribute("pdcontentsno", pdcontentsVO.getPdcontentsno());
@@ -368,7 +370,7 @@ public class PdcontentsCont {
   }
   
   /**
-   * ½æ³×ÀÏ ¼öÁ¤ Æû GET
+   * ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ GET
    * @param categrpno
    * @param contentsno
    * @return
@@ -390,7 +392,7 @@ public class PdcontentsCont {
   }
   
   /**
-   * ½æ³×ÀÏ ¼öÁ¤ Ã³¸®
+   * ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
    * @param contentsVO
    * @return
    */
@@ -401,30 +403,30 @@ public class PdcontentsCont {
     ModelAndView mav = new ModelAndView();
     
     // -----------------------------------------------------
-    // ÆÄÀÏ Àü¼Û ÄÚµå ½ÃÀÛ
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½ ï¿½ï¿½ï¿½ï¿½
     // -----------------------------------------------------
-    String fname = ""; // ¿øº» ÆÄÀÏ¸í
-    String fupname = ""; // ¾÷·ÎµåµÈ ÆÄÀÏ¸í
-    long fsize = 0;  // ÆÄÀÏ »çÀÌÁî
-    String thumb = ""; // Preview ÀÌ¹ÌÁö
+    String fname = ""; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï¸ï¿½
+    String fupname = ""; // ï¿½ï¿½ï¿½Îµï¿½ï¿½ ï¿½ï¿½ï¿½Ï¸ï¿½
+    long fsize = 0;  // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    String thumb = ""; // Preview ï¿½Ì¹ï¿½ï¿½ï¿½
     
     String upDir = Tool.getRealPath(request, "/pdcontents/storage");
     
-    PdcontentsVO pdVO = pdcontentsProc.read(pdcontentsVO.getPdcontentsno());  // »èÁ¦ÇÒ ÆÄÀÏ¸íÀ» Á¶È¸ 
+    PdcontentsVO pdVO = pdcontentsProc.read(pdcontentsVO.getPdcontentsno());  // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½ï¿½ ï¿½ï¿½È¸ 
     
-    Tool.deleteFile(upDir, pdVO.getFupname());       // ÆÄÀÏ »èÁ¦
-    Tool.deleteFile(upDir, pdVO.getThumb());   // ÆÄÀÏ »èÁ¦
+    Tool.deleteFile(upDir, pdVO.getFupname());       // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    Tool.deleteFile(upDir, pdVO.getThumb());   // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     
     
-    // Àü¼Û ÆÄÀÏÀÌ ¾ø¾î¼­µµ fnameMF °´Ã¼°¡ »ý¼ºµÊ, ÇÏ³ªÀÇ ÆÄÀÏ ¾÷·Îµå.
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½î¼­ï¿½ï¿½ fnameMF ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½Ï³ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Îµï¿½.
     MultipartFile fnameMF = pdcontentsVO.getFnameMF();
-    fsize = fnameMF.getSize();  // ÆÄÀÏ Å©±â
-    if (fsize > 0) { // ÆÄÀÏ Å©±â Ã¼Å©
-      fname = fnameMF.getOriginalFilename(); // ¿øº» ÆÄÀÏ¸í
-      fupname = Upload.saveFileSpring(fnameMF, upDir); // ÆÄÀÏ ÀúÀå
+    fsize = fnameMF.getSize();  // ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½
+    if (fsize > 0) { // ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½ Ã¼Å©
+      fname = fnameMF.getOriginalFilename(); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï¸ï¿½
+      fupname = Upload.saveFileSpring(fnameMF, upDir); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
           
-      if (Tool.isImage(fname)) { // ÀÌ¹ÌÁöÀÎÁö °Ë»ç
-        thumb = Tool.preview(upDir, fupname, 200, 160); // thumb ÀÌ¹ÌÁö »ý¼º
+      if (Tool.isImage(fname)) { // ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½
+        thumb = Tool.preview(upDir, fupname, 200, 160); // thumb ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
       }
     }
     pdcontentsVO.setFname(fname);
@@ -432,12 +434,12 @@ public class PdcontentsCont {
     pdcontentsVO.setThumb(thumb);
     pdcontentsVO.setFsize(fsize);
     // -----------------------------------------------------
-    // ÆÄÀÏ Àü¼Û ÄÚµå Á¾·á
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½ ï¿½ï¿½ï¿½ï¿½
     // -----------------------------------------------------
     int count = pdcontentsProc.update_thumb(pdcontentsVO);
 
     // mav.setViewName("/contents/create"); // /webapp/contents/create.jsp
-    // redirect: form¿¡¼­ º¸³½ µ¥ÀÌÅÍ ¸ðµÎ »èÁ¦µÊ, »õ·Î°íÄ§ Áßº¹ µî·Ï ¹æÁö¿ë.
+    // redirect: formï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½Î°ï¿½Ä§ ï¿½ßºï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
     ra.addAttribute("count", count);
     ra.addAttribute("productcateno", pdcontentsVO.getProductcateno());
     ra.addAttribute("pdcontentsno", pdcontentsVO.getPdcontentsno());
@@ -447,7 +449,7 @@ public class PdcontentsCont {
   }
   
   /**
-   * ÇÑ °Ç »èÁ¦ Æû
+   * ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
    * @param productcateno
    * @param pdcontentsno
    * @return
@@ -464,7 +466,7 @@ public class PdcontentsCont {
     PdcontentsVO pdcontentsVO = pdcontentsProc.read(pdcontentsno);
     mav.addObject("pdcontentsVO", pdcontentsVO);
     
-    // FK pdcontentsno ÄÃ·³ °ªÀÌ »ç¿ëµÈ ·¹ÄÚµå °¹¼ö »êÃâ : id = "count_by_contentsno"
+    // FK pdcontentsno ï¿½Ã·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Úµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ : id = "count_by_contentsno"
     int count_by_pdcontentsno = pdatfileProc.count_by_pdcontentsno(pdcontentsno);
     mav.addObject("count_by_pdcontentsno", count_by_pdcontentsno);
 
@@ -474,7 +476,7 @@ public class PdcontentsCont {
   }
   
   /**
-   * ÇÑ °Ç »èÁ¦ Ã³¸®
+   * ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
    * @param session
    * @param ra
    * @param productcateno
@@ -491,14 +493,14 @@ public class PdcontentsCont {
       @RequestParam(value="nowPage", defaultValue="1") int nowPage) {
     ModelAndView mav = new ModelAndView();
    // int memberno = (Integer)session.getAttribute("memberno");
-    // ÇöÀç ·Î±×ÀÎÇÑ »ç¿ëÀÚ¿Í ±Û µî·ÏÀÚ°¡ °°ÀºÁö °Ë»ç 
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½Î±ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ú¿ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ú°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½ 
  //   if(memberno == contentsProc.read(contentsno).getMemberno()) {
       int count = pdcontentsProc.delete(pdcontentsno);
       if(count == 1) {
-        productcateProc.decreaseCnt(productcateno);  // ±Û °³¼ö °¨¼Ò
+        productcateProc.decreaseCnt(productcateno);  // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         
      // -------------------------------------------------------------------------------------
-        // ¸¶Áö¸· ÆäÀÌÁöÀÇ ·¹ÄÚµå »èÁ¦½ÃÀÇ ÆäÀÌÁö ¹øÈ£ -1 Ã³¸®
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Úµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£ -1 Ã³ï¿½ï¿½
         HashMap<String, Object> map = new HashMap<String, Object>();
         map.put("productcateno", productcateno);
         map.put("word", word);
@@ -527,7 +529,7 @@ public class PdcontentsCont {
   }
   
   /**
-   * FK ÄÃ·³°ªÀ» ÀÌ¿ëÇÑ ·¹ÄÚµå »èÁ¦ Ã³¸®
+   * FK ï¿½Ã·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Úµï¿½ ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
    * @param ra
    * @param categrpno
    * @return
@@ -539,11 +541,11 @@ public class PdcontentsCont {
     ModelAndView mav = new ModelAndView();
 
     int count = pdcontentsProc.delete_by_productcateno(productcateno);
-    if (count > 0) { // FK ÄÃ·³ °ü·Ã ±ÛÀÌ Á¤»óÀûÀ¸·Î »èÁ¦µÇ¾ú´Ù¸é cnt ÄÃ·³ 0À¸·Îº¯°æ
+    if (count > 0) { // FK ï¿½Ã·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½Ù¸ï¿½ cnt ï¿½Ã·ï¿½ 0ï¿½ï¿½ï¿½Îºï¿½ï¿½ï¿½
       productcateProc.cnt_zero(productcateno);
     }
 
-    ra.addAttribute("count", count); // »èÁ¦µÈ ·¹ÄÚµå °¹¼ö
+    ra.addAttribute("count", count); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Úµï¿½ ï¿½ï¿½ï¿½ï¿½
     ra.addAttribute("productcateno", productcateno);
     
     mav.setViewName("redirect:/pdcontents/delete_by_productcateno_msg.jsp");
@@ -552,7 +554,7 @@ public class PdcontentsCont {
   }
   
   /**
-   * Ã·ºÎ ÆÄÀÏ 1°Ç »èÁ¦ Æû
+   * Ã·ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 1ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
    * 
    * @param pdcontentsno
    * @return
@@ -577,7 +579,7 @@ public class PdcontentsCont {
   }
   
   /**
-   * Ã·ºÎ ÆÄÀÏ 1°Ç »èÁ¦ Ã³¸®
+   * Ã·ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 1ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
    * 
    * @param pdcontentsno
    * @return
@@ -593,14 +595,14 @@ public class PdcontentsCont {
     ProductcateVO productcateVO = productcateProc.read(pdcontentsVO.getProductcateno());
     mav.addObject("productcateVO", productcateVO);
 
-    // »èÁ¦ÇÒ ÆÄÀÏ Á¤º¸¸¦ ÀÐ¾î¿È.
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ð¾ï¿½ï¿½.
     PdatfileVO pdatfileVO = pdatfileProc.read(pdatfileno);
     
-    String upDir = Tool.getRealPath(request, "/pdatfile/storage");  // Àý´ë °æ·Î
-    Tool.deleteFile(upDir, pdatfileVO.getFupname()); // Folder¿¡¼­ 1°ÇÀÇ ÆÄÀÏ »èÁ¦ 
-    Tool.deleteFile(upDir, pdatfileVO.getThumb()); // Folder¿¡¼­ 1°ÇÀÇ ThumbÆÄÀÏ »èÁ¦ 
+    String upDir = Tool.getRealPath(request, "/pdatfile/storage");  // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+    Tool.deleteFile(upDir, pdatfileVO.getFupname()); // Folderï¿½ï¿½ï¿½ï¿½ 1ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
+    Tool.deleteFile(upDir, pdatfileVO.getThumb()); // Folderï¿½ï¿½ï¿½ï¿½ 1ï¿½ï¿½ï¿½ï¿½ Thumbï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
     
-    // DBMS¿¡¼­ 1°ÇÀÇ ÆÄÀÏ »èÁ¦
+    // DBMSï¿½ï¿½ï¿½ï¿½ 1ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     pdatfileProc.delete(pdatfileno);
     
     List<PdatfileVO> pdatfile_list = pdatfileProc.list_by_pdcontentsno(pdcontentsno);
@@ -612,7 +614,7 @@ public class PdcontentsCont {
   }
   
   /**
-   * ´ñ±Û »èÁ¦ ½Ã ÆÐ½º¿öµå °Ë»ç
+   * ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ð½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½
    * @param pdreplyno
    * @param passwd
    * @return
@@ -626,23 +628,23 @@ public class PdcontentsCont {
     map.put("pdreplyno", pdreplyno);
     map.put("passwd", passwd);
 
-    int count = pdreplyProc.checkPasswd(map); // ÆÐ½º¿öµå °Ë»ç
+    int count = pdreplyProc.checkPasswd(map); // ï¿½Ð½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½
     int delete_count = 0;
     if (count == 1) {
 
-     // ÇØ´ç »óÇ° ÀÐ±â 
+     // ï¿½Ø´ï¿½ ï¿½ï¿½Ç° ï¿½Ð±ï¿½ 
       PdcontentsVO pdcontentsVO = pdcontentsProc.read(pdcontentsno);
-      // ÇØ´ç »óÇ° ³» ´ñ±Û ¼ö, ÃÑ ÆòÁ¡ °¡Á®¿À±â
+      // ï¿½Ø´ï¿½ ï¿½ï¿½Ç° ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½, ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
       int reply_cnt = pdcontentsVO.getReplycnt();
       float recom = pdcontentsVO.getRecom();
       System.out.println("reply_cnt: "+ pdcontentsVO.getReplycnt());
-      System.out.println("ÃÊ±â recom: "+ pdcontentsVO.getRecom());
+      System.out.println("ï¿½Ê±ï¿½ recom: "+ pdcontentsVO.getRecom());
       
-      // »èÁ¦ÇÏ·Á´Â ´ñ±Û ÀÐ¾î¿À±â
+      // ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ð¾ï¿½ï¿½ï¿½ï¿½
       PdreplyMemberVO pdreplyMemberVO = pdreplyProc.read(pdreplyno);
-      // ÃÑ ÆòÁ¡ °è»ê (¼öÁ¤)
+      // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½)
       int tot_recom = (int) ((recom * reply_cnt) - pdreplyMemberVO.getStarcnt());
-      if(reply_cnt == 1) { // ¸¶Áö¸· ´ñ±Û »èÁ¦ ½Ã
+      if(reply_cnt == 1) { // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
         recom = 0;
       }
       else { 
@@ -650,11 +652,11 @@ public class PdcontentsCont {
       }
       
       pdcontentsVO.setRecom(recom);
-      // ÃÑ ÆòÁ¡ ¼öÁ¤
+      // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
       pdcontentsProc.update_recom(pdcontentsVO);
       
-      delete_count = pdreplyProc.delete(pdreplyno); // ´ñ±Û »èÁ¦
-      // ´ñ±Û »èÁ¦½Ã ´ñ±Û °³¼ö °¨¼Ò
+      delete_count = pdreplyProc.delete(pdreplyno); // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+      // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
       pdcontentsProc.decreasePdreplycnt(pdcontentsno);
     }
     

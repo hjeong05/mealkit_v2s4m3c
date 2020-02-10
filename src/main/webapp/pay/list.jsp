@@ -75,7 +75,7 @@ function delete_form(cartgrpno) {
             <td style='display:table-cell; vertical-align: middle; text-align: left;'>${cart_productVO.title }</td>
             <td style='display:table-cell; vertical-align: middle;'>${cart_productVO.productCount}개</td>
             <td style='display:table-cell; vertical-align: middle;'>${cart_productVO.price}원</td>
-            <td style='display:table-cell; vertical-align: middle;'>${cart_productVO.rdate }</td>
+            <td style='display:table-cell; vertical-align: middle;'>${cart_productVO.rdate.substring(0, 10)}</td>
           </tr>
         </c:forEach>
         </table>
