@@ -43,11 +43,18 @@ $(document).ready(function(){
 DecimalFormat df = new DecimalFormat("￦ ###,###,### 원");
 %>
 <script type="text/javascript">
+function order_direct(f){
+    var count = parseInt(f.productCnt.value);
+    var id = f.id.value;
+    
+    window.location.href="../order/list_direct.do?cartgrpno=1&orderID="+id+"&productno="+${pdcontentsVO.pdcontentsno }+"&productCount="+count;
+  }
+
+function create_form_n(f) {
+	var count = parseInt(f.productCnt.value);
+  var id = f.id.value;
   
-function create_form_n(pdcontentsno) {
-  // alert('admin2no: ' + admin2no);
-  
-  var url = '../cart/create.do?memberno=' + ${sessionScope.memberno} +'&pdcontentsno=' + pdcontentsno +'&cartgrpno=1';
+  var url = "../cart/create.do?cartgrpno=1&orderID="+id+"&productno="+${pdcontentsVO.pdcontentsno }+"&productCount="+count;
   var win = window.open(url, '장바구니 담기', 'width=800px, height=300px');
   
   var x = (screen.width - 700) / 2;
@@ -56,10 +63,11 @@ function create_form_n(pdcontentsno) {
   win.moveTo(x, y); // 지정된 좌표로 이동    
 }
 
-function create_form_r(pdcontentsno) {
-  // alert('admin2no: ' + admin2no);
-  
-  var url = '../cart/create.do?memberno=' + ${sessionScope.memberno} +'&pdcontentsno=' + pdcontentsno +'&cartgrpno=1';
+function create_form_r(f) {
+	var count = parseInt(f.productCnt.value);
+	var id = f.id.value;
+	  
+	var url = "../cart/create.do?cartgrpno=2&orderID="+id+"&productno="+${pdcontentsVO.pdcontentsno }+"&productCount="+count;
   var win = window.open(url, '장바구니 담기', 'width=800px, height=300px');
   
   var x = (screen.width - 700) / 2;
@@ -444,6 +452,7 @@ function create_form_r(pdcontentsno) {
            <!-- 상품명, 판매가, 주문 하기 칸 -->
            <FORM name='frm_cart' id='frm_cart' action=" 주문하기 창으로 넘어가기">
              <input type="hidden" name="pdcontentsno" value="${pdcontentsno}">
+             <input type="hidden" name='id' value='${sessionScope.id }'>
             <DIV style='float: right; width: 50%;'>
               <UL style='padding-left: 30px;'>
                 <li class="li_none" >
@@ -460,10 +469,11 @@ function create_form_r(pdcontentsno) {
                   <DIV style= ' font-size: 32px; color: #EE0700; line-height: 48px; font-weight: 700; text-align: right;' id='panel1'>
                     </DIV>
                 </li>
-                <input class="btn btn-info"  type="submit" value='주문하기'/>
-<!--            <button class="btn btn-info"  style='padding_bottom: 5px;' type='button' id="javascript:">주문하기</button><br> -->
-                <button class="btn btn-info" style='padding_bottom: 5px;' type='button' id='btn_cart' onclick="javascript:create_form_n(${pdcontentsno})">장바구니(일반)</button>
-                <button class="btn btn-info" style='padding_bottom: 5px;' type='button' id='btn_cart' onclick="javascript:create_form_r(${pdcontentsno})">장바구니(정기)</button>
+                <li class="li_none" >
+                  <button class="btn btn-info" style='padding_bottom: 5px;' type='button' id="order" onclick=order_direct(document.frm_cart);>주문하기</button><br>
+                  <button class="btn btn-info" style='padding_bottom: 5px;' type='button' id='btn_cart' onclick=create_form_n(document.frm_cart);>장바구니(일반)</button>
+                  <button class="btn btn-info" style='padding_bottom: 5px;' type='button' id='btn_cart' onclick=create_form_r(document.frm_cart);>장바구니(정기)</button>
+                </li>
               </UL>
           </DIV>
          </FORM> 

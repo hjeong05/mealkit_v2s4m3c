@@ -18,7 +18,6 @@
  
 </head> 
 <body>
-<jsp:include page="/menu/top.jsp" flush='false' />
  
 <DIV class='title_line'>알림</DIV>
  
@@ -27,23 +26,22 @@
     <UL>
       <c:choose>
         <c:when test="${count > 0 }">
-          <LI class='li_none'><span class='span_success'>상품을 등록했습니다.</span></LI>
+          <LI class='li_none'><span class='span_success'>장바구니에 추가되었습니다.</span></LI>
         </c:when>
         <c:otherwise>
-          <LI class='li_none'><span class='span_fail'>상품 등록에 실패했습니다.</span></LI>
+          <LI class='li_none'><span class='span_fail'>장바구니 추가에 실패했습니다.</span></LI>
         </c:otherwise>
       </c:choose>
       <LI class='li_none'>
         <br>
-        <button type='button' class='btn btn-primary' onclick="location.href='./create.do?cartgrpno=${param.cartgrpno}'">상품 등록</button>
-        <button type='button' class='btn btn-primary' onclick="location.href='./list.do?cartgrpno=${param.cartgrpno}'">목록</button>
+        <button type='button' class='btn btn-primary' onclick="window.close(); opener.location.href='./cartlist.do?cartgrpno=${param.cartgrpno}&orderID=${sessionScope.id}'">장바구니</button>
+        <button type='button' class='btn btn-primary' onclick="window.close();">닫기</button>
       </LI>
      </UL>
   </fieldset>
  
 </DIV>
  
-<jsp:include page="/menu/bottom.jsp" flush='false' />
 </body>
  
 </html> 

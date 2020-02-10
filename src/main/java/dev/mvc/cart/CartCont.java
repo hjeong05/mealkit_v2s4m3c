@@ -76,21 +76,16 @@ public class CartCont {
       
       return mav;
     }
-    // http://localhost:9090/ojt/cate/create.do
-    @RequestMapping(value = "/cart/create.do", method = RequestMethod.GET)
-    public ModelAndView create(int cartgrpno) {
-      ModelAndView mav = new ModelAndView();
-      
-      CartgrpVO cartgrpVO = cartgrpProc.read(cartgrpno);
-      mav.addObject("cartgrpVO", cartgrpVO);
-      
-      mav.setViewName("/cart/create"); 
-      return mav;
-    }
 
-    @RequestMapping(value = "/cart/create.do", method = RequestMethod.POST)
-    public ModelAndView create(CartVO cartVO) {
+    @RequestMapping(value = "/cart/create.do", method = RequestMethod.GET)
+    public ModelAndView create(int cartgrpno, String orderID, int productno, int productCount) {
       ModelAndView mav = new ModelAndView();
+      CartVO cartVO = new CartVO();
+      
+      cartVO.setCartgrpno(cartgrpno);
+      cartVO.setOrderID(orderID);
+      cartVO.setProductCount(productCount);
+      cartVO.setProductno(productno);
       
       int count = cartProc.create(cartVO);
       

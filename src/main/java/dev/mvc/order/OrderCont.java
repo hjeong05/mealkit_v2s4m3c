@@ -4,18 +4,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import dev.mvc.cart.CartProcInter;
 import dev.mvc.cart.CartVO;
@@ -74,7 +71,7 @@ public class OrderCont {
 
     return mav;
   }
-  
+
   @RequestMapping(value = "/order/list_direct.do", method = RequestMethod.GET)
   public ModelAndView list_direct(int cartgrpno, String orderID, int productno, int productCount) {
     ModelAndView mav = new ModelAndView();
@@ -86,45 +83,61 @@ public class OrderCont {
     cartVO.setProductno(productno);
     
     cartProc.create_retrun_no(cartVO);
+    cartgrpProc.increase_cnt(cartVO.getCartgrpno());
     
     Cart_ProductVO cart_productVO = new Cart_ProductVO();
     List<Cart_ProductVO> list = new ArrayList<Cart_ProductVO>();
+    
     int total_price = 0;
     cart_productVO = cartProc.read_cart_product(cartVO.getCartno());
     
     total_price = total_price + cart_productVO.getPrice();
     list.add(cart_productVO);
+    
+    
     mav.addObject("list", list);
     mav.addObject("list_count", 1);
     mav.addObject("total_price", total_price);
-    
+    mav.addObject("cartno", cartVO.getCartno());
     mav.setViewName("/order/list"); // /webapp/categrp/create_msg.jsp
     return mav;
   }
-
+  
   @RequestMapping(value = "/order/create.do", method = RequestMethod.POST)
-  public ModelAndView create(int cartno_list[], OrdergrpVO ordergrpVO) {
+  public ModelAndView create(int cartno_list[], OrdergrpVO ordergrpVO,
+                                      @RequestParam(value="cartno", defaultValue="0") int cartno) {
     ModelAndView mav = new ModelAndView();
     int count = 0;
     
+    System.out.println(cartno_list.length);
+    System.out.println(cartno);
+    
     HashMap<String, Object> create_map = new HashMap<String, Object>();
-    HashMap<String, Object> delect_map = new HashMap<String, Object>();
     
     ordergrpProc.create(ordergrpVO);
     create_map.put("order_pay_grpNO", ordergrpProc.now_grpNo());
     
     CartVO cartVO = new CartVO();
     
-    for(int i = 0; i < cartno_list.length; i++) {
-      cartVO = cartProc.read(cartno_list[i]);
+    if(cartno_list.length > 0) {
+      for(int i = 0; i < cartno_list.length; i++) {
+        cartVO = cartProc.read(cartno_list[i]);
+        System.out.println(cartVO.getCartno());
+        create_map.put("cartNo", cartVO.getCartno());
+        
+        cartgrpProc.decrease_cnt(cartVO.getCartgrpno());
+        cartProc.move_to_payed(cartVO.getCartno());
+        cartgrpProc.increase_cnt(3);
+        
+        count = orderProc.create(create_map);
+      }
+    } else {
+      cartVO = cartProc.read(cartno);
       
       create_map.put("cartNo", cartVO.getCartno());
       
-      delect_map.put("cartno", cartVO.getCartno());
-      delect_map.put("cartgrpno", cartVO.getCartgrpno());
-      
-      cartProc.move_to_payed(cartVO.getCartno());
       cartgrpProc.decrease_cnt(cartVO.getCartgrpno());
+      cartProc.move_to_payed(cartVO.getCartno());
       cartgrpProc.increase_cnt(3);
       
       count = orderProc.create(create_map);

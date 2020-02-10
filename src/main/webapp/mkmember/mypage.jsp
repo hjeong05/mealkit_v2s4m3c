@@ -46,9 +46,9 @@
       <br>
       장바구니 또는 주문내역을 확인할 수 있습니다.
       <br><br><br>
-      <button type="button"  class="btn btn-primary btn-md" style="margin-right: 20px;">일반배송 장바구니</button>
-      <button type="button"  class="btn btn-primary btn-md" style="margin-right: 20px;">정기배송 장바구니</button>
-      <button type="button"  class="btn btn-primary btn-md">주문내역</button>
+      <button type="button"  class="btn btn-primary btn-md" style="margin-right: 20px;" onclick="location.href='../cart/cartlist.do?cartgrpno=1&orderID=${sessionScope.id}'">일반배송 장바구니</button>
+      <button type="button"  class="btn btn-primary btn-md" style="margin-right: 20px;" onclick="location.href='../cart/cartlist.do?cartgrpno=2&orderID=${sessionScope.id}'">정기배송 장바구니</button>
+      <button type="button"  class="btn btn-primary btn-md" onclick="location.href='../pay/list.do?id=${sessionScope.id }'">주문내역</button>
     </div>
     <div class="float-unit">
       <DIV class='title_line' style="font-weight: bold; font-size: 18px;"><span class="glyphicon glyphicon-option-vertical"></span> 정보 관리</DIV>

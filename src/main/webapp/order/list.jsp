@@ -41,15 +41,15 @@ function delete_form(cartgrpno) {
     win.moveTo(x, y); // 지정된 좌표로 이동    
   }
 function same_info(f) {
-	f.order_payGetName.value = f.order_payPostName.value;
-	f.order_payGetTel.value = f.order_payPostTel.value;
-	f.order_payGetAddress1.value = f.order_payPostAddress1.value;
-	f.order_payGetAddress2.value = f.order_payPostAddress2.value;
+  f.order_payGetName.value = f.order_payPostName.value;
+  f.order_payGetTel.value = f.order_payPostTel.value;
+  f.order_payGetAddress1.value = f.order_payPostAddress1.value;
+  f.order_payGetAddress2.value = f.order_payPostAddress2.value;
 }
 
 function load_info(f) {
-	id = f.id.value;
-	var params = "id=" + id;
+  id = f.id.value;
+  var params = "id=" + id;
     $.ajax({
       url: "./load_member.do", // action 대상 주소
       type: "get",           // get, post
@@ -58,10 +58,10 @@ function load_info(f) {
       dataType: "json",   // 응답 형식: json, xml, html...
       data: params,        // 서버로 전달하는 데이터
       success: function(rdata) { // 서버로부터 성공적으로 응답이 온경우
-    	  f.order_payPostName.value = rdata.mname;
-    	  f.order_payPostTel.value = rdata.tel;
-    	  f.order_payPostAddress1.value = rdata.address1;
-    	  f.order_payPostAddress2.value = rdata.address2;
+        f.order_payPostName.value = rdata.mname;
+        f.order_payPostTel.value = rdata.tel;
+        f.order_payPostAddress1.value = rdata.address1;
+        f.order_payPostAddress2.value = rdata.address2;
       },
       // Ajax 통신 에러, 응답 코드가 200이 아닌경우, dataType이 다른경우 
       error: function(request, status, error) { // callback 함수
@@ -84,6 +84,7 @@ function load_info(f) {
     <input type="hidden" name='order_pay_grpStatus' value='결제 완료'>
     <input type="hidden" name='cartno_list' value=${param.cartno_list }>
     <input type="hidden" name='id' value='${sessionScope.id }'>
+    <input type="hidden" name='cartno' value=${cartno }>
     <div> <!-- 주문자 정보 시작 -->
       <div style='text-align: left; font-weight: bold; font-size: 24px; margin-left: 20px;'>
         주문자 정보
@@ -158,7 +159,7 @@ function load_info(f) {
         <tbody><c:forEach var="cart_productVO" items="${list }">
             <c:set var="cartno" value="${cart_productVO.cartno }" />
             <tr style='text-align: center;'>
-              <td style='display:table-cell; vertical-align: middle;'><IMG src="../pdatfile/storage/${cart_productVO.thumb }"></td>
+              <td style='display:table-cell; vertical-align: middle;'><img src='./images/${cart_productVO.thumb }' style='width:100px;'></img></td>
               <td style='display:table-cell; vertical-align: middle;'>
                 <a href="./read.do?cartno=${cartno}">${cart_productVO.title}</a> 
               </td> 
