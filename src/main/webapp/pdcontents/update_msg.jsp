@@ -35,7 +35,7 @@
                        onclick="location.href='./read.do?productcateno=${param.productcateno}&pdcontentsno=${param.pdcontentsno}&nowPage=${param.nowPage}'"
                        class="btn btn-info">변경 확인</button>
             <button type='button' 
-                       onclick="location.href='./list_by_productcateno.do?productcateno=${param.productcateno}&nowPage=${param.nowPage}'"
+                       onclick="location.href='./list.do?productcateno=${param.productcateno}&nowPage=${param.nowPage}'"
                        class="btn btn-info">목록</button>                          
           </LI>
         </c:when>

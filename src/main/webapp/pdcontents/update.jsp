@@ -56,6 +56,11 @@
       </div>
       
       <div class="form-group">   
+        <div class="col-md-12">
+          <input type="number" class="form-control input-lg" style='width:50%;' name=cnt value='' placeholder="수량">
+      </div>
+      
+      <div class="form-group">   
         <label class="col-md-1 control-label"><span style='font-size: 0.99em;'>검색어</span></label>
         <div class="col-md-11">
           <input type='text' class="form-control input-lg" name='word' value='${pdcontentsVO.word }' placeholder="검색어">

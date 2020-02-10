@@ -71,10 +71,9 @@
         </c:choose> <br>
         <a href="./read.do?pdcontentsno=${pdcontentsno}&nowPage=${param.nowPage}" style='font-weight: bold; font-size: 1.2em;'>${pdcontentsVO.title}</a><br>
         (<span style='color:#FFE400 ;'>★</span>${pdcontentsVO.recom}) 리뷰 수: ${pdcontentsVO.replycnt}<br>
-        ${pdcontentsVO.rdate.substring(0, 10)}<br> 
+<%--         ${pdcontentsVO.rdate.substring(0, 10)}<br>  --%>
         <span style='font-weight: bold;'>${pdcontentsVO.price} 원</span><br>
         남은 수량:${pdcontentsVO.cnt }<br>
-         <br> 
         <c:if test="${sessionScope.id_admin != null}">
         <a  href="./update.do?pdcontentsno=${pdcontentsno}&productcateno=${productcateVO.productcateno}">
           <img src="./images/update2.png" title="수정" border='0' /></a> 

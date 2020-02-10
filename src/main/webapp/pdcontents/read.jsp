@@ -44,6 +44,30 @@ DecimalFormat df = new DecimalFormat("￦ ###,###,### 원");
 %>
 <script type="text/javascript">
   
+function create_form_n(pdcontentsno) {
+  // alert('admin2no: ' + admin2no);
+  
+  var url = '../cart/create.do?memberno=' + ${sessionScope.memberno} +'&pdcontentsno=' + pdcontentsno +'&cartgrpno=1';
+  var win = window.open(url, '장바구니 담기', 'width=800px, height=300px');
+  
+  var x = (screen.width - 700) / 2;
+  var y = (screen.height - 400) / 2;
+  
+  win.moveTo(x, y); // 지정된 좌표로 이동    
+}
+
+function create_form_r(pdcontentsno) {
+  // alert('admin2no: ' + admin2no);
+  
+  var url = '../cart/create.do?memberno=' + ${sessionScope.memberno} +'&pdcontentsno=' + pdcontentsno +'&cartgrpno=1';
+  var win = window.open(url, '장바구니 담기', 'width=800px, height=300px');
+  
+  var x = (screen.width - 700) / 2;
+  var y = (screen.height - 400) / 2;
+  
+  win.moveTo(x, y); // 지정된 좌표로 이동    
+}
+
   window.onload = function(){
     var btn_order = document.getElementById('btn_order');
     btn_order.addEventListener('click', order1);
@@ -79,12 +103,6 @@ DecimalFormat df = new DecimalFormat("￦ ###,###,### 원");
     $('#pdatfile_panel').show();
   }
   
-  function update_recom(){
-    var frm_pdreply = $('#frm_pdreply');
-    var params = frm_pdreply.serialize();
-    
-    
-  }
   function create_pdreply() {
     var frm_pdreply = $('#frm_pdreply');
     var params = frm_pdreply.serialize();
@@ -188,6 +206,53 @@ DecimalFormat df = new DecimalFormat("￦ ###,###,### 원");
       }
     });
     
+  }
+  
+  function cart_normal(){
+    var frm_cart = $('#frm_cart');
+    var params = frm_cart.serialize();
+    // alert('checkId() 호출됨: ' + params);
+    // return;
+    if ($('#productCnt', frm_cart).val().length == 0) {  
+      $('#modal_title').html('주문 수량 등록'); // 제목 
+      $('#modal_content').html("주문하실 수량을 입력해주세요!"); // 내용
+      $('#modal_panel').modal();            // 다이얼로그 출력
+      return;  // 실행 종료
+    }
+    $.ajax({
+      url: "..//create.do", // action 대상 주소
+      type: "post",           // get, post
+      cache: false,          // 브러우저의 캐시영역 사용안함.
+      async: true,           // true: 비동기
+      dataType: "json",   // 응답 형식: json, xml, html...
+      data: params,        // 서버로 전달하는 데이터
+      success: function(rdata) { // 서버로부터 성공적으로 응답이 온경우
+        // alert(rdata);
+        var msg = "";
+        
+        if (rdata.count > 0) {
+          $('#modal_content').attr('class', 'alert alert-success'); // CSS 변경
+          msg = "장바구니에 담았습니다.";
+          
+          list_by_pdcontentsno(${pdcontentsVO.pdcontentsno }) // 목록을 새로 읽어옴.
+          
+        } else {
+          $('#modal_content').attr('class', 'alert alert-danger'); // CSS 변경
+          msg = "장바구니 담기에 실패했습니다.";
+        }
+        
+        $('#modal_title').html('장바구니 담기'); // 제목 
+        $('#modal_content').html(msg);        // 내용
+        $('#modal_panel').modal();              // 다이얼로그 출력
+      },
+      // Ajax 통신 에러, 응답 코드가 200이 아닌경우, dataType이 다른경우 
+      error: function(request, status, error) { // callback 함수
+        var msg = 'ERROR<br><br>';
+        msg += '<strong>request.status</strong><br>'+request.status + '<hr>';
+        msg += '<strong>error</strong><br>'+error + '<hr>';
+        console.log(msg);
+      }
+    });
   }
   
   // 삭제 레이어 출력
@@ -377,8 +442,8 @@ DecimalFormat df = new DecimalFormat("￦ ###,###,### 원");
             </div>
            </DIV>
            <!-- 상품명, 판매가, 주문 하기 칸 -->
-           <FORM name='frm_cart' id='frm_cart' method="post" action='장바구니 담기 '>
-      <input type="hidden" name="pdcontentsno" value="${pdcontentsno}">
+           <FORM name='frm_cart' id='frm_cart' action=" 주문하기 창으로 넘어가기">
+             <input type="hidden" name="pdcontentsno" value="${pdcontentsno}">
             <DIV style='float: right; width: 50%;'>
               <UL style='padding-left: 30px;'>
                 <li class="li_none" >
@@ -395,8 +460,10 @@ DecimalFormat df = new DecimalFormat("￦ ###,###,### 원");
                   <DIV style= ' font-size: 32px; color: #EE0700; line-height: 48px; font-weight: 700; text-align: right;' id='panel1'>
                     </DIV>
                 </li>
-                <button type='button' id="order">주문하기</button>
-                <button type='button' id='btn_cart' onclick="cart();">장바구니에 담기</button>
+                <input class="btn btn-info"  type="submit" value='주문하기'/>
+<!--                 <button class="btn btn-info"  style='padding_bottom: 5px;' type='button' id="javascript:">주문하기</button><br> -->
+                <button class="btn btn-info" style='padding_bottom: 5px;' type='button' id='btn_cart' onclick="javascript:create_form_n(${pdcontentsno})">장바구니(일반)</button>
+                <button class="btn btn-info" style='padding_bottom: 5px;' type='button' id='btn_cart' onclick="javascript:create_form_r(${pdcontentsno})">장바구니(정기)</button>
               </UL>
           </DIV>
          </FORM> 
@@ -424,7 +491,6 @@ DecimalFormat df = new DecimalFormat("￦ ###,###,### 원");
            </DIV>
           </div>
           </DIV>
-      
       
           <!-- 리뷰 탭 내용 -->
           <div id="tab-2" class="tab-content">

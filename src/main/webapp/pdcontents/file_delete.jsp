@@ -47,7 +47,7 @@
     <span class='menu_divide' > | </span> 
     <a href="../pdatfile/create.do?pdcontentsno=${pdcontentsno}&productcateno=${productcateno }">첨부 파일 등록</A>
     <span class='menu_divide' > | </span> 
-    <A href='./delete.do?productcateno=${productcateno }&pdcontentsno=${pdcontentsno}'>삭제</A>
+    <A href='./delete.do?productcateno=${productcateno }&pdcontentsno=${pdcontentsno}&nowPage=${param.nowPage}'>삭제</A>
     
   </ASIDE> 
   

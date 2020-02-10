@@ -71,6 +71,12 @@
         <div class="col-md-12">
           <input type="number" class="form-control input-lg" style='width:50%;' name='price' value='' placeholder="가격책정">
         </div>
+        
+        <div class="form-group">   
+        <div class="col-md-12">
+          <input type="number" class="form-control input-lg" style='width:50%;' name=cnt value='' placeholder="수량">
+        </div>
+        
       </div>
       <div class="form-group">   
         <div class="col-md-12">

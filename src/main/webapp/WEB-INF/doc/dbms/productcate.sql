@@ -40,8 +40,8 @@ ORDER BY seqno ASC;
     
 -- 수정
       UPDATE productcate
-      SET name= '동남아식', seqno = 3
-      WHERE productcateno = 3;
+      SET cnt = 0, name= '양식'
+      WHERE productcateno =2;
       
 -- 삭제
 DELETE FROM productcate

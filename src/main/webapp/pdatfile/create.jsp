@@ -48,7 +48,7 @@
       <DIV class='content_bottom_menu'>
         <button type="submit" class="btn btn-info">파일 전송</button>
         <button type="button" 
-                    onclick="location.href='./list.do?productcateno=${param.productcateno}'" 
+                    onclick="location.href='./list.do?productcateno=${param.productcateno}&nowPage=${param.nowPage}'" 
                     class="btn btn-info">취소[목록]</button>
       </DIV>
        
