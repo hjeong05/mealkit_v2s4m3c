@@ -461,7 +461,7 @@ function create_form_r(pdcontentsno) {
                     </DIV>
                 </li>
                 <input class="btn btn-info"  type="submit" value='주문하기'/>
-<!--                 <button class="btn btn-info"  style='padding_bottom: 5px;' type='button' id="javascript:">주문하기</button><br> -->
+<!--            <button class="btn btn-info"  style='padding_bottom: 5px;' type='button' id="javascript:">주문하기</button><br> -->
                 <button class="btn btn-info" style='padding_bottom: 5px;' type='button' id='btn_cart' onclick="javascript:create_form_n(${pdcontentsno})">장바구니(일반)</button>
                 <button class="btn btn-info" style='padding_bottom: 5px;' type='button' id='btn_cart' onclick="javascript:create_form_r(${pdcontentsno})">장바구니(정기)</button>
               </UL>
