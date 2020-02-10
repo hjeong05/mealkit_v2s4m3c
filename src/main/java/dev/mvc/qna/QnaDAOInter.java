@@ -16,4 +16,8 @@ public interface QnaDAOInter {
 	
 	public List<QnaVO> choice_list(String choice);
 	
+	public int updateAnsnum(QnaVO qnaVO);
+	
+	public int reply(QnaVO qnaVO);
+
 }

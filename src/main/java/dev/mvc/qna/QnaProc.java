@@ -45,5 +45,19 @@ public class QnaProc implements QnaProcInter{
     List<QnaVO> choice_list=qnaDAO.choice_list(choice); 
     return choice_list;
   }
+
+  @Override
+  public int updateAnsnum(QnaVO qnaVO) {
+    int count = 0;
+    count = qnaDAO.updateAnsnum(qnaVO);
+    return count;
+  }
+
+  @Override
+  public int reply(QnaVO qnaVO) {
+    int count = 0;
+    count = qnaDAO.reply(qnaVO);
+    return count;
+  }
 	
 }
