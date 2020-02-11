@@ -22,7 +22,7 @@
 <jsp:include page="/menu/top.jsp" flush='false' />
 
   <ASIDE style='float: left;'>
-      <A href='./mkmember/list.do'>회원 탈퇴</A>  
+      <A href='./mkmember/list.do'>회원 탈퇴 > 비밀번호 확인</A>  
   </ASIDE>
   <ASIDE style='float: right;'>
   </ASIDE> 

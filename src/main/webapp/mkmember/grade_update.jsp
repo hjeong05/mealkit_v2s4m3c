@@ -22,14 +22,14 @@
 <jsp:include page="/menu/top.jsp" flush='false' />
 
   <ASIDE style='float: left;'>
-      <A href='./mkmember/list.do'>회원 목록</A>  
+      회원 등급 변경  
   </ASIDE>
   <ASIDE style='float: right;'>
     <A href="javascript:location.reload();">새로고침</A>
     <span class='menu_divide' >│</span> 
     <A href='./create.do'>회원 가입</A>
     <span class='menu_divide' >│</span> 
-    <A href='./list.do'>목록</A>
+    <A href='./list.do?memcateno=${param.memcateno }'>목록</A>
   </ASIDE> 
  
   <div class='menu_line'></div>

@@ -52,14 +52,10 @@
     
   
   <ASIDE style='float: left;'>
-      <A href='./list.do?memcateno=${mkmemberVO.memcateno }&name=${param.name}&nowPage=${param.nowPage}'>${param.name} 목록</A>  
+      회원정보 수정 
   </ASIDE>
   <ASIDE style='float: right;'>
     <A href="javascript:location.reload();">새로고침</A>
-    <span class='menu_divide' >│</span> 
-    <A href='./create.do'>회원 가입</A>
-    <span class='menu_divide' >│</span> 
-    <A href='./list.do?memcateno=${mkmemberVO.memcateno }&nowPage=${param.nowPage}'>목록</A>
   </ASIDE> 
  
   <div class='menu_line'></div>
