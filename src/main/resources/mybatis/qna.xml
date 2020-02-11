@@ -7,16 +7,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="dev.mvc.qna.QnaDAOInter"> 
 
   <insert id ="create" parameterType="QnaVO"> 
-    INSERT INTO qna(qnano, memberno, seqno, title, content, choice,
+    INSERT INTO qna(qnano, memberno, seqno, title, content, name, choice,
                                  grpno, indent, ansnum, rdate)
     VALUES((SELECT NVL(MAX(qnano), 0) + 1 as qnano FROM qna),
-               #{memberno}, #{seqno}, #{title}, #{content}, #{choice},
+               #{memberno}, #{seqno}, #{title}, #{content}, #{name}, #{choice},
   (SELECT NVL(MAX(grpno), 0) + 1 as grpno FROM qna),
     #{ansnum}, #{indent}, sysdate)
   </insert>
   
   <select id="list" resultType="QnaVO">
-     SELECT qnano, memberno,seqno, title, content, choice, grpno, indent, ansnum, rdate
+     SELECT qnano, memberno,seqno, title, content, name, choice, grpno, indent, ansnum, rdate
      FROM qna
      ORDER BY grpno DESC, ansnum ASC
    </select> 
@@ -27,14 +27,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    </select> 
    
    <select id="read" resultType="QnaVO" parameterType="int">
-     SELECT qnano, memberno, seqno, title, content, choice, grpno, indent, ansnum, rdate
+     SELECT qnano, memberno, seqno, title, content, name, choice, grpno, indent, ansnum, rdate
      FROM qna
      WHERE qnano=#{qnano}
    </select>
    
    <update id='update' parameterType="QnaVO">
    UPDATE qna
-   SET title=#{title}, content=#{content}, choice=#{choice}
+   SET title=#{title}, content=#{content}, choice=#{choice}, name=#{name}
    WHERE qnano = #{qnano}
    </update> 
    
@@ -42,9 +42,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
      DELETE FROM qna
      WHERE qnano = #{qnano}
    </delete> 
-   
-  <!-- 답변 순서 -->
-  <update id='update_Ansnum' parameterType="QnaVO">
+  
+  <!-- 신규 답변을 최우선으로 출력하기위한 답변 순서 조절 -->
+  <update id='updateAnsnum' parameterType="QnaVO">
     UPDATE qna
     SET ansnum = ansnum + 1
     WHERE grpno = #{grpno} AND ansnum > #{ansnum}
@@ -52,11 +52,36 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    
   <!-- 답변 --> 
   <insert id="reply" parameterType="QnAVO">
-    INSERT INTO qna(qnano, memberno, seqno, title, content, choice, grpno, indent, ansnum, rdate)  
+    INSERT INTO qna(qnano, memberno, seqno, title, content, name, choice, grpno, indent, ansnum, rdate)  
     VALUES((SELECT NVL(MAX(qnano), 0) + 1 as qnano FROM qna),
-               #{memberno}, #{seqno}, #{title}, #{content}, #{choice},
+               #{memberno}, #{seqno}, #{title}, #{content}, #{name}, #{choice},
                 #{grpno}, #{indent}, #{ansnum}, sysdate)
   </insert>
+  
+  
+  <!-- 카테고리별 검색 목록 | 페이징 -->
+  <select id="list_by_search_paging" 
+            resultType="QnaVO" parameterType="HashMap">
+    SELECT qnano, memberno, seqno, title, content, name, choice,
+              grpno, indent, ansnum, rdate r
+    FROM (        
+              SELECT qnano, memberno, seqno, title, content, name, choice, 
+                        grpno, indent, ansnum, rdate, rownum as r
+              FROM (
+                        SELECT qnano, memberno, seqno, title, content, name, choice, 
+                                  grpno, indent, ansnum, rdate
+                     FROM qna
+                        ORDER BY qnano DESC
+                  )
+      )
+     WHERE r &gt;= #{startNum} AND r &lt;= #{endNum}
+     <!--
+     1 page : WHERE r >= 1 AND r <= 10
+     2 page : WHERE r >= 1 AND r <= 10
+     3 page : WHERE r >= 1 AND r <= 10
+     -->             
+  </select>
+  
   
   <!-- 초이스 별 목록 추출 -->
 <!--    <select id="choice_list" resultType="QnaVO" parameterType="string">

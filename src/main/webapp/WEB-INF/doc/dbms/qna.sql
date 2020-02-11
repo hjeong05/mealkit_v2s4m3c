@@ -9,6 +9,7 @@ CREATE TABLE qna(
     seqno                           NUMBER(10)     NOT NULL, 
     title                             VARCHAR2(300)    NOT NULL,
     content                           CLOB     NOT NULL,
+    name                           VARCHAR2(20)    NOT NULL,
     choice         VARCHAR2(50)  NOT NULL,
     grpno          NUMBER(10)                           NOT NULL,
     indent          NUMBER(10)      DEFAULT 0      NOT NULL,
@@ -19,16 +20,16 @@ CREATE TABLE qna(
 );
 
 COMMENT ON TABLE qna is 'qna';
-COMMENT ON COLUMN qna.qnano is 'qna¹øÈ£';
-COMMENT ON COLUMN qna.seqno is 'qna¼ø¼­';
-COMMENT ON COLUMN qna.title is 'qna Á¦¸ñ';
-COMMENT ON COLUMN qna.content is 'qna ³»¿ë';
-COMMENT ON COLUMN qna.grpno is '±×·ì¹øÈ£';
-COMMENT ON COLUMN qna.indent is '´äº¯Â÷¼ö';
-COMMENT ON COLUMN qna.ansnum is '´äº¯¼ø¼­';
+COMMENT ON COLUMN qna.qnano is 'qnaï¿½ï¿½È£';
+COMMENT ON COLUMN qna.seqno is 'qnaï¿½ï¿½ï¿½ï¿½';
+COMMENT ON COLUMN qna.title is 'qna ï¿½ï¿½ï¿½ï¿½';
+COMMENT ON COLUMN qna.content is 'qna ï¿½ï¿½ï¿½ï¿½';
+COMMENT ON COLUMN qna.grpno is 'ï¿½×·ï¿½ï¿½È£';
+COMMENT ON COLUMN qna.indent is 'ï¿½äº¯ï¿½ï¿½ï¿½ï¿½';
+COMMENT ON COLUMN qna.ansnum is 'ï¿½äº¯ï¿½ï¿½ï¿½ï¿½';
 
-1) µî·Ï
--- PK »ý¼º
+1) ï¿½ï¿½ï¿½
+-- PK ï¿½ï¿½ï¿½ï¿½
 SELECT NVL(MAX(qnano), 0) + 1 as qnano FROM qna;                                
  CONTENTSNO
  ----------
@@ -37,53 +38,53 @@ SELECT NVL(MAX(qnano), 0) + 1 as qnano FROM qna;
 INSERT INTO qna(qnano, memberno, seqno, title, content, 
                               grpno, indent, ansnum, rdate)
 VALUES((SELECT NVL(MAX(qnano), 0) + 1 as qnano FROM qna),
-             1, 1, 'Á¦¸ñ1', '³»¿ë1',
+             1, 1, 'ï¿½ï¿½ï¿½ï¿½1', 'ï¿½ï¿½ï¿½ï¿½1',
              0, 0, 0, sysdate);
              
--- 2) ¸ñ·Ï
+-- 2) ï¿½ï¿½ï¿½
 SELECT qnano, memberno, seqno, title, content, grpno, indent, ansnum, rdate
 FROM qna
 ORDER BY qnano DESC;
 
 
--- 3) ÀüÃ¼ ·¹ÄÚµå ¼ö
+-- 3) ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½Úµï¿½ ï¿½ï¿½
 SELECT COUNT(*) as count
 FROM qna;
  
      
--- 4) Á¶È¸
+-- 4) ï¿½ï¿½È¸
 SELECT qnano, memberno, seqno, title, content, grpno, indent, ansnum, rdate
 FROM qna
 WHERE qnano=1;
 
--- 6) ¼öÁ¤
+-- 6) ï¿½ï¿½ï¿½ï¿½
 UPDATE qna
-SET title='Á¦¸ñ ¼öÁ¤', content='³»¿ë ¼öÁ¤'
+SET title='ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½', content='ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½'
 WHERE qnano = 1;
 
--- 7) »èÁ¦
+-- 7) ï¿½ï¿½ï¿½ï¿½
 DELETE FROM qna;
 WHERE qnano = 1;
 
 
-¨ç »õ·Î¿î ´äº¯À» ÃÖ½ÅÀ¸·Î µî·ÏÇÏ±âÀ§ÇØ ±âÁ¸ ´äº¯À» µÚ·Î ¹Ì·ì´Ï´Ù.
--- ¸ðµç ±ÛÀÇ ¿ì¼± ¼øÀ§°¡ 1¾¿ Áõ°¡µÊ, 1µî -> 2µî
+ï¿½ï¿½ ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½äº¯ï¿½ï¿½ ï¿½Ö½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½äº¯ï¿½ï¿½ ï¿½Ú·ï¿½ ï¿½Ì·ï¿½Ï´ï¿½.
+-- ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ì¼± ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 1ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, 1ï¿½ï¿½ -> 2ï¿½ï¿½
 UPDATE qna
 SET ansnum = ansnum + 1
 WHERE memberno=1 AND grpno = 1 AND ansnum > 0;
 
--- 2µîºÎÅÍ ¿ì¼± ¼øÀ§°¡ 1¾¿ Áõ°¡µÊ, 2µî -> 3µî
+-- 2ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ì¼± ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 1ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, 2ï¿½ï¿½ -> 3ï¿½ï¿½
 UPDATE qna
 SET ansnum = ansnum + 1
 WHERE grpno = 1 AND ansnum > 1;
  
-¨è ´äº¯ µî·Ï
+ï¿½ï¿½ ï¿½äº¯ ï¿½ï¿½ï¿½
 INSERT INTO qna(qnano, memberno, seqno, title, content, grpno, indent, ansnum, rdate)  
 VALUES((SELECT NVL(MAX(qnano), 0) + 1 as qnano FROM qna),
-            1, 1, '´äº¯', '³»¿ë', 1, 1, 1,sysdate);
+            1, 1, 'ï¿½äº¯', 'ï¿½ï¿½ï¿½ï¿½', 1, 1, 1,sysdate);
 
 
-¨é ´äº¯¿¡ µû¸¥ Á¤·Ä ¼ø¼­ º¯°æ    
+ï¿½ï¿½ ï¿½äº¯ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½    
 SELECT qnano, memberno, seqno, title, content, grpno, indent, ansnum, rdate r
 FROM(
          SELECT qnano, memberno, seqno, title, content, grpno, indent, ansnum, rdate, rownum as r

@@ -53,17 +53,18 @@ $(function(){
       <colgroup>
       <c:choose>
           <c:when test="${sessionScope.id != null || sessionScope.id_admin != null}">
-            <col style="width: 20%;"></col>
+             <col style="width: 20%;"></col>
             <col style="width: 30%;"></col>
             <col style="width: 25%;"></col>
-            <col style="width: 25%;"></col>
+             <col style="width: 15%;"></col>
+            <col style="width: 10%;"></col>
             
           </c:when>
           <c:otherwise>
             <col style="width: 20%;"></col>
-            <col style="width: 50%;"></col>
-            <col style="width: 30%;"></col>
-
+            <col style="width: 40%;"></col>
+            <col style="width: 20%;"></col>
+           <col style="width: 20%;"></col>
           </c:otherwise>
 
         </c:choose>  
@@ -75,6 +76,7 @@ $(function(){
           
           <th style='text-align: center;'>질문유형</th>
           <th style='text-align: center;'>제목</th>
+          <th style='text-align: center;'>작성자</th>
           <th style='text-align: center;'>등록일</th>
           <th style='text-align: center;'><c:if test="${sessionScope.id != null || sessionScope.id_admin != null}">기타</c:if></th>
         </tr>
@@ -90,7 +92,7 @@ $(function(){
             <%-- <td style='text-align: center;'>${qnaVO.qnano}</td> --%>
             
             <td style='text-align: center;'>${qnaVO.choice}</td>
-           <td style='vertical-align: center;'>
+           <td style='text-align: center;'>
               <c:choose>
                 <c:when test="${qnaVO.ansnum == 0 }"> <!-- 부모글인 경우 -->
                  
@@ -104,9 +106,9 @@ $(function(){
               <a href="./read.do?qnano=${qnaVO.qnano}">${qnaVO.title}</a> 
             </td> 
             
+            <td style='text-align: center;'>${qnaVO.name}</td>
             <td style='text-align: center;'>${qnaVO.rdate.substring(0, 10)}</td>
-            
-            
+
             <td style='text-align: center;'>
             <c:if test="${sessionScope.id != null || sessionScope.id_admin != null}">
               <a href="./update.do?qnano=${qnano}"><img src="./images/update.png" title="수정" border='0'/></a>

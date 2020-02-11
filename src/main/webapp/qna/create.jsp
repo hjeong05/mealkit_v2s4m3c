@@ -71,7 +71,13 @@ window.onload=function(){
         </div>
       </div>  
       
-
+   <div class="form-group">   
+     <label for="filesMF" class="col-md-1 control-label">작성자</label>
+        <div class="col-md-10">
+          <textarea class="form-control input-lg" name='name' id='name' rows='1' style='width: 20%;' placeholder=""></textarea>
+        </div>
+      </div>  
+      
       <DIV class='content_bottom_menu'>
         <button type="submit" class="btn btn-info">등록</button>
         <button type="button" 
