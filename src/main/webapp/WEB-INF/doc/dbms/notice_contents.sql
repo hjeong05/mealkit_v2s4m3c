@@ -2,10 +2,32 @@
 /* Table Name: 공지사항 컨텐츠 */
 /**********************************/
 
+INSERT INTO notice_contents(no_contentsno, 
+                                memberno, cateno, no_title, no_contents, 
+                                no_cnt,no_rdate, no_word)
+VALUES((SELECT NVL(MAX(no_contentsno), 0) + 1 as no_contentsno FROM notice_contents),
+             1, 1, '개인정보처리방침 안내', '개인정보처리방침 안내입니다.',
+             0, sysdate, '개인,정보,공지');
+             
+INSERT INTO notice_contents(no_contentsno, 
+                                memberno, cateno, no_title, no_contents, 
+                                no_cnt,no_rdate, no_word)
+VALUES((SELECT NVL(MAX(no_contentsno), 0) + 1 as no_contentsno FROM notice_contents),
+             1, 2, '회원등급 기준 안내', '회원등급 기준 안내입니다.',
+             0, sysdate, '회원,기준,공지');
+             
+INSERT INTO notice_contents(no_contentsno, 
+                                memberno, cateno, no_title, no_contents, 
+                                no_cnt,no_rdate, no_word)
+VALUES((SELECT NVL(MAX(no_contentsno), 0) + 1 as no_contentsno FROM notice_contents),
+             1, 3, '3.5만원 이상 구매 시 무료배송 혜택', '안녕하세요. 밀키트를 찾아주셔서 감사드립니다. 2020년 2월 12일(수) 저녁 6시부터 밀키트 회원 고객님들께
+전 상품 35,000원 이상 구매 시 무/료/배/송 혜택을 드립니다! 회원 가입하고 배송비 부담 없이 밀키트를 경험해 보세요~:D', 0, sysdate, '무배,배송,기준');
+
+
 CREATE TABLE notice_contents(
 		no_contentsno                 		NUMBER(10)		 NOT NULL  PRIMARY KEY,
 		no_title                      		VARCHAR2(50)		 NOT NULL,
-		no_contents                   		CLOB      		 NOT NULL,
+		no_contents                   CLOB      		 NOT NULL,
 		no_cnt                        		NUMBER(20)		 NOT NULL,
 		no_rdate                     		DATE		 NOT NULL,
 		no_word                       		VARCHAR2(50)		 NULL ,
@@ -51,8 +73,22 @@ INSERT INTO notice_contents(no_contentsno,
                                 memberno, cateno, no_title, no_contents, 
                                 no_cnt,no_rdate, no_word)
 VALUES((SELECT NVL(MAX(no_contentsno), 0) + 1 as no_contentsno FROM notice_contents),
-             1, 1, '제목1', '내용1',
-             0, sysdate, '');
+             1, 1, '개인정보처리방침 안내', '개인정보처리방침 안내입니다.',
+             0, sysdate, '개인,정보,공지');
+             
+INSERT INTO notice_contents(no_contentsno, 
+                                memberno, cateno, no_title, no_contents, 
+                                no_cnt,no_rdate, no_word)
+VALUES((SELECT NVL(MAX(no_contentsno), 0) + 1 as no_contentsno FROM notice_contents),
+             1, 2, '회원등급 기준 안내', '회원등급 기준 안내입니다.',
+             0, sysdate, '회원,기준,공지');
+             
+INSERT INTO notice_contents(no_contentsno, 
+                                memberno, cateno, no_title, no_contents, 
+                                no_cnt,no_rdate, no_word)
+VALUES((SELECT NVL(MAX(no_contentsno), 0) + 1 as no_contentsno FROM notice_contents),
+             1, 3, '3.5만원 이상 구매 시 무료배송 혜택', '안녕하세요. 밀키트를 찾아주셔서 감사드립니다. 2020년 2월 12일(수) 저녁 6시부터 밀키트 회원 고객님들께
+전 상품 35,000원 이상 구매 시 무/료/배/송 혜택을 드립니다! 회원 가입하고 배송비 부담 없이 밀키트를 경험해 보세요~:D', 0, sysdate, '무배,배송,기준');
              
 -- 2) 목록 
 SELECT no_contentsno,memberno, cateno, no_title, no_contents, no_cnt,no_rdate, no_word
@@ -86,7 +122,7 @@ SET no_title='제목 수정', no_contents='내용 수정', no_word='검색어'
 WHERE no_contentsno = 1;
 
 -- 7) 삭제
-DELETE FROM notice_contents
+DELETE FROM notice_contents;
 WHERE no_contentsno=2;
 
 --------------------------------------------------------------------------------------

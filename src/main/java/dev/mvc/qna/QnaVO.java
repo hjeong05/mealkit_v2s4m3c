@@ -26,6 +26,8 @@ public class QnaVO {
 	/**³»¿ë*/
 	private String content;
 	
+	private String name;
+	
 	private String choice;
 	
 	private int grpno;
@@ -78,7 +80,17 @@ public class QnaVO {
 		this.content = content;
 	}
 	
-	public String getChoice() {
+	
+	
+	public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public String getChoice() {
     return choice;
   }
 

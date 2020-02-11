@@ -61,25 +61,24 @@
       
   <c:choose>
    <c:when test="${sessionScope.id_admin != null}">
-     <col style='width: 10%;'/>
-     <col style='width: 40%;'/>
+  
      <col style='width: 20%;'/>
+     <col style='width: 50%;'/>
      <col style='width: 30%;'/>
    </c:when>
     <c:otherwise>
-       <col style="width: 15%;"></col>
-       <col style="width: 75%;"></col>
-       <col style="width: 10%;"></col>
+       
+       <col style="width: 20%;"></col>
+       <col style="width: 80%;"></col>
        </c:otherwise>
       </c:choose>
   </colgroup>
       <%-- table 컬럼 --%>
       <thead>
         <tr>
-          <th style='text-align: center;'>번호</th>
-          <th style='text-align: center;'>제목</th>
-          <th style='text-align: center;'>등록일</th>
-          <th style='text-align: center;'><c:if test="${sessionScope.id_admin != null}">기타</c:if></TH>
+         <th style='text-align: center;'>등록일</th>
+         <th style='text-align: center;'>제목</th>
+         <th style='text-align: center;'><c:if test="${sessionScope.id_admin != null}">기타</c:if></TH>
         </tr>
       
       </thead>
@@ -88,13 +87,12 @@
         <c:forEach var="no_contentsVO" items="${list }">
           <c:set var="no_contentsno" value="${no_contentsVO.no_contentsno }" />
           
-          <tr> 
-           <td style='text-align: center;'>${no_contentsVO.no_contentsno}</td>
-            
+          <tr>          
+            <td style='text-align: center;'>${no_contentsVO.no_rdate.substring(0, 10)}</td>
             <td style='text-align: center;'>
               <a href="./read.do?no_contentsno=${no_contentsno}&nowPage=${param.nowPage}">${no_contentsVO.no_title}</a> 
             </td> 
-            <td style='text-align: center;'>${no_contentsVO.no_rdate.substring(0, 10)}</td>
+            
             <td style='text-align: center;'>
             <c:if test="${sessionScope.id_admin != null}">
               <a href="./update.do?no_contentsno=${no_contentsno}&cateno=${notice_cateVO.cateno}&nowPage=${param.nowPage}"><img src="./images/update.png" title="수정"></a>

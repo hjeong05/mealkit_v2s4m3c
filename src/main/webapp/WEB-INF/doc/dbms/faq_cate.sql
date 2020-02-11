@@ -1,6 +1,17 @@
 /**********************************/
 /* Table Name: 자주하는질문 분류 카테고리*/
 /**********************************/
+-- 3)등록
+INSERT INTO faq_cate(faq_cateno, title, seqno, rdate, cnt)
+VALUES((SELECT NVL(MAX(faq_cateno), 0) + 1 as faq_cateno FROM faq_cate),
+                '주문 결제', 1, sysdate, 0);
+INSERT INTO faq_cate(faq_cateno, title, seqno, rdate, cnt)
+VALUES((SELECT NVL(MAX(faq_cateno), 0) + 1 as faq_cateno FROM faq_cate),
+                '배송 안내', 2, sysdate, 0);
+INSERT INTO faq_cate(faq_cateno, title, seqno, rdate, cnt)
+VALUES((SELECT NVL(MAX(faq_cateno), 0) + 1 as faq_cateno FROM faq_cate),
+                '상품 관련', 3, sysdate, 0);
+                
 -- 1)삭제
 DROP TABLE faq_cate;
 
@@ -21,16 +32,7 @@ COMMENT ON COLUMN faq_cate.seqno is '출력 순서';
 COMMENT ON COLUMN faq_cate.rdate is '등록일';
 COMMENT ON COLUMN faq_cate.cnt is '자주하는질문 등록 개수';
 
--- 3)등록
-INSERT INTO faq_cate(faq_cateno, title, seqno, rdate, cnt)
-VALUES((SELECT NVL(MAX(faq_cateno), 0) + 1 as faq_cateno FROM faq_cate),
-                '주문 결제', 1, sysdate, 0);
-INSERT INTO faq_cate(faq_cateno, title, seqno, rdate, cnt)
-VALUES((SELECT NVL(MAX(faq_cateno), 0) + 1 as faq_cateno FROM faq_cate),
-                '배송 안내', 2, sysdate, 0);
-INSERT INTO faq_cate(faq_cateno, title, seqno, rdate, cnt)
-VALUES((SELECT NVL(MAX(faq_cateno), 0) + 1 as faq_cateno FROM faq_cate),
-                '상품 관련', 3, sysdate, 0);
+
             
 -- 4)목록            
 SELECT * FROM faq_cate ORDER BY seqno ASC;
@@ -43,9 +45,9 @@ FROM faq_cate
 WHERE faq_cateno=1;
 
 -- 6)수정
-UPDATE notice_cate
-SET title='기타사항', seqno=5, visible='Y'
-WHERE cateno=4;
+UPDATE faq_cate
+SET cnt=0
+WHERE faq_cateno=1;
 
 -- 7)삭제
 DELETE FROM notice_cate

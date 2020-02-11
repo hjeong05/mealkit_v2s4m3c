@@ -1,6 +1,18 @@
 /**********************************/
 /* Table Name: 공지사항 분류 카테고리*/
 /**********************************/
+
+-- 3)등록
+INSERT INTO notice_cate(cateno, title, seqno, visible, rdate, cnt)
+VALUES((SELECT NVL(MAX(cateno), 0) + 1 as cateno FROM notice_cate),
+                '개인정보처리방침 안내', 1, 'Y', sysdate, 0);
+INSERT INTO notice_cate(cateno, title, seqno, visible, rdate, cnt)
+VALUES((SELECT NVL(MAX(cateno), 0) + 1 as cateno FROM notice_cate),
+                '회원등급 기준 안내', 2, 'Y', sysdate, 0);
+INSERT INTO notice_cate(cateno, title, seqno, visible, rdate, cnt)
+VALUES((SELECT NVL(MAX(cateno), 0) + 1 as cateno FROM notice_cate),
+                '무료배송 기준 안내', 3, 'Y', sysdate, 0);
+                
 -- 1)삭제
 DROP TABLE notice_cate;
 
@@ -46,7 +58,7 @@ WHERE cateno=1;
 
 -- 6)수정
 UPDATE notice_cate
-SET title='기타사항', seqno=5, visible='Y'
+SET cateno=1
 WHERE cateno=4;
 
 -- 7)삭제
