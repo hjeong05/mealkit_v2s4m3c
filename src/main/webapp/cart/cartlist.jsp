@@ -108,7 +108,7 @@ function delete_form(cartgrpno, cartno) {
           <c:set var="cartno" value="${cart_productVO.cartno }" />
           <tr style='width:100%; '>
             <td style='display:table-cell; vertical-align: middle;'><input type="checkbox" name="check_product" value="${cart_productVO.cartno }" id="<%=list_count %>" ></td>
-            <td style='display:table-cell; vertical-align: middle;'><IMG src="../pdatfile/storage/${cart_productVO.thumb }"></td>
+            <td style='display:table-cell; vertical-align: middle;'><IMG src="../pdcontents/storage/${cart_productVO.thumb }" style='width:100px;'></td>
             <td style='display:table-cell; vertical-align: middle; text-align: left;'>${cart_productVO.title }</td>
             <td style='display:table-cell; vertical-align: middle;'>${cart_productVO.productCount}개</td>
             <td style='display:table-cell; vertical-align: middle;'>${cart_productVO.price}원</td>
