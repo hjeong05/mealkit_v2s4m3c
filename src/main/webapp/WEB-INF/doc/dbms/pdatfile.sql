@@ -46,15 +46,15 @@ VALUES((SELECT NVL(MAX(pdatfileno), 0) + 1 as pdatfileno FROM pdatfile),
              
 INSERT INTO pdatfile(pdatfileno, pdcontentsno, fname, fupname, thumb, fsize, rdate)
 VALUES((SELECT NVL(MAX(pdatfileno), 0) + 1 as pdatfileno FROM pdatfile),
-             1, 'japchae2.jpg', 'japchae2_0.jpg', 'japchae2_0_t.jpg', 78724, sysdate);
+             1, 'hotpot1.jpg', 'hotpot1.jpg', 'hotpot1_t.jpg', 78724, sysdate);
 
 INSERT INTO pdatfile(pdatfileno, pdcontentsno, fname, fupname, thumb, fsize, rdate)
 VALUES((SELECT NVL(MAX(pdatfileno), 0) + 1 as pdatfileno FROM pdatfile),
-             1, 'japchae3.jpg', 'japchae3_0.jpg', 'japchae3_0_t.jpg', 84244, sysdate);
+             1, 'codari1.jpg', 'codari1.jpg', 'codari1_t.jpg', 84244, sysdate);
 
 INSERT INTO pdatfile(pdatfileno, pdcontentsno, fname, fupname, thumb, fsize, rdate)
 VALUES((SELECT NVL(MAX(pdatfileno), 0) + 1 as pdatfileno FROM pdatfile),
-             1, 'japchae4.jpg', 'japchae4_0.jpg', 'japchae4_0_t.jpg', 74194, sysdate);
+             1, 'altang1.jpg', 'altang1_1.jpg', 'altang1_1_t.jpg', 74194, sysdate);
              
 INSERT INTO pdatfile(pdatfileno, pdcontentsno, fname, fupname, thumb, fsize, rdate)
 VALUES((SELECT NVL(MAX(pdatfileno), 0) + 1 as pdatfileno FROM pdatfile),
@@ -64,16 +64,18 @@ VALUES((SELECT NVL(MAX(pdatfileno), 0) + 1 as pdatfileno FROM pdatfile),
 SELECT pdatfileno, pdcontentsno, fname, fupname, thumb, fsize, rdate
 FROM pdatfile
 ORDER BY pdcontentsno DESC,  pdatfileno ASC;
-
- -------------- ------------ ------------ -------------- -------------- ----- ---------------------
-              1            1 samyang.jpg  samyang_1.jpg  samyang_t.jpg   1000 2019-12-11 10:44:42.0
-              2            1 samyang2.jpg samyang2_1.jpg samyang2_t.jpg  2000 2019-12-11 10:44:43.0
-              3            1 samyang3.jpg samyang3_1.jpg samyang3_t.jpg  3000 2019-12-11 10:44:44.0
-              
+ PDATFILENO PDCONTENTSNO FNAME        FUPNAME        THUMB            FSIZE  RDATE
+ ---------- ------------ ------------ -------------- ---------------- ------ ---------------------
+         42            9 japchae1.jpg japchae1_0.jpg japchae1_0_t.jpg  92275 2020-02-04 12:12:47.0
+         67            6 hotpot1.jpg  hotpot1.jpg    hotpot1_t.jpg    128733 2020-02-12 10:48:51.0
+         57            5 codari1.jpg  codari1.jpg    codari1_t.jpg     75479 2020-02-07 10:05:19.0
+         47            4 altang1.jpg  altang1_1.jpg  altang1_1_t.jpg   75471 2020-02-06 18:09:01.0
+         62            1 japchae1.jpg japchae1_1.jpg japchae1_1_t.jpg  92275 2020-02-12 10:35:25.0
+             
 -- 3) 글별 파일 목록(contentsno 기준 내림 차순, attachfileno 기준 오르차순)
 SELECT pdatfileno, pdcontentsno, fname, fupname, thumb, fsize, rdate
 FROM pdatfile
-WHERE pdcontentsno = 1
+WHERE pdcontentsno = 3
 ORDER BY fname ASC;
 
  PDATTACHFILENO PDCONTENTSNO FNAME        FUPNAME        THUMB          FSIZE RDATE
