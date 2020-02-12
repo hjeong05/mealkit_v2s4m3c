@@ -56,7 +56,8 @@
       </div>
       
       <div class="form-group">   
-        <div class="col-md-12">
+      <label class="col-md-1 control-label">수량</label>
+        <div class="col-md-11">
           <input type="number" class="form-control input-lg" style='width:50%;' name=cnt value='' placeholder="수량">
       </div>
       

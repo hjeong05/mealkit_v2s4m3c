@@ -220,8 +220,8 @@ public class PdatfileCont {
       method = RequestMethod.POST)
   public ModelAndView delete_by_pdcontentsno(RedirectAttributes ra,
                                                               int pdcontentsno,
-                                                              int productcateno
-                                                            /*  int nowPage*/) {
+                                                              int productcateno,
+                                                              int nowPage) {
     ModelAndView mav = new ModelAndView();
 
     int count = pdatfileProc.delete_by_pdcontentsno(pdcontentsno);
@@ -229,7 +229,7 @@ public class PdatfileCont {
     ra.addAttribute("count", count); // 삭제된 레코드 갯수
     ra.addAttribute("pdcontentsno", pdcontentsno);
     ra.addAttribute("productcateno", productcateno);
-  //  ra.addAttribute("nowPage", nowPage);
+    ra.addAttribute("nowPage", nowPage);
 
     mav.setViewName("redirect:/pdatfile/delete_by_pdcontentsno_msg.jsp");
 

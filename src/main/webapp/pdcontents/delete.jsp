@@ -54,22 +54,7 @@
           삭제 되는글: ${pdcontentsVO.title }<br><br>
           삭제하시겠습니까? 삭제하시면 복구 할 수 없습니다.<br><br>
           다른 회원의 글은 삭제 할 수 없습니다.<br><br>
-        <c:choose>
-          <c:when test="${count_by_pdcontentsno > 0 }">
-            <DIV style='text-decoration: underline;'>관련된 첨부파일
-              ${count_by_pdcontentsno } 건이 발견되었습니다.</DIV>
-            <DIV>
-              관련된 첨부파일을 삭제해야 글을 삭제 할 수 있습니다.<br> <span
-                style='color: #FF0000;'>첨부파일이 삭제되면 복구 할 수 없습니다.</span><br>
-              첨부파일을 삭제 하시겠습니까?
-              <button type="button" class="btn btn-info"
-                onclick="delete_by_pdcontentsno();">예(삭제진행)</button>
-            </DIV>
-          </c:when>
-          <c:otherwise>
-            <button type = "submit" class="btn btn-info">삭제 진행</button>
-          </c:otherwise>
-        </c:choose>
+          <button type = "submit" class="btn btn-info">삭제 진행</button>
   
           <button type = "button" onclick = "history.back()" class="btn btn-info">취소</button>
         </div>
