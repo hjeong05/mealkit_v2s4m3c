@@ -1,12 +1,12 @@
 /**********************************/
 /* Table Name: qna */
 /**********************************/
--- qna ´Â µå¶ø ÇÏ°í »õ·Î Å×ÀÌºí ¸¸µé°í ³»¿ë ³Ö¾îÁÖ¼¼¿ä
+-- qna ëŠ” ë“œë í•˜ê³  ìƒˆë¡œ í…Œì´ë¸” ë§Œë“¤ê³  ë‚´ìš© ë„£ì–´ì£¼ì„¸ìš”
 DROP TABLE qna;
 
 CREATE TABLE qna(
     qnano                             NUMBER(10)     NOT NULL    PRIMARY KEY,
-    memberno                    NUMBER(10)     NOT NULL, 
+    memberno                    NUMBER(10)     NOT NULL,                                                                                                                                                                                                                                                                                                                                                                                                                                                             
     seqno                           NUMBER(10)     NOT NULL, 
     title                             VARCHAR2(300)    NOT NULL,
     name                           VARCHAR2(20)    NOT NULL,
@@ -20,80 +20,80 @@ CREATE TABLE qna(
     FOREIGN KEY (memberno) REFERENCES mkmember (memberno)
 );
 
--- Áú¹® µî·Ï
+-- ì§ˆë¬¸ ë“±ë¡
 INSERT INTO qna(qnano, memberno, seqno, title, content, name, choice,
                               grpno, indent, ansnum, rdate)
 VALUES((SELECT NVL(MAX(qnano), 0) + 1 as qnano FROM qna),
-             1, 1, '¹è¼Û¹®ÀÇÇÕ´Ï´Ù', 'ÀÏÁÖÀÏ Àü¿¡ ÁÖ¹®Çß´Âµ¥ ¹è¼Û ¾ğÁ¦¿À³ª¿ä?',
-             '¾Æ·Î¹Ì', '¹è¼Û', 1, 0,0,sysdate);
+             1, 1, 'ë°°ì†¡ë¬¸ì˜í•©ë‹ˆë‹¤', 'ì¼ì£¼ì¼ ì „ì— ì£¼ë¬¸í–ˆëŠ”ë° ë°°ì†¡ ì–¸ì œì˜¤ë‚˜ìš”?',
+             'ì•„ë¡œë¯¸', 'ë°°ì†¡', 1, 0,0,sysdate);
              
--- ´äº¯ µî·Ï
+-- ë‹µë³€ ë“±ë¡
 INSERT INTO qna(qnano, memberno, seqno, title, content, name, choice, grpno, indent, ansnum, rdate)  
 VALUES((SELECT NVL(MAX(qnano), 0) + 1 as qnano FROM qna),
-            1, 1, '´äº¯ µå¸³´Ï´Ù', 'ÁÖ¹® ÆøÁÖ·Î ÀÎÇØ ÀÏÁÖÀÏ ¾È¿¡ µµÂøÇÒ ¿¹Á¤ÀÔ´Ï´Ù :) ÁË¼ÛÇÕ´Ï´Ù.', '°ü¸®ÀÚ', '¹è¼Û', 1, 1, 1,sysdate);  
+            1, 1, 'ë‹µë³€ ë“œë¦½ë‹ˆë‹¤', 'ì£¼ë¬¸ í­ì£¼ë¡œ ì¸í•´ ì¼ì£¼ì¼ ì•ˆì— ë„ì°©í•  ì˜ˆì •ì…ë‹ˆë‹¤ :) ì£„ì†¡í•©ë‹ˆë‹¤.', 'ê´€ë¦¬ì', 'ë°°ì†¡', 1, 1, 1,sysdate);  
             
 COMMENT ON TABLE qna is 'qna';
-COMMENT ON COLUMN qna.qnano is 'qna¹øÈ£';
-COMMENT ON COLUMN qna.seqno is 'qna¼ø¼­';
-COMMENT ON COLUMN qna.title is 'qna Á¦¸ñ';
-COMMENT ON COLUMN qna.content is 'qna ³»¿ë';
-COMMENT ON COLUMN qna.grpno is '±×·ì¹øÈ£';
-COMMENT ON COLUMN qna.indent is '´äº¯Â÷¼ö';
-COMMENT ON COLUMN qna.ansnum is '´äº¯¼ø¼­';
+COMMENT ON COLUMN qna.qnano is 'qnaë²ˆí˜¸';
+COMMENT ON COLUMN qna.seqno is 'qnaìˆœì„œ';
+COMMENT ON COLUMN qna.title is 'qna ì œëª©';
+COMMENT ON COLUMN qna.content is 'qna ë‚´ìš©';
+COMMENT ON COLUMN qna.grpno is 'ê·¸ë£¹ë²ˆí˜¸';
+COMMENT ON COLUMN qna.indent is 'ë‹µë³€ì°¨ìˆ˜';
+COMMENT ON COLUMN qna.ansnum is 'ë‹µë³€ìˆœì„œ';
 
 
-1) µî·Ï
--- PK »ı¼º
+1) ë“±ë¡
+-- PK ìƒì„±
 SELECT NVL(MAX(qnano), 0) + 1 as qnano FROM qna;                                
  CONTENTSNO
  ----------
           1
            
              
--- 2) ¸ñ·Ï
+-- 2) ëª©ë¡
 SELECT qnano, memberno, seqno, title, content, choice, grpno, indent, ansnum, rdate
 FROM qna
 ORDER BY qnano DESC;
 
 
--- 3) ÀüÃ¼ ·¹ÄÚµå ¼ö
+-- 3) ì „ì²´ ë ˆì½”ë“œ ìˆ˜
 SELECT COUNT(*) as count
 FROM qna;
  
      
--- 4) Á¶È¸
+-- 4) ì¡°íšŒ
 SELECT qnano, memberno, seqno, title, content, grpno, indent, ansnum, rdate
 FROM qna;
 WHERE qnano=1;
 
--- 6) ¼öÁ¤
+-- 6) ìˆ˜ì •
 UPDATE qna
-SET title='Á¦¸ñ ¼öÁ¤', content='³»¿ë ¼öÁ¤'
+SET title='ì œëª© ìˆ˜ì •', content='ë‚´ìš© ìˆ˜ì •'
 WHERE qnano = 1;
 
--- 7) »èÁ¦
+-- 7) ì‚­ì œ
 DELETE FROM qna;
 WHERE qnano = 1;
 
 
-¨ç »õ·Î¿î ´äº¯À» ÃÖ½ÅÀ¸·Î µî·ÏÇÏ±âÀ§ÇØ ±âÁ¸ ´äº¯À» µÚ·Î ¹Ì·ì´Ï´Ù.
--- ¸ğµç ±ÛÀÇ ¿ì¼± ¼øÀ§°¡ 1¾¿ Áõ°¡µÊ, 1µî -> 2µî
+â‘  ìƒˆë¡œìš´ ë‹µë³€ì„ ìµœì‹ ìœ¼ë¡œ ë“±ë¡í•˜ê¸°ìœ„í•´ ê¸°ì¡´ ë‹µë³€ì„ ë’¤ë¡œ ë¯¸ë£¹ë‹ˆë‹¤.
+-- ëª¨ë“  ê¸€ì˜ ìš°ì„  ìˆœìœ„ê°€ 1ì”© ì¦ê°€ë¨, 1ë“± -> 2ë“±
 UPDATE qna
 SET ansnum = ansnum + 1
 WHERE memberno=1 AND grpno = 1 AND ansnum > 0;
 
--- 2µîºÎÅÍ ¿ì¼± ¼øÀ§°¡ 1¾¿ Áõ°¡µÊ, 2µî -> 3µî
+-- 2ë“±ë¶€í„° ìš°ì„  ìˆœìœ„ê°€ 1ì”© ì¦ê°€ë¨, 2ë“± -> 3ë“±
 UPDATE qna
 SET ansnum = ansnum + 1
 WHERE grpno = 1 AND ansnum > 0;
 
-¨è ´äº¯ µî·Ï
+â‘¡ ë‹µë³€ ë“±ë¡
 INSERT INTO qna(qnano, memberno, seqno, title, content, choice, grpno, indent, ansnum, rdate)  
 VALUES((SELECT NVL(MAX(qnano), 0) + 1 as qnano FROM qna),
-            1, 1, '´äº¯', '³»¿ë', '¹è¼Û', 1, 1, 1,sysdate);
+            1, 1, 'ë‹µë³€', 'ë‚´ìš©', 'ë°°ì†¡', 1, 1, 1,sysdate);
 
 
-¨é ´äº¯¿¡ µû¸¥ Á¤·Ä ¼ø¼­ º¯°æ    
+â‘¢ ë‹µë³€ì— ë”°ë¥¸ ì •ë ¬ ìˆœì„œ ë³€ê²½    
 SELECT qnano, memberno, seqno, title, content, choice, grpno, indent, ansnum, rdate r
 FROM(
          SELECT qnano, memberno, seqno, title, content, choice, grpno, indent, ansnum, rdate, rownum as r
